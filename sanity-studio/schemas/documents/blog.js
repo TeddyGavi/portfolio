@@ -1,13 +1,12 @@
-// schemas/pet.js
 export default {
-  name: 'pet',
+  name: 'blog',
+  title: 'Blog',
   type: 'document',
-  title: 'Pet',
   fields: [
     {
-      name: 'name',
+      name: 'title',
+      title: 'Title',
       type: 'string',
-      title: 'Name',
     },
   ],
 }
