@@ -1,6 +1,8 @@
 import about from './documents/about'
-import blog from './documents/blog'
+import post from './documents/post'
 import projects from './documents/projects'
-import links from './objects/links'
+import richText from './objects/richText'
+import category from './documents/category'
+import postContent from './objects/postContent'
 
-export const schemaTypes = [projects, blog, links, about]
+export const schemaTypes = [about, projects, post, category, richText, postContent]

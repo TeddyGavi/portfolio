@@ -14,24 +14,22 @@ export default {
       type: 'string',
     },
     {
+      name: 'pun',
+      title: 'Pun',
+      type: 'string',
+    },
+    {
+      name: 'image',
+      title: 'Image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    },
+    {
       name: 'body',
       title: 'About',
-      type: 'array',
-      description: 'This will be the main tagline visible on the site',
-      of: [
-        {type: 'block'},
-        {
-          type: 'image',
-          fields: [
-            {
-              type: 'text',
-              name: 'alt',
-              title: 'Alternate text',
-              description: 'Make sure to provide alt text for screen readers',
-            },
-          ],
-        },
-      ],
+      type: 'richText',
     },
     {
       name: 'gitHub',

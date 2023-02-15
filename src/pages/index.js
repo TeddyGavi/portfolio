@@ -15,8 +15,8 @@ export default function Home({ pets }) {
   return (
     <>
       <Head>
-        <title>Create Next App</title>
-        <meta name="description" content="M.D" />
+        <title>M.D</title>
+        <meta name="description" content="web developer Matt Davis portfolio" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
