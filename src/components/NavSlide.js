@@ -6,7 +6,7 @@ export const navItemMap = navItems.map((x, i) => (
   <Link
     key={i}
     href={`/${x.toLowerCase()}`}
-    className="font-title py-6 transform transition-all hover:text-stone-100 hover:opacity-80"
+    className="font-title py-6 transform transition-all hover:text-stone-400 hover:opacity-80"
   >
     {x}
   </Link>

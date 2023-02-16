@@ -12,7 +12,7 @@ export default function Nav() {
     <nav className="mt-4 flex justify-between items-center p-3 bg-stone-600 text-white relative">
       <Link
         href="/"
-        className="font-title transform transition-all hover:text-stone-900 hover:opacity-80 md:hidden lg:hidden "
+        className="font-title transform transition-all hover:text-stone-400 hover:opacity-80 md:hidden lg:hidden "
       >
         Home
       </Link>
