@@ -15,14 +15,14 @@ export default function Home({ about }) {
       </Head>
       <main className="max-w-3xl mx-auto">
         <Nav />
-        <div>Hi!</div>
-        <ul>
-          <li>{about.name}</li>
-          <li>{about.short}</li>
-          <li>{about.pun}</li>
-          <li></li>
-        </ul>
-        <div className=" bg-black"></div>
+        <section className="flex flex-col justify-center items-center mx-auto">
+          <h1 className="font-main text-5xl font-bold py-8">
+            Hi, my name is {about.name}
+          </h1>
+          <h2 className="font-main text-2xl font-semibold py-6">
+            {about.short}
+          </h2>
+        </section>
       </main>
     </>
   );
