@@ -2,9 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 @layer base {
+  body,
   html {
-    font-family: Proxima Nova, system-ui, sans-serif;
     background-color: rgb(57, 57, 57);
     max-height: 100vh;
+    margin: 0;
+    padding: 0;
   }
 }
