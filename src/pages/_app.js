@@ -1,3 +1,4 @@
+import Nav from "@/components/Nav";
 import "@/styles/globals.css";
 import { Montserrat, Rubik_Mono_One, Source_Code_Pro } from "@next/font/google";
 import Head from "next/head";
@@ -44,6 +45,7 @@ export default function App({ Component, pageProps }) {
         />
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
+      <Nav />
       <main className={`${main.variable} ${source.variable} `}>
         <Component {...pageProps} />
       </main>

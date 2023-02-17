@@ -1,46 +1,5 @@
-import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-
-export const navItems = [
-  { name: "Home", to: "/", id: 0 },
-  { name: "Projects", to: "/projects", id: 1 },
-  { name: "Contact", to: "/contact", id: 3 },
-];
-
-export const navItemMap = navItems.map(({ name, to, id }) => (
-  <Link
-    key={id}
-    href={to}
-    className=" px-2 font-source font-extrabold  transition-all  text-stone-200 hover:text-stone-400 hover:opacity-100"
-  >
-    [{name}]
-  </Link>
-));
-/* const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      delayChildren: 0.5
-    }
-  }
-}
-
-const item = {
-  hidden: { opacity: 0 },
-  show: { opacity: 1 }
-}
-
-return (
-  <motion.ul
-    variants={container}
-    initial="hidden"
-    animate="show"
-  >
-    <motion.li variants={item} />
-    <motion.li variants={item} />
-  </motion.ul>
-) */
+import { motion } from "framer-motion";
+import NavLinks from "./NavLinks";
 
 const slide = {
   hidden: {
@@ -71,11 +30,9 @@ export default function NavSlide({ handleSlide }) {
       initial="hidden"
       animate="show"
       exit="hidden"
-      className="flex flex-col justify-around items-center text-6xl top-0 left-0 absolute bg-stone-900  "
+      className="flex flex-col w-full justify-evenly items-center text-6xl top-0 left-0 absolute bg-stone-900  "
     >
-      <motion.div className="" variants={slideItem}>
-        {navItemMap}
-      </motion.div>
+      <NavLinks variants={slideItem} />
     </motion.div>
   );
 }

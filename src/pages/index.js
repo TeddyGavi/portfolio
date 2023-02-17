@@ -15,7 +15,6 @@ export default function Home({ about }) {
       <Head>
         <title>M/D</title>
       </Head>
-      <Nav />
       <section className="max-w-3xl mx-auto max-h-screen">
         <article className="flex flex-col justify-center items-center mx-auto">
           <h1 className="font-main text-stone-100 text-5xl font-bold py-8">
