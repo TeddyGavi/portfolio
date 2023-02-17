@@ -1,24 +1,21 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 export default function HamButton({ handleSlide, navSlide }) {
-  const [active, setActive] = useState(navSlide);
-
   return (
     <button
       className="relative group z-10"
       onClick={() => {
-        setActive((prev) => !prev);
         handleSlide();
       }}
     >
       <div
         className={`md:hidden w-8 h-8 flex items-center space-y-2 relative flex-col border border-white p-1 rounded transform transition-all duration-300  ${
-          active
+          navSlide
             ? "ring-0 hover:ring-4 ring-stone-100 ring-opacity-40"
             : "hover:ring-4 ring-0 ring-opacity-30 ring-stone-900"
         }`}
       >
-        {active ? (
+        {navSlide ? (
           <div className="flex flex-col items-center  mt-3 rotate-180 transform transition-all duration-500 ">
             <div className="w-7 h-0.5 absolute bg-stone-200 -rotate-45  transform transition-all duration-300 origin-center "></div>
             <div className="w-7 h-0.5  absolute bg-stone-200 rotate-45 transform transition-all duration-300 origin-center "></div>

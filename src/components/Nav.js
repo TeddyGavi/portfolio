@@ -3,6 +3,7 @@ import NavSlide, { navItemMap } from "./NavSlide";
 import { useState } from "react";
 import HamButton from "./HamButton";
 import Image from "next/image";
+import { AnimatePresence } from "framer-motion";
 
 export default function Nav() {
   const [navSlide, setNavSlide] = useState(false);
@@ -24,7 +25,9 @@ export default function Nav() {
       </Link>
       <div className="hidden md:inline-flex text-2xl">{navItemMap}</div>
       <HamButton handleSlide={handleMenuClick} navSlide={navSlide} />
-      {navSlide && <NavSlide handleSlide={handleMenuClick} />}
+      <AnimatePresence>
+        {navSlide && <NavSlide handleSlide={handleMenuClick} />}
+      </AnimatePresence>
     </nav>
   );
 }
