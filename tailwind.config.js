@@ -22,6 +22,15 @@ module.exports = {
         source: ["var(--font-source)", ...fontFamily.sans],
       },
     },
+    keyframes: {
+      blink: {
+        "0%": { opacity: 1 },
+        to: { opacity: 0 },
+      },
+    },
+    animation: {
+      blink: "blink 1s cubic-bezier(1, 1.5, 1, 1.5) infinite",
+    },
   },
   plugins: [],
 };

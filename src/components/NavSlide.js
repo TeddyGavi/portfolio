@@ -5,12 +5,18 @@ const slide = {
   hidden: {
     height: 0,
     opacity: 0,
-    transition: { delay: 0.5, delayChildren: 0.2 },
+    transition: {
+      type: "tween",
+      delay: 0.5,
+      delayChildren: 0.2,
+    },
   },
   show: {
-    height: 700,
+    height: "98vh",
     opacity: 1,
     transition: {
+      type: "tween",
+      velocity: 100,
       delay: 0.2,
       delayChildren: 0.5,
     },
@@ -30,7 +36,7 @@ export default function NavSlide({ handleSlide }) {
       initial="hidden"
       animate="show"
       exit="hidden"
-      className="flex flex-col w-full justify-evenly items-center text-6xl top-0 left-0 absolute bg-stone-900  "
+      className="md:hidden flex flex-col w-full  justify-evenly items-center text-6xl top-0 left-0 absolute bg-stone-900  "
     >
       <NavLinks variants={slideItem} />
     </motion.div>
