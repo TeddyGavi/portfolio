@@ -12,7 +12,7 @@ const slide = {
     },
   },
   show: {
-    height: "98vh",
+    height: 825,
     opacity: 1,
     transition: {
       type: "tween",

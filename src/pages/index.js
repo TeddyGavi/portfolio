@@ -2,7 +2,7 @@ import Head from "next/head";
 import Nav from "@/components/Nav";
 import { getAbout } from "../lib/getAbout";
 import { urlFor } from "../../sanity";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import TypeWriter from "@/components/TypeWriter";
 
 export async function getStaticProps() {
