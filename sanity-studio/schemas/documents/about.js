@@ -15,8 +15,9 @@ export default {
     },
     {
       name: 'pun',
-      title: 'Pun',
-      type: 'string',
+      title: 'Puns',
+      type: 'array',
+      of: [{type: 'string'}],
     },
     {
       name: 'image',

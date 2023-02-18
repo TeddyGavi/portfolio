@@ -19,13 +19,14 @@ export default function Home({ about }) {
       <section className="max-w-3xl mx-auto max-h-screen">
         <article className="flex flex-col justify-center items-center mx-auto">
           <h1 className="font-main text-stone-100 text-5xl font-bold py-8">
-            Hi, my name is {about.name}
+            Hi, my name is {about.name}{" "}
+            {/* <TypeWriter toType={[about.name]} textSize={"5xl"} /> */}
           </h1>
           <h2 className="font-main text-stone-400 text-2xl font-semibold py-6">
             {about.short}
+            <TypeWriter toType={[...about.pun]} textSize={"2xl"} />
           </h2>
         </article>
-        <TypeWriter />
         {/* <img src={urlFor(about.image).url()} alt="profile image" /> */}
       </section>
     </>

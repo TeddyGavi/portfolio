@@ -12,12 +12,10 @@
 }
 .cursor-typing:after {
   content: "|";
-  @apply text-white;
 }
 
 .cursor:after {
   content: "|";
-  @apply text-white;
   animation: blink 1s step-start infinite;
 }
 
