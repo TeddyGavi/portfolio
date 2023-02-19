@@ -1,16 +1,16 @@
 import { useTyping } from "@/hooks/useTyping";
 
-export default function TypeWriter({ toType, textSize }) {
+export default function TypeWriter({ toType, textSize, color }) {
   const { text, ariaText, phase } = useTyping(toType);
 
   return (
     <span
-      className={`text-white text-${textSize} ${
+      className={`text-${color} text-${textSize} ${
         phase === "Typing" || phase === "Deleting" ? "cursor-typing" : "cursor"
       }`}
-      aria-label={ariaText}
+      aria-label={`${ariaText}`}
     >
-      {text}.
+      {text}
     </span>
   );
 }

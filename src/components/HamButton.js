@@ -2,6 +2,7 @@ export default function HamButton({ handleSlide, navSlide }) {
   return (
     <button
       className="relative group z-10"
+      aria-label="Navigation button"
       onClick={() => {
         handleSlide();
       }}
