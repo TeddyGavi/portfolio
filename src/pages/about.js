@@ -9,13 +9,15 @@ export async function getStaticProps() {
 }
 
 export default function About({ about }) {
-  console.log(about.body);
   const { body } = about.body;
   return (
-    <section className="max-w-4xl grid md:grid-cols-2 md:gap-8 justify-items-center grid-cols-1 gap-0 px-1 mx-auto ">
+    <section
+      aria-label="about section"
+      className="max-w-4xl mt-8 grid md:grid-cols-2 md:gap-8 justify-items-center grid-cols-1 gap-0 px-1 mx-auto "
+    >
       <Image
         priority
-        className="mt-8 rounded-md"
+        className="rounded-md"
         src={urlFor(about.image).url()}
         alt="profile image"
         width={480}
@@ -23,10 +25,14 @@ export default function About({ about }) {
       />
       <article className="font-main text-lg text-stone-100">
         <PortableText
-          content={body}
-          // projectId={process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}
-          // dataset={process.env.NEXT_PUBLIC_SANITY_DATASET}
-          serializers={{}}
+          content={body.slice(2, body.length)}
+          serializers={{
+            li: ({ children }) => (
+              <p aria-label="paragraph about author" className="py-6 my-auto">
+                {children}
+              </p>
+            ),
+          }}
         />
       </article>
     </section>

@@ -6,14 +6,14 @@ export async function getStaticProps() {
 
 export default function projects({ projects }) {
   return (
-    <>
-      <div>Hi!</div>
-      <ul>
-        <li>{projects.name}</li>
-        <li>{projects.short}</li>
-        <li>{projects.pun}</li>
-        <li></li>
-      </ul>
-    </>
+    <section className="max-w-4xl mx-auto grid grid-cols-1 justify-items-center">
+      {projects.map(({ _id, about, gitHub, image, title }) => {
+        return (
+          <div key={_id} className="">
+            {title}
+          </div>
+        );
+      })}
+    </section>
   );
 }
