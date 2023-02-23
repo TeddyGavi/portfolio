@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import Nav from "@/components/Nav";
 import "@/styles/globals.css";
 import { Montserrat, Rubik_Mono_One, Source_Code_Pro } from "@next/font/google";
@@ -46,7 +47,7 @@ export default function App({ Component, pageProps }) {
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
       <Nav />
-      <main className={`${main.variable} ${source.variable} `}>
+      <main className={`${main.variable} ${source.variable} flex flex-col  `}>
         <Component {...pageProps} />
       </main>
     </>

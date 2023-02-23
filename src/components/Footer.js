@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Footer({ links }) {
   const { gitHub, linkedIn, resume, discord, twitter } = links;
   return (
-    <footer className="flex mx-auto justify-center mt-10 text-stone-200">
+    <footer className="max-w-4xl flex mx-auto justify-center mt-10  bottom-0  text-stone-200">
       <Link href={gitHub}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
