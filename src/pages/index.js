@@ -20,7 +20,7 @@ const letter = {
   letterIn: {
     hidden: {
       opacity: 0,
-      y: `calc(60vh)`,
+      y: `calc(50vh)`,
     },
     show: {
       opacity: 1,
@@ -48,13 +48,6 @@ const letter = {
 };
 
 export default function Home({ about }) {
-  const socialLinks = {
-    gitHub: about.gitHub,
-    linkedIn: about.linkedIn,
-    twitter: about.twitter,
-    resume: about.resume,
-    discord: about.discord,
-  };
   const drag = useRef(null);
   return (
     <>
@@ -105,7 +98,6 @@ export default function Home({ about }) {
           </h2>
         </article>
       </section>
-      <Footer links={{ ...socialLinks }} />
     </>
   );
 }

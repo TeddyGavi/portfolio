@@ -13,7 +13,7 @@ export default function Nav() {
   return (
     <nav
       aria-label="navigation menu"
-      className=" z-50 mt-4 max-w-5xl mx-auto h-18 flex justify-between md:justify-evenly items-center p-3 border-b border-stone-500 text-white relative"
+      className=" z-50 mt-4 mx-auto w-full h-18 flex justify-between md:justify-evenly items-center p-3 border-b border-stone-500 text-white relative"
     >
       <Link
         href="/"

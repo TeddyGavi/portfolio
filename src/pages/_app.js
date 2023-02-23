@@ -1,25 +1,7 @@
-import Footer from "@/components/Footer";
-import Nav from "@/components/Nav";
+import Layout from "@/components/Layout";
 import "@/styles/globals.css";
-import { Montserrat, Rubik_Mono_One, Source_Code_Pro } from "@next/font/google";
 import Head from "next/head";
-
-const main = Montserrat({
-  subsets: ["latin", "latin-ext"],
-  variable: "--font-main",
-});
-
-const title = Rubik_Mono_One({
-  weight: "400",
-  style: "normal",
-  subsets: ["latin", "latin-ext"],
-  variable: "--font-title",
-});
-
-const source = Source_Code_Pro({
-  subsets: ["latin", "latin-ext"],
-  variable: "--font-source",
-});
+import { getSocialLinks } from "@/lib/getSocialLinks";
 
 export default function App({ Component, pageProps }) {
   return (
@@ -46,10 +28,11 @@ export default function App({ Component, pageProps }) {
         />
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
-      <Nav />
-      <main className={`${main.variable} ${source.variable} flex flex-col  `}>
-        <Component {...pageProps} />
-      </main>
+      <div className="max-w-5xl mx-auto flex flex-col justify-between min-h-screen">
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </div>
     </>
   );
 }
