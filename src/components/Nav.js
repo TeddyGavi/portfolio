@@ -5,11 +5,21 @@ import HamButton from "./HamButton";
 import Image from "next/image";
 import { AnimatePresence } from "framer-motion";
 import NavLinks from "./NavLinks";
+
 export default function Nav() {
   const [navSlide, setNavSlide] = useState(false);
+
+  const toggleScrollable = () => {
+    navSlide
+      ? (document.body.style.overflow = "unset")
+      : (document.body.style.overflow = "hidden");
+  };
+
   const handleMenuClick = () => {
     setNavSlide((prev) => !prev);
+    toggleScrollable();
   };
+
   return (
     <nav
       aria-label="navigation menu"
