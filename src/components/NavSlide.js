@@ -12,7 +12,7 @@ const slide = {
     },
   },
   show: {
-    height: "calc(98vh)",
+    height: "calc(100vh)",
     opacity: 1,
     transition: {
       type: "tween",
@@ -36,7 +36,7 @@ export default function NavSlide({ handleSlide }) {
       initial="hidden"
       animate="show"
       exit="hidden"
-      className="md:hidden flex flex-col w-full  justify-evenly items-center text-6xl top-0 left-0 absolute bg-stone-900  "
+      className="md:hidden flex flex-col w-full justify-evenly items-center text-6xl top-0 left-0 absolute bg-stone-900  "
     >
       <NavLinks variants={slideItem} />
     </motion.div>
