@@ -3,6 +3,8 @@ import { getAbout } from "../lib/getAbout";
 import TypeWriter from "@/components/TypeWriter";
 import { motion } from "framer-motion";
 import { useRef } from "react";
+import Link from "next/link";
+import Footer from "@/components/Footer";
 
 export async function getStaticProps() {
   const about = await getAbout();
@@ -18,13 +20,13 @@ const letter = {
   letterIn: {
     hidden: {
       opacity: 0,
-      y: `calc(50vh)`,
+      y: `calc(60vh)`,
     },
     show: {
       opacity: 1,
       y: `0vh`,
       transition: {
-        type: "spring",
+        type: "tween",
         duration: 1,
       },
     },
@@ -46,6 +48,13 @@ const letter = {
 };
 
 export default function Home({ about }) {
+  const socialLinks = {
+    gitHub: about.gitHub,
+    linkedIn: about.linkedIn,
+    twitter: about.twitter,
+    resume: about.resume,
+    discord: about.discord,
+  };
   const drag = useRef(null);
   return (
     <>
@@ -96,6 +105,7 @@ export default function Home({ about }) {
           </h2>
         </article>
       </section>
+      <Footer links={{ ...socialLinks }} />
     </>
   );
 }

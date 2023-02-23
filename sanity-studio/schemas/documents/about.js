@@ -43,8 +43,13 @@ export default {
       type: 'url',
     },
     {
-      name: 'linkedin',
+      name: 'linkedIn',
       title: 'LinkedIn Link',
+      type: 'url',
+    },
+    {
+      name: 'discord',
+      title: 'Discord UserName Link',
       type: 'url',
     },
     {
