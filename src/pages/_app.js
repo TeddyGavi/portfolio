@@ -1,7 +1,6 @@
 import Layout from "@/components/Layout";
 import "@/styles/globals.css";
 import Head from "next/head";
-import { getSocialLinks } from "@/lib/getSocialLinks";
 
 export default function App({ Component, pageProps }) {
   return (

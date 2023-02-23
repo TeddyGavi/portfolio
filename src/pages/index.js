@@ -3,8 +3,6 @@ import { getAbout } from "../lib/getAbout";
 import TypeWriter from "@/components/TypeWriter";
 import { motion } from "framer-motion";
 import { useRef } from "react";
-import Link from "next/link";
-import Footer from "@/components/Footer";
 
 export async function getStaticProps() {
   const about = await getAbout();
