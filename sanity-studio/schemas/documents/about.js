@@ -57,5 +57,10 @@ export default {
       title: 'Resume Link',
       type: 'url',
     },
+    {
+      name: 'mastodon',
+      title: 'Mastodon',
+      type: 'url',
+    },
   ],
 }

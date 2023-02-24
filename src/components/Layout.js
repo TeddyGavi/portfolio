@@ -22,7 +22,7 @@ const source = Source_Code_Pro({
 export default function Layout({ children }) {
   return (
     <>
-      <Nav></Nav>
+      <Nav />
       <main className={`${main.variable} ${source.variable} flex-grow mt-16`}>
         {children}
       </main>

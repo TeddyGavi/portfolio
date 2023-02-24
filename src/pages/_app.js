@@ -27,7 +27,7 @@ export default function App({ Component, pageProps }) {
         />
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
-      <div className="max-w-5xl mx-auto flex flex-col justify-between min-h-screen">
+      <div className="max-w-4xl mx-auto flex flex-col justify-between min-h-screen">
         <Layout>
           <Component {...pageProps} />
         </Layout>

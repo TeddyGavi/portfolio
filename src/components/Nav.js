@@ -11,24 +11,13 @@ import {
 } from "framer-motion";
 import NavLinks from "./NavLinks";
 
-const nav = {
-  hidden: { opacity: 0 },
-  show: { opacity: 1 },
-  transition: { type: "tween" },
-};
-
-const navButton = {
-  hidden: { opacity: 1 },
-  show: { opacity: 1 },
-};
-
 export default function Nav() {
   const [navSlide, setNavSlide] = useState(false);
   const [hidden, setHidden] = useState(false);
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest > 100) {
+    if (latest > 0) {
       setHidden(true);
     } else {
       setHidden(false);
@@ -47,13 +36,11 @@ export default function Nav() {
   };
 
   return (
-    <motion.nav
-      variants={nav}
-      initial="hidden"
-      animate={hidden ? "hidden" : "show"}
-      transition={{ delayChildren: 0.5 }}
+    <nav
       aria-label="navigation menu"
-      className={`fixed z-50 mx-auto w-full h-18 flex  justify-between md:justify-evenly items-center p-3 border-b border-stone-500 text-white `}
+      className={`fixed z-50 h-18 ${
+        hidden ? "backdrop-blur-md  bg-opacity-10" : ""
+      } flex max-w-4xl w-full mx-auto justify-between md:justify-evenly items-center p-3 border-b border-stone-500 text-white transition-all`}
     >
       <Link
         href="/"
@@ -62,12 +49,10 @@ export default function Nav() {
         <Image src={`/favicon.ico`} width={32} height={32} alt="site logo" />
       </Link>
       <div className="hidden md:inline-flex text-2xl">{<NavLinks />}</div>
-      <motion.div variants={navButton} animate="show">
-        <HamButton handleSlide={handleMenuClick} navSlide={navSlide} />
-      </motion.div>
+      <HamButton handleSlide={handleMenuClick} navSlide={navSlide} />
       <AnimatePresence>
         {navSlide && <NavSlide handleSlide={handleMenuClick} />}
       </AnimatePresence>
-    </motion.nav>
+    </nav>
   );
 }
