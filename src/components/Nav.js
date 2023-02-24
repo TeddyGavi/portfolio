@@ -44,7 +44,7 @@ export default function Nav() {
     >
       <Link
         href="/"
-        className="items-center transition-all  text-stone-200  hover:text-stone-400 hover:opacity-100 opacity-40 "
+        className="items-center transition-all  text-stone-100  hover:text-stone-400 hover:opacity-100 opacity-80 "
       >
         <Image src={`/favicon.ico`} width={32} height={32} alt="site logo" />
       </Link>

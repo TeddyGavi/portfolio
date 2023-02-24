@@ -2,38 +2,44 @@ import { getProjects } from "../lib/getProjects";
 import { urlFor } from "../../sanity";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 export async function getStaticProps() {
   const projects = await getProjects();
   return { props: { projects } };
 }
 
+const variants = {
+  hidden: { opacity: 0, scale: 0 },
+  show: { opacity: 1, scale: 1, transition: { duration: 0.5, bounce: 2 } },
+};
+
 export default function projects({ projects }) {
   return (
-    <section className="max-w-4xl mx-auto grid grid-cols-1 content-center my-4 gap-4 justify-items-center text-stone-100">
+    <section className="max-w-4xl mx-auto grid grid-cols-1 justify-center  gap-4 justify-items-center text-stone-100 ">
       {projects.map(({ _id, about, gitHub, image, title }) => {
         return (
-          <article
+          <motion.article
             key={_id}
-            className="flex flex-col justify-between border-stone-500 border-b-2  p-6"
+            className="flex flex-col  items-center p-6  border-stone-500 border-b-2"
           >
             <header>
               <h3 className="font-main font-bold text-4xl mt-2 mb-4">
                 {title}
               </h3>
             </header>
-            <section className="grid md:grid-cols-2 sm:grid-cols-1">
+            <section className="grid md:grid-cols-2 grid-cols-1 ">
               <Image
                 priority
-                className="rounded-md"
+                className="rounded-md justify-self-center"
                 src={urlFor(image).url()}
-                alt="profile image"
+                alt="project image"
                 width={480}
                 height={720}
               />
-              <div className="flex flex-col items-center w-full p-6 font-source text-md">
+              <div className="flex flex-col items-center text-center w-full p-6 font-source text-md ">
                 <p>{about}</p>
-                <div className="self-end">
+                <div className="self-end my-auto ">
                   {" "}
                   <Link href={gitHub}>
                     <svg
@@ -48,7 +54,7 @@ export default function projects({ projects }) {
                 </div>
               </div>
             </section>
-          </article>
+          </motion.article>
         );
       })}
     </section>

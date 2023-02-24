@@ -13,7 +13,7 @@ export default {
       name: 'about',
       title: 'Description',
       type: 'text',
-      validation: (Rule) => Rule.required().max(250),
+      validation: (Rule) => Rule.required().max(500),
     },
     {
       name: 'image',
