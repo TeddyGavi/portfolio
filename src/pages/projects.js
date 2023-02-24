@@ -2,24 +2,23 @@ import { getProjects } from "../lib/getProjects";
 import { urlFor } from "../../sanity";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 
 export async function getStaticProps() {
   const projects = await getProjects();
   return { props: { projects } };
 }
 
-const variants = {
-  hidden: { opacity: 0, scale: 0 },
-  show: { opacity: 1, scale: 1, transition: { duration: 0.5, bounce: 2 } },
-};
+// const variants = {
+//   hidden: { opacity: 0, scale: 0 },
+//   show: { opacity: 1, scale: 1, transition: { duration: 0.5, bounce: 2 } },
+// };
 
 export default function projects({ projects }) {
   return (
     <section className="max-w-4xl mx-auto grid grid-cols-1 justify-center  gap-4 justify-items-center text-stone-100 ">
       {projects.map(({ _id, about, gitHub, image, title }) => {
         return (
-          <motion.article
+          <article
             key={_id}
             className="flex flex-col  items-center p-6  border-stone-500 border-b-2"
           >
@@ -54,7 +53,7 @@ export default function projects({ projects }) {
                 </div>
               </div>
             </section>
-          </motion.article>
+          </article>
         );
       })}
     </section>
