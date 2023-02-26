@@ -23,9 +23,7 @@ export default function Layout({ children }) {
   return (
     <>
       <Nav />
-      <main className={`${main.variable} ${source.variable} flex-grow mt-16`}>
-        {children}
-      </main>
+      <main className={`${main.variable} ${source.variable} `}>{children}</main>
       <Footer />
     </>
   );

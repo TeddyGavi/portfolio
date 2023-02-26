@@ -38,7 +38,7 @@ export default function Nav() {
   return (
     <nav
       aria-label="navigation menu"
-      className={`fixed z-50 h-18 ${
+      className={`fixed z-50 h-16 ${
         hidden ? "backdrop-blur-md  bg-opacity-10" : ""
       } flex max-w-4xl w-full mx-auto justify-between md:justify-evenly items-center p-3 border-b border-stone-500 text-white transition-all`}
     >

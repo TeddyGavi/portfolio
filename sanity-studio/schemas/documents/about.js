@@ -14,6 +14,11 @@ export default {
       type: 'string',
     },
     {
+      name: 'second',
+      title: 'secondary tagLine',
+      type: 'string',
+    },
+    {
       name: 'pun',
       title: 'Puns',
       type: 'array',

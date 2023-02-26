@@ -2,12 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 @layer base {
-  body,
-  html {
+  html,
+  body {
+    height: 100%;
+  }
+  body {
     background-color: rgb(57, 57, 57);
-    max-height: 100vh;
-    margin: 0;
+    /* max-height: 100vh; */
+    /* height: 100%; */
+    margin-left: auto;
+    margin-right: auto;
     padding: 0;
+    max-width: 56rem;
+    display: flex;
   }
 }
 .cursor-typing:after {

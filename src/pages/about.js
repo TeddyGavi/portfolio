@@ -13,7 +13,7 @@ export default function About({ about }) {
   return (
     <section
       aria-label="about section"
-      className="max-w-4xl mt-8 grid md:grid-cols-2 md:gap-8 justify-items-center grid-cols-1 gap-0 px-1 mx-auto "
+      className="max-w-4xl mt-20 grid md:grid-cols-2 md:gap-8 justify-items-center grid-cols-1 gap-0 px-1 mx-auto "
     >
       <Image
         priority
