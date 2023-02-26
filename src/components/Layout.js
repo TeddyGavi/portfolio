@@ -24,7 +24,7 @@ export default function Layout({ children }) {
     <>
       <Nav />
       <main className={`${main.variable} ${source.variable} `}>{children}</main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
