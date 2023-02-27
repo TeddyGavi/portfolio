@@ -2,10 +2,10 @@ import Head from "next/head";
 import { getAbout } from "../lib/getAbout";
 import TypeWriter from "@/components/TypeWriter";
 import { motion } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { getProjects } from "@/lib/getProjects";
 import Projects from "@/components/sections/Projects";
-import About from "./about";
+import About from "@/components/sections/About";
 import Contact from "@/components/sections/Contact";
 
 export async function getStaticProps() {
@@ -52,11 +52,12 @@ const letter = {
 };
 
 export default function Home({ about, projects }) {
-  // useEffect(() => {
-  //   const navHeight = document.getElementById("nav-header").offsetHeight;
-  //   const windowHeight = window.innerHeight;
-  //   console.log(navHeight);
-  // }, []);
+  useEffect(() => {
+    const navHeight = document.getElementById("nav-header").offsetHeight;
+    const clientH = document.getElementById("__next").clientHeight;
+    const windowHeight = window.innerHeight;
+    console.log(windowHeight - clientH);
+  }, []);
 
   return (
     <>
@@ -65,7 +66,7 @@ export default function Home({ about, projects }) {
       </Head>
       <section
         id="main"
-        className="max-w-4xl grid md:grid-cols-2 md:gap-8 justify-items-center grid-cols-1 gap-0 px-1 "
+        className={`mt-20 grid md:grid-cols-2 md:gap-8 justify-items-center grid-cols-1 gap-0 px-1 `}
       >
         <h1 className="font-main text-stone-50 text-7xl font-bold md:mt-48 mt-20">
           {about.name.split(" ").map((word, i) => {
@@ -112,7 +113,7 @@ export default function Home({ about, projects }) {
         </article>
       </section>
       <Projects projects={projects} />
-      <About id="about" about={about} />
+      <About about={about} />
       <Contact />
     </>
   );
