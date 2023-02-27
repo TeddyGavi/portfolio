@@ -2,11 +2,17 @@ import Head from "next/head";
 import { getAbout } from "../lib/getAbout";
 import TypeWriter from "@/components/TypeWriter";
 import { motion } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
+import { getProjects } from "@/lib/getProjects";
+import Projects from "@/components/sections/Projects";
+import About from "./about";
+import Contact from "@/components/sections/Contact";
 
 export async function getStaticProps() {
   const about = await getAbout();
-  return { props: { about } };
+  const projects = await getProjects();
+
+  return { props: { about, projects } };
 }
 
 const words = {
@@ -45,13 +51,22 @@ const letter = {
   },
 };
 
-export default function Home({ about }) {
+export default function Home({ about, projects }) {
+  // useEffect(() => {
+  //   const navHeight = document.getElementById("nav-header").offsetHeight;
+  //   const windowHeight = window.innerHeight;
+  //   console.log(navHeight);
+  // }, []);
+
   return (
     <>
       <Head>
         <title>M/D</title>
       </Head>
-      <section className="max-w-4xl mt-20 grid md:grid-cols-2 md:gap-8 justify-items-center grid-cols-1 gap-0 px-1 mx-auto ">
+      <section
+        id="main"
+        className="max-w-4xl grid md:grid-cols-2 md:gap-8 justify-items-center grid-cols-1 gap-0 px-1 "
+      >
         <h1 className="font-main text-stone-50 text-7xl font-bold md:mt-48 mt-20">
           {about.name.split(" ").map((word, i) => {
             return (
@@ -80,10 +95,8 @@ export default function Home({ about }) {
         </h1>
 
         <article className="grid grid-rows-2 md:gap-32 md:my-24 ">
-          <h2>
-            <span className="hidden md:inline-block text-4xl text-stone-400">
-              You have now met{" "}
-            </span>
+          <h2 className="hidden md:inline-block">
+            <span className="text-4xl text-stone-400">You have now met </span>
           </h2>
           <h2 className="font-main font-medium text-stone-400 text-2xl">
             {`${about.short} `}
@@ -98,6 +111,9 @@ export default function Home({ about }) {
           </h2>
         </article>
       </section>
+      <Projects projects={projects} />
+      <About about={about} />
+      <Contact />
     </>
   );
 }

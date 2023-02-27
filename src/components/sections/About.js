@@ -1,19 +1,14 @@
 import Image from "next/image";
-import { urlFor } from "../../sanity";
-import { getAbout } from "../lib/getAbout";
+import { urlFor } from "../../../sanity";
 import PortableText from "react-portable-text";
-
-export async function getStaticProps() {
-  const about = await getAbout();
-  return { props: { about } };
-}
 
 export default function About({ about }) {
   const { body } = about.body;
   return (
     <section
-      aria-label="about section"
-      className="max-w-4xl mt-20 grid md:grid-cols-2 md:gap-8 justify-items-center grid-cols-1 gap-0 px-1 mx-auto "
+      id="about"
+      // aria-label="about section"
+      className="max-w-4xl grid md:grid-cols-2 md:gap-8 justify-items-center grid-cols-1 gap-0 px-1 mx-auto"
     >
       <Image
         priority

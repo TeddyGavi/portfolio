@@ -5,6 +5,7 @@
   html,
   body {
     height: 100%;
+    scroll-behavior: smooth;
   }
   body {
     background-color: rgb(57, 57, 57);
@@ -30,4 +31,14 @@
   50% {
     opacity: 0;
   }
+}
+#main {
+  height: calc(100vh - 64px);
+  margin-top: 64px;
+}
+
+#projects,
+#about,
+#contact {
+  height: calc(100vh - 64px);
 }

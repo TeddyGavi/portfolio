@@ -3,9 +3,9 @@ import { motion } from "framer-motion";
 
 const navItems = [
   { name: "Home", to: "/", id: 0 },
-  { name: "Projects", to: "/projects", id: 1 },
-  { name: "Contact", to: "/contact", id: 2 },
-  { name: "About", to: "/about", id: 3 },
+  { name: "Projects", to: "#projects", id: 1 },
+  { name: "About", to: "#about", id: 2 },
+  { name: "Contact", to: "#contact", id: 3 },
 ];
 
 export default function NavLinks({ variants }) {

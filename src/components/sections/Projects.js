@@ -1,22 +1,16 @@
-import { getProjects } from "../lib/getProjects";
-import { urlFor } from "../../sanity";
+import { urlFor } from "../../../sanity";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-
-export async function getStaticProps() {
-  const projects = await getProjects();
-  return { props: { projects } };
-}
 
 const loadVariants = {
   hidden: { opacity: 0 },
   show: { opacity: 1, transition: { duration: 0.8, type: "tween" } },
 };
 
-export default function projects({ projects }) {
+export default function Projects({ projects }) {
   return (
-    <section className=" mx-auto mt-20 text-stone-100 ">
+    <section id="projects" className=" mx-auto text-stone-100">
       <article className="flex overflow-hidden">
         {projects.map(({ _id, about, gitHub, image, title }) => {
           return (
