@@ -112,7 +112,7 @@ export default function Home({ about, projects }) {
         </article>
       </section>
       <Projects projects={projects} />
-      <About about={about} />
+      <About id="about" about={about} />
       <Contact />
     </>
   );

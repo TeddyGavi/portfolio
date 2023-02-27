@@ -7,7 +7,6 @@ export default function About({ about }) {
   return (
     <section
       id="about"
-      // aria-label="about section"
       className="max-w-4xl grid md:grid-cols-2 md:gap-8 justify-items-center grid-cols-1 gap-0 px-1 mx-auto"
     >
       <Image

@@ -15,7 +15,7 @@
     margin-right: auto;
     padding: 0;
     max-width: 56rem;
-    display: flex;
+    /* display: flex; */
   }
 }
 .cursor-typing:after {
