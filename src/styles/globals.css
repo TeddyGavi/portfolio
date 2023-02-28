@@ -68,7 +68,7 @@
   #projects,
   #about,
   #contact {
-    min-height: 100vh;
+    min-height: calc(100vh - 4rem);
     scroll-margin-top: 4rem;
   }
 }
