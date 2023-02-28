@@ -15,11 +15,10 @@
     margin: 0;
   }
   html,
-  body,
-  body > div:first-child,
-  div#__next,
-  div#__next > div {
+  body {
     height: 100%;
+    width: 100%;
+    scroll-behavior: smooth;
   }
   body {
     line-height: 1.5;
@@ -52,16 +51,25 @@
   #__next {
     isolation: isolate;
   }
-  html,
-  body {
-    scroll-behavior: smooth;
-  }
+
   body {
     background-color: rgb(57, 57, 57);
     margin-left: auto;
     margin-right: auto;
     padding: 0;
     max-width: 56rem;
+  }
+  main {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  #home,
+  #projects,
+  #about,
+  #contact {
+    min-height: 100vh;
+    scroll-margin-top: 4rem;
   }
 }
 .cursor-typing:after {
@@ -77,11 +85,4 @@
   50% {
     opacity: 0;
   }
-}
-#main,
-#projects,
-#about,
-#contact {
-  height: calc(100vmax - 4rem);
-  scroll-margin-top: 4rem;
 }

@@ -11,7 +11,7 @@ export default function About({ about }) {
     >
       <Image
         priority
-        className="rounded-full object-contain border-stone-500 border-2 p-4   bg-stone-800 bg-opacity-50 "
+        className="flex rounded-full object-contain border-stone-500 border-2 p-4  bg-stone-800 bg-opacity-50 "
         src={urlFor(about.image).width(250).height(250).quality(100).url()}
         alt="profile image"
         width={250}

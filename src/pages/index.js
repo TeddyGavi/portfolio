@@ -65,8 +65,8 @@ export default function Home({ about, projects }) {
         <title>M/D</title>
       </Head>
       <section
-        id="main"
-        className={`mt-20 grid md:grid-cols-2 md:gap-8 justify-items-center grid-cols-1 gap-0 px-1 `}
+        id="home"
+        className={`mt-16 grid md:grid-cols-2 md:gap-8 justify-items-center grid-cols-1 gap-0 px-1 `}
       >
         <h1 className="font-main text-stone-50 text-7xl font-bold md:mt-48 mt-20">
           {about.name.split(" ").map((word, i) => {

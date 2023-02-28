@@ -10,8 +10,8 @@ const loadVariants = {
 
 export default function Projects({ projects }) {
   return (
-    <section id="projects" className=" mx-auto text-stone-100">
-      <article className="flex overflow-hidden">
+    <section id="projects" className=" text-stone-100 flex ">
+      <article className="  overflow-hidden  ">
         {projects.map(({ _id, about, gitHub, image, title }) => {
           return (
             <motion.div
@@ -19,9 +19,9 @@ export default function Projects({ projects }) {
               animate="show"
               variants={loadVariants}
               key={_id}
-              className="h-[calc(90vh)] flex flex-col flex-grow justify-center items-center p-6  border-stone-500 border-b-2"
+              className="flex flex-col justify-center items-center p-4 mx-2 rounded-lg border border-stone-700  bg-stone-800 bg-opacity-50"
             >
-              <header className="flex-row inline-flex items-center w-full justify-between md:justify-around my-4">
+              <header className="flex-row inline-flex items-center w-full justify-evenly md:justify-around my-4">
                 <h3 className="font-main font-bold text-4xl ">{title}</h3>{" "}
                 <Link href={gitHub} className="">
                   <svg
@@ -38,12 +38,12 @@ export default function Projects({ projects }) {
                 <Image
                   priority
                   className="rounded-md justify-self-center"
-                  src={urlFor(image).url()}
+                  src={urlFor(image).height(250).width(250).url()}
                   alt="project image"
-                  width={480}
-                  height={720}
+                  width={250}
+                  height={250}
                 />
-                <div className="flex flex-col items-center text-center w-full p-6 font-source text-md ">
+                <div className="flex flex-col items-center text-center w-full mx-auto p-6 font-source text-md ">
                   <p>{about}</p>
                 </div>
               </section>

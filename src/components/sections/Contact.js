@@ -2,7 +2,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="font-source flex flex-col items-center justify-center "
+      className="font-source flex flex-col items-center justify-center  "
     >
       <div className=" w-full py-8 lg:py-16 px-4 ">
         <h2 className="mb-4 text-4xl font-main tracking-tight font-extrabold text-center text-stone-200">

@@ -1,4 +1,5 @@
 import Footer from "./Footer";
+import react from "react";
 import Nav from "./Nav";
 import { Montserrat, Rubik_Mono_One, Source_Code_Pro } from "@next/font/google";
 
@@ -23,8 +24,10 @@ export default function Layout({ children }) {
   return (
     <>
       <Nav />
-      <main className={`${main.variable} ${source.variable} `}>{children}</main>
-      {/* <Footer /> */}
+      <main className={`${main.variable} ${source.variable}  `}>
+        {children}
+      </main>
+      <Footer />
     </>
   );
 }
