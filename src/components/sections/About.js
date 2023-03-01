@@ -12,6 +12,7 @@ export default function About({ about }) {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
+      viewport={{ once: false, amount: 0.7 }}
       className="flex flex-col items-center gap-5 justify-center "
     >
       <h3 className="font-main text-5xl text-stone-200 font-bold inline-flex justify-center md:text-6xl">

@@ -47,7 +47,13 @@ export default function Nav() {
         href="/"
         className="items-center transition-all  text-stone-100  hover:text-stone-400 hover:opacity-100 opacity-80 "
       >
-        <Image src={`/favicon.ico`} width={32} height={32} alt="site logo" />
+        <Image
+          src={`/favicon.ico`}
+          width={32}
+          height={32}
+          alt="site logo"
+          className="ml-2"
+        />
       </Link>
       <div className="hidden md:inline-flex text-2xl">{<NavLinks />}</div>
       <HamButton handleSlide={handleMenuClick} navSlide={navSlide} />

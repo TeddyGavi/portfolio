@@ -2,8 +2,11 @@ import { urlFor } from "../../../sanity";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
-import { ClipboardDocumentListIcon } from "@heroicons/react/24/solid";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import {
+  ClipboardDocumentListIcon,
+  ChevronRightIcon,
+} from "@heroicons/react/24/solid";
 
 const loadVariants = {
   hidden: { opacity: 0 },
@@ -14,7 +17,6 @@ export default function Projects({ projects }) {
   const [projectWidth, setProjectWidth] = useState(0);
   console.log(projectWidth);
   const dragRef = useRef();
-  const sectionRef = useRef();
 
   const setWidthResize = () => {
     const fullWidth = dragRef.current.scrollWidth;
@@ -22,40 +24,46 @@ export default function Projects({ projects }) {
     setProjectWidth(Math.abs(visibleWidth - fullWidth));
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setWidthResize();
-
-    window.addEventListener("resize", () => {
+    window.addEventListener("resize", (e) => {
       console.log(window.innerWidth, "is the window width");
       setWidthResize();
+      const carouselRef = document.getElementById("project_carousel");
+      const width = carouselRef.scrollWidth;
+      const visibleW = carouselRef.offsetWidth;
+      setProjectWidth(Math.abs(visibleW - width));
     });
+
+    return () => window.removeEventListener("resize", null);
   }, []);
   return (
     <motion.section
       id="projects"
-      ref={sectionRef}
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      viewport={{}}
-      className=" text-stone-200 flex flex-col justify-center md: gap-5 "
+      viewport={{ once: false, amount: 0.5 }}
+      className=" text-stone-200 flex flex-col justify-center snap-both gap-5 "
     >
-      <h3 className="font-main text-5xl font-bold inline-flex justify-center md:text-6xl">
+      <h3 className="font-main text-3xl font-bold inline-flex justify-center md:text-6xl">
         Work
         <ClipboardDocumentListIcon className="h-6 w-6 ml-2 animate-bounce" />
       </h3>
       <article
+        id="project_carousel"
         ref={dragRef}
         className="overflow-hidden scrollbar w-11/12 md:max-h-11/12 mx-auto"
       >
+        <ChevronRightIcon className="animate-pulse fixed w-16 top-[50%] right-1 z-10 " />
         <motion.div
           drag="x"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8, type: "tween" }}
+          // whileInView={{ opacity: 1 }}
+          // transition={{ duration: 0.8, type: "tween" }}
           dragConstraints={{ right: 0, left: -projectWidth }}
-          className="flex"
+          className="flex relative"
         >
+          {" "}
           {projects.map(({ _id, about, gitHub, image, title }) => {
             return (
               <motion.div
@@ -64,7 +72,7 @@ export default function Projects({ projects }) {
                 className=" cursor-grab min-w-[90%] flex flex-col md:h-[60vh] justify-center items-center p-2 mx-4 rounded-xl border border-stone-700  bg-stone-800 bg-opacity-50"
               >
                 <header className="flex-row inline-flex items-center w-full justify-evenly md:justify-center my-4">
-                  <h3 className="font-main font-bold text-3xl md:text-4xl ">
+                  <h3 className="font-main font-bold text-2xl md:text-4xl ">
                     {title}
                   </h3>{" "}
                   <Link href={gitHub} className="ml-4">
@@ -82,7 +90,7 @@ export default function Projects({ projects }) {
                   <Image
                     priority
                     className="rounded-md justify-self-center pointer-events-none h-auto w-auto"
-                    src={urlFor(image).height(250).width(250).url()}
+                    src={urlFor(image).height(720).width(480).url()}
                     alt="project image"
                     width={250}
                     height={250}

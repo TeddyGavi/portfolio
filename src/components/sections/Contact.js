@@ -1,9 +1,14 @@
 import { SpeakerWaveIcon } from "@heroicons/react/24/solid";
+import { motion } from "framer-motion";
 
 export default function Contact() {
   return (
-    <section
+    <motion.section
       id="contact"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: false, amount: 0.7 }}
       className="font-source flex flex-col items-center justify-center  "
     >
       <div className="flex flex-col w-full py-8 lg:py-16 px-4 ">
@@ -67,6 +72,6 @@ export default function Contact() {
           </button>
         </form>
       </div>
-    </section>
+    </motion.section>
   );
 }
