@@ -52,12 +52,12 @@ const letter = {
 };
 
 export default function Home({ about, projects }) {
-  useEffect(() => {
-    const navHeight = document.getElementById("nav-header").offsetHeight;
-    const clientH = document.getElementById("__next").clientHeight;
-    const windowHeight = window.innerHeight;
-    console.log(windowHeight - clientH);
-  }, []);
+  // useEffect(() => {
+  //   const navHeight = document.getElementById("nav-header").offsetHeight;
+  //   const clientH = document.getElementById("__next").clientHeight;
+  //   const windowHeight = window.innerHeight;
+  //   console.log(windowHeight - clientH);
+  // }, []);
 
   return (
     <>

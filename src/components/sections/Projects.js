@@ -2,6 +2,8 @@ import { urlFor } from "../../../sanity";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { ClipboardDocumentListIcon } from "@heroicons/react/24/solid";
 
 const loadVariants = {
   hidden: { opacity: 0 },
@@ -9,52 +11,63 @@ const loadVariants = {
 };
 
 export default function Projects({ projects }) {
+  const [projectWidth, setProjectWidth] = useState(0);
+  console.log(projectWidth);
+  const dragRef = useRef();
+  const sectionRef = useRef();
+
+  const setWidthResize = () => {
+    const fullWidth = dragRef.current.scrollWidth;
+    const visibleWidth = dragRef.current.offsetWidth;
+    setProjectWidth(Math.abs(visibleWidth - fullWidth));
+  };
+
+  useEffect(() => {
+    setWidthResize();
+
+    window.addEventListener("resize", () => {
+      console.log(window.innerWidth, "is the window width");
+      setWidthResize();
+    });
+  }, []);
   return (
-    <section
+    <motion.section
       id="projects"
-      className=" text-stone-200 flex flex-col justify-around "
+      ref={sectionRef}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+      viewport={{}}
+      className=" text-stone-200 flex flex-col justify-center md: gap-5 "
     >
-      <h3 className="font-main text-5xl font-bold inline-flex justify-center">
+      <h3 className="font-main text-5xl font-bold inline-flex justify-center md:text-6xl">
         Work
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          className="w-6 h-6 ml-2"
-        >
-          <path
-            fillRule="evenodd"
-            d="M7.502 6h7.128A3.375 3.375 0 0118 9.375v9.375a3 3 0 003-3V6.108c0-1.505-1.125-2.811-2.664-2.94a48.972 48.972 0 00-.673-.05A3 3 0 0015 1.5h-1.5a3 3 0 00-2.663 1.618c-.225.015-.45.032-.673.05C8.662 3.295 7.554 4.542 7.502 6zM13.5 3A1.5 1.5 0 0012 4.5h4.5A1.5 1.5 0 0015 3h-1.5z"
-            clipRule="evenodd"
-          />
-          <path
-            fillRule="evenodd"
-            d="M3 9.375C3 8.339 3.84 7.5 4.875 7.5h9.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-9.75A1.875 1.875 0 013 20.625V9.375zM6 12a.75.75 0 01.75-.75h.008a.75.75 0 01.75.75v.008a.75.75 0 01-.75.75H6.75a.75.75 0 01-.75-.75V12zm2.25 0a.75.75 0 01.75-.75h3.75a.75.75 0 010 1.5H9a.75.75 0 01-.75-.75zM6 15a.75.75 0 01.75-.75h.008a.75.75 0 01.75.75v.008a.75.75 0 01-.75.75H6.75a.75.75 0 01-.75-.75V15zm2.25 0a.75.75 0 01.75-.75h3.75a.75.75 0 010 1.5H9a.75.75 0 01-.75-.75zM6 18a.75.75 0 01.75-.75h.008a.75.75 0 01.75.75v.008a.75.75 0 01-.75.75H6.75a.75.75 0 01-.75-.75V18zm2.25 0a.75.75 0 01.75-.75h3.75a.75.75 0 010 1.5H9a.75.75 0 01-.75-.75z"
-            clipRule="evenodd"
-          />
-        </svg>
+        <ClipboardDocumentListIcon className="h-6 w-6 ml-2 animate-bounce" />
       </h3>
-      <article className="overflow-hidden ">
+      <article
+        ref={dragRef}
+        className="overflow-hidden scrollbar w-11/12 md:max-h-11/12 mx-auto"
+      >
         <motion.div
           drag="x"
-          whileTap={{ cursor: "grabbing" }}
-          dragConstraints
-          className=" flex h-full"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8, type: "tween" }}
+          dragConstraints={{ right: 0, left: -projectWidth }}
+          className="flex"
         >
           {projects.map(({ _id, about, gitHub, image, title }) => {
             return (
               <motion.div
-                initial="hidden"
-                animate="show"
-                // drag="x"
-                variants={loadVariants}
                 key={_id}
-                // whileTap={{ cursor: "grabbing" }}
-                className=" cursor-grab min-w-full flex flex-col justify-center items-center p-2 mx-4 rounded-lg border border-stone-700  bg-stone-800 bg-opacity-50"
+                whileTap={{ cursor: "grabbing" }}
+                className=" cursor-grab min-w-[90%] flex flex-col md:h-[60vh] justify-center items-center p-2 mx-4 rounded-xl border border-stone-700  bg-stone-800 bg-opacity-50"
               >
-                <header className="flex-row inline-flex items-center w-full justify-evenly md:justify-around my-4">
-                  <h3 className="font-main font-bold text-3xl ">{title}</h3>{" "}
-                  <Link href={gitHub} className="">
+                <header className="flex-row inline-flex items-center w-full justify-evenly md:justify-center my-4">
+                  <h3 className="font-main font-bold text-3xl md:text-4xl ">
+                    {title}
+                  </h3>{" "}
+                  <Link href={gitHub} className="ml-4">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className=" h-8 w-8 hover:opacity-100 opacity-40 hover:text-stone-100 transition-all"
@@ -68,13 +81,13 @@ export default function Projects({ projects }) {
                 <section className="grid md:grid-cols-2 grid-cols-1 ">
                   <Image
                     priority
-                    className="rounded-md justify-self-center pointer-events-none"
+                    className="rounded-md justify-self-center pointer-events-none h-auto w-auto"
                     src={urlFor(image).height(250).width(250).url()}
                     alt="project image"
                     width={250}
                     height={250}
                   />
-                  <div className="flex flex-col items-center text-center w-full mx-auto p-6 font-source text-md ">
+                  <div className="flex flex-col items-center text-center w-full mx-auto p-6 font-source text-md md:text-xl text-stone-100 ">
                     <p>{about}</p>
                   </div>
                 </section>
@@ -83,6 +96,6 @@ export default function Projects({ projects }) {
           })}
         </motion.div>
       </article>
-    </section>
+    </motion.section>
   );
 }
