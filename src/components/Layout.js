@@ -24,7 +24,9 @@ export default function Layout({ children }) {
   return (
     <>
       <Nav />
-      <main className={`${main.variable} ${source.variable}  `}>
+      <main
+        className={`${main.variable} ${source.variable} snap-y snap-proximity`}
+      >
         {children}
       </main>
       <Footer />

@@ -7,6 +7,7 @@ import { getProjects } from "@/lib/getProjects";
 import Projects from "@/components/sections/Projects";
 import About from "@/components/sections/About";
 import Contact from "@/components/sections/Contact";
+import HaveYou from "@/components/sections/HaveYou";
 
 export async function getStaticProps() {
   const about = await getAbout();
@@ -69,6 +70,9 @@ export default function Home({ about, projects }) {
         className={`mt-16 grid md:grid-cols-2 md:gap-8 justify-items-center grid-cols-1 gap-0 px-1 `}
       >
         <h1 className="font-main text-stone-50 text-7xl font-bold md:mt-48 mt-20">
+          <div className="md:hidden inline-block items-center text-2xl text-stone-400">
+            You have now met
+          </div>
           {about.name.split(" ").map((word, i) => {
             return (
               <motion.span
@@ -97,7 +101,9 @@ export default function Home({ about, projects }) {
 
         <article className="grid grid-rows-2 md:gap-32 md:my-24 ">
           <h2 className="hidden md:inline-block">
-            <span className="text-4xl text-stone-400">You have now met </span>
+            <span className="text-2xl md:text-4xl  text-stone-400">
+              You have now met{" "}
+            </span>
           </h2>
           <h2 className="font-main font-medium text-stone-400 text-2xl">
             {`${about.short} `}
@@ -112,8 +118,9 @@ export default function Home({ about, projects }) {
           </h2>
         </article>
       </section>
-      <Projects projects={projects} />
+      <HaveYou />
       <About about={about} />
+      <Projects projects={projects} />
       <Contact />
     </>
   );

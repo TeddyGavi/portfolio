@@ -33,5 +33,11 @@ export default {
       title: 'Deployed Url?',
       type: 'url',
     },
+    {
+      name: 'detailed',
+      title: 'Tell a Story',
+      description: 'This is the place to tell the story of the app',
+      type: 'richText',
+    },
   ],
 }
