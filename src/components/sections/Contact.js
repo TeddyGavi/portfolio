@@ -1,7 +1,20 @@
 import { SpeakerWaveIcon } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
-
+import { useForm } from "react-hook-form";
+import { useState } from "react";
 export default function Contact() {
+  const [submit, setSubmit] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
   return (
     <motion.section
       id="contact"
@@ -11,7 +24,7 @@ export default function Contact() {
       viewport={{ once: false, amount: 0.7 }}
       className="font-source flex flex-col items-center justify-center  "
     >
-      <div className="flex flex-col w-full py-8 lg:py-16 px-4 ">
+      <article className="flex flex-col w-full py-8 lg:py-16 px-4 ">
         <h3 className=" inline-flex justify-center text-5xl font-main font-extrabold text-center text-stone-200 md:text-6xl">
           Hello!
           <SpeakerWaveIcon className="h-6 w-6 ml-2 blink" />
@@ -19,8 +32,8 @@ export default function Contact() {
         <p className="mb-8 lg:mb-16 font-light text-center text-stone-400 sm:text-xl">
           Whats on your mind?
         </p>
-        <form action="#" className="space-y-8">
-          <div>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+          <section aria-label="email section of contact form">
             <label
               name="email"
               className="block mb-2 text-sm font-medium text-stone-200"
@@ -28,14 +41,15 @@ export default function Contact() {
               Your email
             </label>
             <input
+              {...register("email", { required: true })}
               type="email"
               id="email"
-              className="shadow-sm border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-stone-100 focus:border-stone-50 block w-full p-2.5 bg-stone-800 bg-opacity-50"
+              className="shadow-sm border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-stone-100 focus:border-stone-50 block w-full p-2.5 bg-stone-800 bg-opacity-50"
               placeholder="name@gmail.com"
               required
             />
-          </div>
-          <div>
+          </section>
+          <section aria-label="subject section of contact form">
             <label
               name="subject"
               className="block mb-2 text-sm font-medium text-stone-200"
@@ -43,14 +57,15 @@ export default function Contact() {
               Subject
             </label>
             <input
+              {...register("subject", { required: true })}
               type="text"
               id="subject"
-              className="block p-3 w-full text-sm shadow-sm border border-gray-300 text-gray-900 rounded-lg focus:ring-stone-100 focus:border-stone-50 bg-stone-800 bg-opacity-50"
+              className="block p-3 w-full text-sm shadow-sm border border-gray-300 text-gray-100 rounded-lg focus:ring-stone-100 focus:border-stone-50 bg-stone-800 bg-opacity-50"
               placeholder="Let us know how we can help you"
               required
             />
-          </div>
-          <div className="sm:col-span-2">
+          </section>
+          <section aria-label="message text area" className="sm:col-span-2">
             <label
               name="message"
               className="block mb-2 text-sm font-medium text-stone-200"
@@ -58,12 +73,13 @@ export default function Contact() {
               Your message
             </label>
             <textarea
+              {...register("message", { required: true })}
               id="message"
               rows="6"
-              className="block p-2.5 w-full text-sm text-gray-900shadow-sm border border-gray-300 text-gray-900  rounded-lg focus:ring-stone-100 focus:border-stone-50  bg-stone-800 bg-opacity-50"
-              placeholder="Leave a comment..."
+              className="block p-2.5 w-full text-sm text-gray-900shadow-sm border border-gray-300 text-gray-100  rounded-lg focus:ring-stone-100 focus:border-stone-50  bg-stone-800 bg-opacity-50"
+              placeholder="Say Hello..."
             ></textarea>
-          </div>
+          </section>
           <button
             type="submit"
             className="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 w-full md:w-fit hover:bg-stone-400 focus:ring-4 focus:outline-none focus:ring-stone-100 bg-stone-800 bg-opacity-50"
@@ -71,7 +87,7 @@ export default function Contact() {
             Send message
           </button>
         </form>
-      </div>
+      </article>
     </motion.section>
   );
 }

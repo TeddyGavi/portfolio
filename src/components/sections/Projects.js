@@ -24,7 +24,7 @@ export default function Projects({ projects }) {
     setProjectWidth(Math.abs(visibleWidth - fullWidth));
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setWidthResize();
     window.addEventListener("resize", (e) => {
       console.log(window.innerWidth, "is the window width");
@@ -55,7 +55,6 @@ export default function Projects({ projects }) {
         ref={dragRef}
         className="overflow-hidden scrollbar w-11/12 md:max-h-11/12 mx-auto"
       >
-        <ChevronRightIcon className="animate-pulse fixed w-16 top-[50%] right-1 z-10 " />
         <motion.div
           drag="x"
           // whileInView={{ opacity: 1 }}

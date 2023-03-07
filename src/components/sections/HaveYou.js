@@ -37,7 +37,8 @@ export default function HaveYou() {
             <motion.span
               key={i}
               initial="hidden"
-              animate="show"
+              whileInView="show"
+              // animate="show"
               variants={word}
               transition={{ staggerChildren: 0.05, delayChildren: i * 0.25 }}
             >
