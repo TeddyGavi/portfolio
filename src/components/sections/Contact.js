@@ -2,6 +2,8 @@ import { SpeakerWaveIcon } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
+
 export default function Contact() {
   const [submit, setSubmit] = useState(false);
 
@@ -13,6 +15,15 @@ export default function Contact() {
 
   const onSubmit = (data) => {
     console.log(data);
+    emailjs
+      .send(
+        "service_yj6y5c6",
+        " template_bff4hfi",
+        JSON.stringify(data),
+        process.env.EMAIL_JS_API_TOKEN
+      )
+      .then((res) => console.log(res.text))
+      .catch((err) => console.log(err));
   };
 
   return (
