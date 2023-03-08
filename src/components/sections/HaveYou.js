@@ -40,7 +40,7 @@ export default function HaveYou() {
               whileInView="show"
               // animate="show"
               variants={word}
-              transition={{ staggerChildren: 0.05, delayChildren: i * 0.25 }}
+              transition={{ staggerChildren: 0.05, delayChildren: i * 0.15 }}
             >
               {word.split("").map((char, i) => {
                 return (

@@ -51,6 +51,9 @@ export default function Contact() {
             >
               Your email
             </label>
+            {errors.email && (
+              <span className="text-red-50">Your Email is required</span>
+            )}
             <input
               {...register("email", { required: true })}
               type="email"
