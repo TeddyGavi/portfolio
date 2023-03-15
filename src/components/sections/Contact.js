@@ -51,9 +51,7 @@ export default function Contact() {
             >
               Your email
             </label>
-            {errors.email && (
-              <span className="text-red-500">Your Email is required</span>
-            )}
+
             <input
               {...register("email", { required: true })}
               type="email"
@@ -70,9 +68,7 @@ export default function Contact() {
             >
               Subject
             </label>
-            {errors.subject && (
-              <span className=" text-red-500">A Subject is required</span>
-            )}
+
             <input
               {...register("subject", { required: true })}
               type="text"
@@ -89,9 +85,7 @@ export default function Contact() {
             >
               Your message
             </label>
-            {errors.message && (
-              <span className="text-red-500">A Message is required</span>
-            )}
+
             <textarea
               {...register("message", { required: true })}
               id="message"
@@ -106,6 +100,15 @@ export default function Contact() {
           >
             Send message
           </button>
+          {errors.email && (
+            <span className="text-red-500">Your Email is required</span>
+          )}
+          {errors.subject && (
+            <span className=" text-red-500">A Subject is required</span>
+          )}
+          {errors.message && (
+            <span className="text-red-500">A Message is required</span>
+          )}
         </form>
       </article>
     </motion.section>
