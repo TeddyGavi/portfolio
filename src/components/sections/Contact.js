@@ -1,11 +1,33 @@
 import { SpeakerWaveIcon } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import emailjs from "@emailjs/browser";
+import { useGoogleReCaptcha, GoogleReCaptcha } from "react-google-recaptcha-v3";
 
 export default function Contact() {
-  const [submit, setSubmit] = useState(false);
+  const { executeRecaptcha } = useGoogleReCaptcha();
+  const [submit, setSubmit] = useState({ status: Boolean, msg: "" });
+
+  const onSubmit = useCallback(
+    async (formData) => {
+      if (!executeRecaptcha) {
+        console.log("Execute recaptcha not yet available");
+        return;
+      }
+
+      const token = await executeRecaptcha("submitFormWithToken");
+      // Do whatever you want with the token
+      submitFormWithToken(token, formData);
+      console.log(token, formData);
+    },
+    [executeRecaptcha]
+  );
+
+  // You can use useEffect to trigger the verification as soon as the component being loaded
+  // useEffect(() => {
+  //   onSubmit();
+  // }, [onSubmit]);
 
   const {
     register,
@@ -13,18 +35,58 @@ export default function Contact() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-    emailjs
-      .send(
-        "service_yj6y5c6",
-        " template_bff4hfi",
-        JSON.stringify(data),
-        process.env.EMAIL_JS_API_TOKEN
-      )
-      .then((res) => console.log(res.text))
-      .catch((err) => console.log(err));
+  const submitFormWithToken = async (token, formData) => {
+    // api call
+    try {
+      const res = await fetch("/api/email", {
+        method: "POST",
+        headers: {
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ token }),
+      });
+      const parsedRes = await res.json();
+      if (parsedRes?.status === "success") {
+        try {
+          const sendEmail = await emailjs.send(
+            process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID,
+            process.env.NEXT_PUBLIC_EMAIL_TEMPLATE,
+            formData,
+            process.env.NEXT_PUBLIC_EMAIL_PUBLIC_KEY
+          );
+        } catch (error) {
+          setSubmit({ status: false, msg: "Error sending email" });
+        }
+
+        setSubmit({ status: true, msg: parsedRes.message });
+      } else {
+        setSubmit({ status: false, msg: parsedRes.message });
+      }
+    } catch (error) {
+      console.log(error);
+      setSubmit({ status: false, msg: "Error with captcha" });
+    }
+    // .then((res) => {
+    //   const status = res?.json();
+    //   console.log(status);
+    //   if (status.message === "success") {
+    //     setSubmit({ status: true, msg: status.message });
+    //   } else {
+    //     setSubmit({ status: false, msg: status.message });
+    //   }
+    // })
+    // .catch((err) => {
+    //   console.log(err);
+    // });
   };
+
+  // const onSubmit = (data) => {
+  //   console.log(data);
+
+  //     .then((res) => console.log(res.text))
+  //     .catch((err) => console.log(err));
+  // };
 
   return (
     <motion.section
@@ -61,7 +123,7 @@ export default function Contact() {
               required
             />
           </section>
-          <section aria-label="subject section of contact form">
+          <section>
             <label
               name="subject"
               className="block mb-2 text-sm font-medium text-stone-200"
@@ -90,7 +152,7 @@ export default function Contact() {
               {...register("message", { required: true })}
               id="message"
               rows="6"
-              className="block p-2.5 w-full text-sm text-gray-900shadow-sm border border-gray-300 text-gray-100  rounded-lg focus:ring-stone-100 focus:border-stone-50  bg-stone-800 bg-opacity-50"
+              className="block p-2.5 w-full text-sm text-gray-100 shadow-sm border border-gray-300 rounded-lg focus:ring-stone-100 focus:border-stone-50  bg-stone-800 bg-opacity-50"
               placeholder="Say Hello..."
             ></textarea>
           </section>
@@ -100,15 +162,20 @@ export default function Contact() {
           >
             Send message
           </button>
-          {errors.email && (
-            <span className="text-red-500">Your Email is required</span>
-          )}
-          {errors.subject && (
-            <span className=" text-red-500">A Subject is required</span>
-          )}
-          {errors.message && (
-            <span className="text-red-500">A Message is required</span>
-          )}
+          <section className="flex flex-col gap-2 mt-0">
+            {errors.email && (
+              <span className="text-red-500">Your Email is required</span>
+            )}
+            {errors.subject && (
+              <span className=" text-red-500">A Subject is required</span>
+            )}
+            {errors.message && (
+              <span className="text-red-500">A Message is required</span>
+            )}{" "}
+            {submit.status && (
+              <span className=" text-white text-xl">{submit.msg}</span>
+            )}
+          </section>
         </form>
       </article>
     </motion.section>

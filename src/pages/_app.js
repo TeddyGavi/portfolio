@@ -1,6 +1,7 @@
 import Layout from "@/components/Layout";
 import "@/styles/globals.css";
 import Head from "next/head";
+import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 
 export default function App({ Component, pageProps }) {
   return (
@@ -27,9 +28,19 @@ export default function App({ Component, pageProps }) {
         />
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <GoogleReCaptchaProvider
+        reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTHCA_SITE}
+        scriptProps={{
+          async: false,
+          defer: false,
+          appendTo: "head",
+          nonce: undefined,
+        }}
+      >
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </GoogleReCaptchaProvider>
     </>
   );
 }
