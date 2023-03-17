@@ -8,10 +8,10 @@ const navItems = [
   { name: "Contact", to: "#contact", id: 3 },
 ];
 
-export default function NavLinks({ variants }) {
+export default function NavLinks() {
   return navItems.map(({ name, to, id }) => {
     return (
-      <motion.div key={id} variants={variants}>
+      <div key={id}>
         <a
           aria-label={name}
           href={to}
@@ -19,7 +19,7 @@ export default function NavLinks({ variants }) {
         >
           [{name}]
         </a>
-      </motion.div>
+      </div>
     );
   });
 }

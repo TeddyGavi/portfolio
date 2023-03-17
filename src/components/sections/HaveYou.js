@@ -4,12 +4,12 @@ export default function HaveYou() {
   const { scrollYProgress } = useScroll();
   const container = useRef(null);
   useMotionValueEvent(scrollYProgress, "change", (e) => {
-    console.log(e);
+    // console.log(e);
   });
   // console.log(container.current.clientHeight);
 
   useEffect(() => {
-    console.log(container.current.clientHeight);
+    // console.log(container.current.clientHeight);
   }, []);
 
   const text = "Have You?";
