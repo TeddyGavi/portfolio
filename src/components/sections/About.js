@@ -7,7 +7,7 @@ import { ChatBubbleBottomCenterTextIcon } from "@heroicons/react/24/solid";
 export default function About({ about }) {
   const { body } = about.body;
   return (
-    <motion.section
+    <section
       id="about"
       className="flex flex-col items-center gap-5 justify-center"
     >
@@ -47,6 +47,6 @@ export default function About({ about }) {
           }}
         />
       </motion.article>
-    </motion.section>
+    </section>
   );
 }
