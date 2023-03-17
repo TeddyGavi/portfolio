@@ -34,7 +34,6 @@ export default function App({ Component, pageProps }) {
           async: false,
           defer: false,
           appendTo: "head",
-          nonce: undefined,
         }}
       >
         <Layout>

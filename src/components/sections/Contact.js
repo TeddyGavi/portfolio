@@ -3,11 +3,11 @@ import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { useCallback, useEffect, useState } from "react";
 import emailjs from "@emailjs/browser";
-import { useGoogleReCaptcha, GoogleReCaptcha } from "react-google-recaptcha-v3";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 export default function Contact() {
   const { executeRecaptcha } = useGoogleReCaptcha();
-  const [submit, setSubmit] = useState({ status: Boolean, msg: "" });
+  const [submit, setSubmit] = useState("");
 
   const onSubmit = useCallback(
     async (formData) => {
@@ -36,7 +36,7 @@ export default function Contact() {
   } = useForm();
 
   const submitFormWithToken = async (token, formData) => {
-    // api call
+    // serverless api call
     try {
       const res = await fetch("/api/email", {
         method: "POST",
@@ -49,44 +49,24 @@ export default function Contact() {
       const parsedRes = await res.json();
       if (parsedRes?.status === "success") {
         try {
-          const sendEmail = await emailjs.send(
+          await emailjs.send(
             process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID,
             process.env.NEXT_PUBLIC_EMAIL_TEMPLATE,
             formData,
             process.env.NEXT_PUBLIC_EMAIL_PUBLIC_KEY
           );
         } catch (error) {
-          setSubmit({ status: false, msg: "Error sending email" });
+          setSubmit("Error sending email");
         }
 
-        setSubmit({ status: true, msg: parsedRes.message });
+        setSubmit(parsedRes.message);
       } else {
-        setSubmit({ status: false, msg: parsedRes.message });
+        setSubmit(parsedRes.message);
       }
     } catch (error) {
-      console.log(error);
-      setSubmit({ status: false, msg: "Error with captcha" });
+      setSubmit("Error with captcha");
     }
-    // .then((res) => {
-    //   const status = res?.json();
-    //   console.log(status);
-    //   if (status.message === "success") {
-    //     setSubmit({ status: true, msg: status.message });
-    //   } else {
-    //     setSubmit({ status: false, msg: status.message });
-    //   }
-    // })
-    // .catch((err) => {
-    //   console.log(err);
-    // });
   };
-
-  // const onSubmit = (data) => {
-  //   console.log(data);
-
-  //     .then((res) => console.log(res.text))
-  //     .catch((err) => console.log(err));
-  // };
 
   return (
     <motion.section
@@ -95,7 +75,7 @@ export default function Contact() {
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: false, amount: 0.7 }}
-      className="font-source flex flex-col items-center justify-center  "
+      className="font-source flex flex-col items-center justify-center "
     >
       <article className="flex flex-col w-full py-8 lg:py-16 px-4 ">
         <h3 className=" inline-flex justify-center text-5xl font-main font-extrabold text-center text-stone-200 md:text-6xl">

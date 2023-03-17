@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const navItems = [
   { name: "Home", to: "#", id: 0 },
-  { name: "Work", to: "#projects", id: 1 },
+  { name: "Projects", to: "#projects", id: 1 },
   { name: "About", to: "#about", id: 2 },
   { name: "Contact", to: "#contact", id: 3 },
 ];

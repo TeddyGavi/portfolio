@@ -16,7 +16,7 @@ export default function About({ about }) {
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, type: "tween" }}
         viewport={{ once: false, amount: 0.1 }}
-        className="font-main text-5xl text-stone-200 font-bold inline-flex justify-center md:text-6xl"
+        className="font-main text-5xl text-stone-200 font-bold inline-flex justify-center md:text-6xl "
       >
         About{" "}
         <ChatBubbleBottomCenterTextIcon className="w-6 h-6 ml-2 animate-bounce" />
@@ -34,7 +34,7 @@ export default function About({ about }) {
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, type: "tween" }}
         viewport={{ once: false, amount: 0.1 }}
-        className="font-main text-md md:text-lg text-stone-100 border-5 rounded-lg  text-center border border-stone-700  bg-stone-800 bg-opacity-50 mx-4"
+        className="max-h-[40vh] overflow-scroll md:overflow-auto md:max-h-none font-main text-md md:text-lg text-stone-100 border-5 rounded-lg  text-center border border-stone-700  bg-stone-800 bg-opacity-50 mx-4"
       >
         <PortableText
           content={body.slice(2, body.length)}
