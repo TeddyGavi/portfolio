@@ -28,16 +28,18 @@ export const getStaticProps = async ({ params }) => {
 };
 
 const serializers = {
+  // block: ({ children }) => <p className=" h-full">{children}</p>,
   image: (props) => (
     <Image
-      src={urlFor(props.asset._ref).width(640).height(960).url()}
+      className="scale-75"
+      src={urlFor(props.asset._ref).width(660).height(440).url()}
       alt={props.alt}
-      width={320}
-      height={320}
+      width={960}
+      height={640}
     ></Image>
   ),
-  span: (props) => {
-    <p className="text-white">{props.text}</p>;
+  span: ({ children }) => {
+    <p className="text-white">{children}</p>;
   },
   h3: ({ children }) => (
     <h3 className="text-3xl flex flex-col justify-center items-center text-stone-100 font-source">
@@ -49,22 +51,23 @@ const serializers = {
 export default function Project({ project }) {
   const router = useRouter();
   const { body } = project.detailed;
+  console.log(body);
 
   return (
-    <section className="max-h-[calc(90vh)] pt-16 flex flex-col justify-center items-center">
+    <section className="max-h-[calc(90vh)] mt-16 flex flex-col justify-center items-center">
       <header className="font-source text-stone-100 text-3xl">
         {project.title}
       </header>
       {/* <p>{project.about}</p> */}
-      <div>
-        <PortableText
-          content={body}
-          dataset={process.env.NEXT_PUBLIC_SANITY_DATASET}
-          projectId={process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}
-          serializers={serializers}
-        />
-        {/* <pre className="max-w-2xl">{JSON.stringify(body, null, 6)}</pre> */}
-      </div>
+
+      <PortableText
+        className="max-h-full min-h-fit flex flex-col"
+        content={body}
+        dataset={process.env.NEXT_PUBLIC_SANITY_DATASET}
+        projectId={process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}
+        serializers={serializers}
+      />
+      {/* <pre className="max-w-2xl">{JSON.stringify(body, null, 6)}</pre> */}
     </section>
   );
 }
