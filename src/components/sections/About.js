@@ -34,13 +34,13 @@ export default function About({ about }) {
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, type: "tween" }}
         viewport={{ once: false, amount: 0.1 }}
-        className="max-h-[40vh] overflow-scroll md:overflow-auto md:max-h-none font-main text-md md:text-lg text-stone-100 border-5 rounded-lg  text-center border border-stone-700  bg-stone-800 bg-opacity-50 mx-4"
+        className="max-h-[40vh] overflow-auto sm:min-h-full  font-main text-md md:text-lg text-stone-100 border-5 rounded-lg  text-center border border-stone-700  bg-stone-800 bg-opacity-50 mx-4 my-0 p-1"
       >
         <PortableText
-          content={body.slice(2, body.length)}
+          content={body}
           serializers={{
             li: ({ children }) => (
-              <p aria-label="paragraph about author" className="p-3 my-auto">
+              <p aria-label="paragraph about author" className="py-2">
                 {children}
               </p>
             ),

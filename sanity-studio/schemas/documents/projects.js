@@ -38,6 +38,7 @@ export default {
       title: 'Tell a Story',
       description: 'This is the place to tell the story of the app, shown on the details page',
       type: 'richText',
+      validation: (rule) => rule.required(),
     },
     {
       name: 'slug',

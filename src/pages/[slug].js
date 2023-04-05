@@ -1,8 +1,8 @@
 import { getProjectPaths, getProjectData } from "@/lib/getProjectPaths";
 import Image from "next/image";
 import { urlFor } from "../../sanity";
-import { useRouter } from "next/router";
 import PortableText from "react-portable-text";
+import Link from "next/link";
 
 export const getStaticPaths = async () => {
   const paths = await getProjectPaths();
@@ -29,9 +29,9 @@ export const getStaticProps = async ({ params }) => {
 
 const serializers = {
   // block: ({ children }) => <p className=" h-full">{children}</p>,
-  image: (props) => (
+  image: ({ props }) => (
     <Image
-      className="scale-75"
+      className=""
       src={urlFor(props.asset._ref).width(660).height(440).url()}
       alt={props.alt}
       width={960}
@@ -46,13 +46,19 @@ const serializers = {
       {children}
     </h3>
   ),
+
+  link: ({ value, children }) => {
+    const whereTo = value || "";
+    return (
+      <a className="text-4xl" rel="/#" href={whereTo}>
+        {children}
+      </a>
+    );
+  },
 };
 
 export default function Project({ project }) {
-  const router = useRouter();
   const { body } = project.detailed;
-  console.log(body);
-
   return (
     <section className="max-h-[calc(90vh)] mt-16 flex flex-col justify-center items-center">
       <header className="font-source text-stone-100 text-3xl">
@@ -66,6 +72,7 @@ export default function Project({ project }) {
         dataset={process.env.NEXT_PUBLIC_SANITY_DATASET}
         projectId={process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}
         serializers={serializers}
+        value={body.value}
       />
       {/* <pre className="max-w-2xl">{JSON.stringify(body, null, 6)}</pre> */}
     </section>
