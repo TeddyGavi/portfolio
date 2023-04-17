@@ -32,7 +32,7 @@ const ImageParser = ({ value }) => {
   const { width, height } = getImageDimensions(value);
   return (
     <Image
-      className=""
+      className="rounded-md"
       src={urlFor(value)
         .width(width)
         .height(height)
@@ -62,17 +62,19 @@ const component = {
     image: ImageParser,
   },
   block: {
-    span: ({ children }) => {
-      <p className="text-white">{children}</p>;
-    },
+    // span: ({ children }) => {
+    //   <p className="text-white">{children}</p>;
+    // },
     h3: ({ children }) => (
-      <h3 className="text-3xl flex flex-col justify-center items-center text-stone-100 font-source">
+      <h3 className="text-4xl w-full my-1 text-stone-100 font-source">
         {children}
       </h3>
     ),
-    p: ({ children }) => {
-      <p className="text-4xl">{children}</p>;
-    },
+    normal: ({ children }) => (
+      <p className="text-lg py-3 font-light w-11/12 text-white font main">
+        {children}
+      </p>
+    ),
     marks: {
       link: ({ value, children }) => {
         const whereTo = value || "";
@@ -87,11 +89,12 @@ const component = {
 };
 
 export default function Project({ project }) {
+  console.log(project);
   const { gitHub } = project;
   const { body } = project.detailed;
   return (
     <section className=" my-16 flex flex-col justify-center items-center">
-      <header className="font-source text-stone-100 text-3xl flex my-2">
+      <header className="font-source text-stone-100 text-5xl flex my-2">
         {project.title}
         <Link href={gitHub} className="ml-4">
           <svg
