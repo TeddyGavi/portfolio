@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { urlFor } from "../../../sanity";
-import PortableText from "react-portable-text";
+import { PortableText } from "@portabletext/react";
 import { motion } from "framer-motion";
 import { ChatBubbleBottomCenterTextIcon } from "@heroicons/react/24/solid";
 
@@ -34,16 +34,12 @@ export default function About({ about }) {
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, type: "tween" }}
         viewport={{ once: false, amount: 0.1 }}
-        className="max-h-[40vh] overflow-auto sm:min-h-full  font-main text-md md:text-lg text-stone-100 border-5 rounded-lg  text-center border border-stone-700  bg-stone-800 bg-opacity-50 mx-4 my-0 p-1"
+        className="font-main h-[calc(40vh)] overflow-y-auto md:h-fit md:overflow-auto text-md md:text-lg text-stone-100 border-5 rounded-lg  text-center border border-stone-700  bg-stone-800 bg-opacity-50 mx-4 my-0 p-1"
       >
         <PortableText
-          content={body}
-          serializers={{
-            li: ({ children }) => (
-              <p aria-label="paragraph about author" className="py-2">
-                {children}
-              </p>
-            ),
+          value={body}
+          components={{
+            listItem: ({ children }) => <p className="py-2">{children}</p>,
           }}
         />
       </motion.article>
