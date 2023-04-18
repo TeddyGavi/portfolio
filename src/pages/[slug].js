@@ -32,7 +32,7 @@ const ImageParser = ({ value }) => {
   const { width, height } = getImageDimensions(value);
   return (
     <Image
-      className="rounded-md"
+      className="rounded-md h-10/12 w-10/12"
       src={urlFor(value)
         .width(width)
         .height(height)
@@ -66,12 +66,12 @@ const component = {
     //   <p className="text-white">{children}</p>;
     // },
     h3: ({ children }) => (
-      <h3 className="text-4xl w-full my-1 text-stone-100 font-source">
+      <h3 className="text-4xl self-start my-1 p-1 text-stone-100 font-source border-b-2">
         {children}
       </h3>
     ),
     normal: ({ children }) => (
-      <p className="text-lg py-3 font-light w-11/12 text-white font main">
+      <p className="text-md md:text-lg py-3 font-light w-11/12 text-white font main">
         {children}
       </p>
     ),
@@ -89,12 +89,11 @@ const component = {
 };
 
 export default function Project({ project }) {
-  console.log(project);
   const { gitHub } = project;
   const { body } = project.detailed;
   return (
-    <section className=" my-16 flex flex-col justify-center items-center">
-      <header className="font-source text-stone-100 text-5xl flex my-2">
+    <section className="my-16 flex flex-col justify-center items-center">
+      <header className="font-source text-stone-100 text-5xl flex my-4 border-b-2 pb-4">
         {project.title}
         <Link href={gitHub} className="ml-4">
           <svg

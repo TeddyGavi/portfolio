@@ -82,9 +82,10 @@ export default function Contact() {
           Hello!
           <SpeakerWaveIcon className="h-6 w-6 ml-2 blink" />
         </h3>
-        <p className="mb-8 lg:mb-16 font-light text-center text-stone-400 sm:text-xl">
+        <p className="m-2 lg:mt-16 font-light text-center  text-stone-400 sm:text-xl">
           Whats on your mind?
         </p>
+
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
           <section aria-label="email section of contact form">
             <label
@@ -158,6 +159,25 @@ export default function Contact() {
           </section>
         </form>
       </article>
+      <aside>
+        <p className="font-light text-stone-400 text-sm md:text-md text-center">
+          This site is protected by reCAPTCHA and the Google&nbsp;
+          <a
+            className=" decoration-stone-400 underline"
+            href="https://policies.google.com/privacy"
+          >
+            Privacy Policy
+          </a>
+          &nbsp;and&nbsp;
+          <a
+            className=" decoration-stone-400 underline"
+            href="https://policies.google.com/terms"
+          >
+            Terms of Service
+          </a>{" "}
+          apply.
+        </p>
+      </aside>
     </motion.section>
   );
 }
