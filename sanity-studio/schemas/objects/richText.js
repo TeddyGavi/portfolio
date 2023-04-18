@@ -12,6 +12,7 @@ export default {
         {type: 'block'},
         {
           type: 'image',
+          options: {hotspot: true},
           fields: [
             {
               type: 'text',

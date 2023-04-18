@@ -30,12 +30,13 @@ export const getStaticProps = async ({ params }) => {
 
 const ImageParser = ({ value }) => {
   const { width, height } = getImageDimensions(value);
+
   return (
     <Image
-      className="rounded-md h-10/12 w-10/12"
+      className="rounded-md h-10/12 w-10/12 my-4"
       src={urlFor(value)
         .width(width)
-        .height(height)
+        // .height(height)
         .fit("min")
         .auto("format")
         .url()}
@@ -48,25 +49,12 @@ const ImageParser = ({ value }) => {
 };
 
 const component = {
-  // block: ({ children }) => <p className=" h-full">{children}</p>,
-  // image: ({ props }) => (
-  //   <Image
-  //     className=""
-  //     src={urlFor(props.asset._ref).width(660).height(440).url()}
-  //     alt={props.alt}
-  //     width={960}
-  //     height={640}
-  //   ></Image>
-  // ),
   types: {
     image: ImageParser,
   },
   block: {
-    // span: ({ children }) => {
-    //   <p className="text-white">{children}</p>;
-    // },
     h3: ({ children }) => (
-      <h3 className="text-4xl self-start my-1 p-1 text-stone-100 font-source border-b-2">
+      <h3 className="text-2xl md:text-4xl self-start m-2 p-1 text-stone-100 font-source border-b-2">
         {children}
       </h3>
     ),
@@ -75,15 +63,28 @@ const component = {
         {children}
       </p>
     ),
-    marks: {
-      link: ({ value, children }) => {
-        const whereTo = value || "";
-        return (
-          <a className="text-4xl" rel="/#" href={whereTo}>
-            {children}
-          </a>
-        );
-      },
+  },
+  marks: {
+    link: ({ value, children }) => {
+      // const whereTo = value || "";
+      // return (
+      //   <a className="text-4xl underline" rel="/#" href={whereTo}>
+      //     {children}
+      //   </a>
+      // );
+      const target = (value?.href || "").startsWith("http")
+        ? "_blank"
+        : undefined;
+      return (
+        <a
+          className="underline underline-offset-2"
+          href={value?.href}
+          target={target}
+          rel={target === "_blank" && "noindex nofollow"}
+        >
+          {children}
+        </a>
+      );
     },
   },
 };
@@ -93,7 +94,7 @@ export default function Project({ project }) {
   const { body } = project.detailed;
   return (
     <section className="my-16 flex flex-col justify-center items-center">
-      <header className="font-source text-stone-100 text-5xl flex my-4 border-b-2 pb-4">
+      <header className="font-source text-stone-100 text-4xl md:text-5xl flex my-4 border-b-2 pb-4">
         {project.title}
         <Link href={gitHub} className="ml-4">
           <svg
