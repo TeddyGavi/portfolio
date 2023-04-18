@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.grecapthca-badge {
+.grecaptcha-badge {
   visibility: hidden;
 }
 

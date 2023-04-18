@@ -35,7 +35,7 @@ export default function App({ Component, pageProps }) {
         scriptProps={{
           async: false,
           defer: false,
-          appendTo: "body",
+          appendTo: "head",
         }}
       >
         <Layout>
