@@ -7,7 +7,7 @@ export default async function Email(req, res) {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: `secret=${process.env.NEXT_PUBLIC_RECAPTCHA_SECRET}&response=${token}`,
+        body: `secret=${process.env.RECAPTCHA_SECRET}&response=${token}`,
       })
         .then((reCaptchaRes) => reCaptchaRes.json())
         .then((reCaptchaRes) => {

@@ -9,6 +9,12 @@ export default function Contact() {
   const { executeRecaptcha } = useGoogleReCaptcha();
   const [submit, setSubmit] = useState("");
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
   const onSubmit = useCallback(
     async (formData) => {
       if (!executeRecaptcha) {
@@ -29,14 +35,8 @@ export default function Contact() {
   //   onSubmit();
   // }, [onSubmit]);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
   const submitFormWithToken = async (token, formData) => {
-    // serverless api call
+    // serverless api call, sends the token from recaptcha hook to google recaptcha api
     try {
       const res = await fetch("/api/email", {
         method: "POST",
@@ -55,11 +55,11 @@ export default function Contact() {
             formData,
             process.env.NEXT_PUBLIC_EMAIL_PUBLIC_KEY
           );
+          console.log(parsedRes.message);
+          setSubmit(parsedRes.message);
         } catch (error) {
           setSubmit("Error sending email");
         }
-
-        setSubmit(parsedRes.message);
       } else {
         setSubmit(parsedRes.message);
       }
@@ -153,8 +153,10 @@ export default function Contact() {
             {errors.message && (
               <span className="text-red-500">A Message is required</span>
             )}{" "}
-            {submit.status && (
-              <span className=" text-white text-xl">{submit.msg}</span>
+            {submit && (
+              <span className=" text-white md:text-xl text-md text-center">
+                {submit}
+              </span>
             )}
           </section>
         </form>
