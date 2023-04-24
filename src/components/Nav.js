@@ -38,14 +38,13 @@ export default function Nav() {
   return (
     <nav
       id="nav-header"
-      aria-label="navigation menu"
       className={`fixed z-50 h-16 top-0 ${
         hidden ? "backdrop-blur-md  bg-opacity-10" : ""
       } flex max-w-4xl w-screen mx-auto justify-between md:justify-evenly items-center p-3 border-b border-stone-500 text-white transition-all`}
     >
       <Link
         href="/"
-        className="items-center transition-all  text-stone-100  hover:text-stone-400 hover:opacity-100 opacity-80 "
+        className="items-center transition-all duration-300  text-stone-100  hover:text-stone-400 hover:opacity-100 opacity-80 "
       >
         <Image
           src={`/favicon.ico`}

@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useMotionValue } from "framer-motion";
 import TypeWriter from "../TypeWriter";
 
 const words = {
@@ -38,6 +38,15 @@ const letter = {
 };
 
 export default function Hero({ about }) {
+  const opacity = useMotionValue(1);
+
+  const handleHover = () => {
+    opacity.set(0.2);
+  };
+  const hoverLeave = () => {
+    opacity.set(1);
+  };
+
   return (
     <section
       id="home"
@@ -50,7 +59,7 @@ export default function Hero({ about }) {
         {about.name.split(" ").map((word, i) => {
           return (
             <motion.span
-              className="inline-block mx-2 whitespace-nowrap"
+              className="inline-block mx-2 whitespace-nowrap cursor-pointer"
               key={i}
               variants={words}
               initial="hidden"
@@ -60,9 +69,17 @@ export default function Hero({ about }) {
               {word.split("").map((char, i) => {
                 return (
                   <motion.span
-                    className="inline-block cursor-pointer"
+                    className="inline-block"
                     key={i}
                     variants={letter.letterIn}
+                    whileHover={{
+                      scale: 1.5,
+                      rotate: Math.floor(Math.random() * (-150 - 10) + 10),
+                    }}
+                    whileTap={{
+                      scale: 1.5,
+                      rotate: Math.floor(Math.random() * (-150 - 10) + 10),
+                    }}
                   >
                     {char}
                   </motion.span>
