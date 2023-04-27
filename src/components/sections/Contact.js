@@ -70,6 +70,8 @@ export default function Contact() {
 
   return (
     <motion.section
+      tabIndex={0}
+      aria-label="contact"
       id="contact"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
@@ -78,16 +80,27 @@ export default function Contact() {
       className="font-source flex flex-col items-center justify-center "
     >
       <article className="flex flex-col w-full py-8 lg:py-16 px-4 ">
-        <h3 className=" inline-flex justify-center text-5xl font-main font-extrabold text-center text-stone-200 md:text-6xl">
+        <h3
+          tabIndex={0}
+          className=" inline-flex justify-center text-5xl font-main font-extrabold text-center text-stone-200 md:text-6xl"
+        >
           Hello!
           <SpeakerWaveIcon className="h-6 w-6 ml-2 blink" />
         </h3>
-        <p className="m-2 lg:mt-16 font-light text-center  text-stone-400 sm:text-xl">
+        <p
+          tabIndex={0}
+          className="m-2 lg:mt-16 font-light text-center  text-stone-400 sm:text-xl"
+        >
           Whats on your mind?
         </p>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-          <section aria-label="email section of contact form">
+        <form
+          tabIndex={0}
+          aria-label="Contact Form"
+          onSubmit={handleSubmit(onSubmit)}
+          className="space-y-8"
+        >
+          <section>
             <label
               name="email"
               className="block mb-2 text-sm font-medium text-stone-200"
@@ -97,6 +110,7 @@ export default function Contact() {
 
             <input
               {...register("email", { required: true })}
+              aria-label="email section of contact form"
               type="email"
               id="email"
               className="shadow-sm border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-stone-100 focus:border-stone-50 block w-full p-2.5 bg-stone-800 bg-opacity-50"
@@ -116,12 +130,13 @@ export default function Contact() {
               {...register("subject", { required: true })}
               type="text"
               id="subject"
+              aria-label="Subject of email"
               className="block p-3 w-full text-sm shadow-sm border border-gray-300 text-gray-100 rounded-lg focus:ring-stone-100 focus:border-stone-50 bg-stone-800 bg-opacity-50"
-              placeholder="Let us know how we can help you"
+              placeholder="how can I help?"
               required
             />
           </section>
-          <section aria-label="message text area" className="sm:col-span-2">
+          <section className="sm:col-span-2">
             <label
               name="message"
               className="block mb-2 text-sm font-medium text-stone-200"
@@ -131,6 +146,7 @@ export default function Contact() {
 
             <textarea
               {...register("message", { required: true })}
+              aria-label="message"
               id="message"
               rows="6"
               className="block p-2.5 w-full text-sm text-gray-100 shadow-sm border border-gray-300 rounded-lg focus:ring-stone-100 focus:border-stone-50  bg-stone-800 bg-opacity-50"

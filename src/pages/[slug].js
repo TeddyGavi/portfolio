@@ -44,6 +44,7 @@ const ImageParser = ({ value }) => {
       width={width}
       height={height}
       loading="eager"
+      priority
     ></Image>
   );
 };

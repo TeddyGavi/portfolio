@@ -1,8 +1,5 @@
 import Head from "next/head";
 import { getAbout } from "../lib/getAbout";
-import TypeWriter from "@/components/TypeWriter";
-import { motion } from "framer-motion";
-import { useEffect, useLayoutEffect, useRef } from "react";
 import { getProjects } from "@/lib/getProjects";
 import Projects from "@/components/sections/Projects";
 import About from "@/components/sections/About";
@@ -16,8 +13,6 @@ export async function getStaticProps() {
 
   return { props: { about, projects } };
 }
-
-
 
 export default function Home({ about, projects }) {
   // useEffect(() => {

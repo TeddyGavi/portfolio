@@ -2,12 +2,13 @@ export default function HamButton({ handleSlide, navSlide }) {
   return (
     <button
       className="relative group z-10 mr-2 focus-visible:s"
-      aria-label="Navigation button"
+      aria-label={navSlide ? "Close navigation menu" : "Open navigation menu"}
       onClick={() => {
         handleSlide();
       }}
     >
       <div
+        aria-label="open hamburger menu"
         className={`md:hidden w-8 h-8 flex items-center space-y-2 relative flex-col border border-white p-1 rounded transform transition-all duration-300  ${
           navSlide
             ? "ring-0 hover:ring-4 ring-stone-100 ring-opacity-40"

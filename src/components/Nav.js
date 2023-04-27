@@ -37,6 +37,7 @@ export default function Nav() {
 
   return (
     <nav
+      tabIndex={0}
       id="nav-header"
       className={`fixed z-50 h-16 top-0 ${
         hidden ? "backdrop-blur-md  bg-opacity-10" : ""
@@ -52,6 +53,7 @@ export default function Nav() {
           height={32}
           alt="site logo"
           className="ml-2"
+          priority
         />
       </Link>
       <div className="hidden md:inline-flex text-2xl">{<NavLinks />}</div>

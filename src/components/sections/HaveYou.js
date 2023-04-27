@@ -31,7 +31,11 @@ export default function HaveYou() {
       ref={container}
       className="flex flex-col justify-center items-center"
     >
-      <h3 className="font-source text-stone-100 font-extrabold drop-shadow-xl shadow-stone-300 text-5xl md:text-7xl ">
+      <h3
+        tabIndex={0}
+        aria-label="have you?"
+        className="font-source text-stone-100 font-extrabold drop-shadow-xl shadow-stone-300 text-5xl md:text-7xl "
+      >
         {text.split("").map((word, i) => {
           return (
             <motion.span

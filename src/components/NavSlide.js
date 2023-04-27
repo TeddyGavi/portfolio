@@ -31,6 +31,9 @@ const slideItem = {
 export default function NavSlide({ handleSlide }) {
   return (
     <motion.div
+      tabIndex={0}
+      aria-label="Navigation links"
+      role="navigation"
       onClick={() => handleSlide()}
       variants={slide}
       initial="hidden"
