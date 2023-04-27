@@ -16,6 +16,7 @@ export default function NavLinks() {
     return (
       <div key={id}>
         <a
+          value={id}
           tabIndex={0}
           aria-label={name}
           href={isHome ? to : to.replace("#", "/#")}

@@ -3,6 +3,7 @@ export default function HamButton({ handleSlide, navSlide }) {
     <button
       className="relative group z-10 mr-2 focus-visible:s"
       aria-label={navSlide ? "Close navigation menu" : "Open navigation menu"}
+      aria-expanded={navSlide}
       onClick={() => {
         handleSlide();
       }}

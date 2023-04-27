@@ -29,8 +29,14 @@ const slideItem = {
 };
 
 export default function NavSlide({ handleSlide }) {
+  const handleTabNav = (e) => {
+    console.log(e.key, e);
+    console.log(e.target);
+  };
+
   return (
     <motion.div
+      onKeyDown={(e) => handleTabNav(e)}
       tabIndex={0}
       aria-label="Navigation links"
       role="navigation"
