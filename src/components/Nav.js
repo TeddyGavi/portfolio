@@ -10,6 +10,7 @@ import {
   useScroll,
 } from "framer-motion";
 import NavLinks from "./NavLinks";
+import ThemeSwitch from "./Theme";
 
 export default function Nav() {
   const [navSlide, setNavSlide] = useState(false);
@@ -45,7 +46,7 @@ export default function Nav() {
     >
       <Link
         href="/"
-        className="items-center transition-all duration-300  text-stone-100  hover:text-stone-400 hover:opacity-100 opacity-40 "
+        className=" transition-all duration-300  text-stone-100  hover:text-stone-400 hover:opacity-100 opacity-40 "
       >
         <Image
           src={`/favicon.ico`}
@@ -56,6 +57,7 @@ export default function Nav() {
           priority
         />
       </Link>
+      <ThemeSwitch />
       <div className="hidden md:inline-flex text-2xl">{<NavLinks />}</div>
       <HamButton handleSlide={handleMenuClick} navSlide={navSlide} />
       <AnimatePresence>

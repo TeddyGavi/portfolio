@@ -76,7 +76,7 @@ export default function Contact() {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      viewport={{ once: false, amount: 0.7 }}
+      viewport={{ once: false, amount: 0.8 }}
       className="font-source flex flex-col items-center justify-center "
     >
       <article className="flex flex-col w-full py-8 lg:py-16 px-4 ">

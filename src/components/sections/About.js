@@ -7,17 +7,21 @@ import { ChatBubbleBottomCenterTextIcon } from "@heroicons/react/24/solid";
 export default function About({ about }) {
   const { body } = about.body;
   return (
-    <section
+    <motion.section
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: false, amount: 0.1 }}
       tabIndex={0}
       id="about"
       className="flex flex-col items-center gap-5 justify-center"
     >
       <motion.h3
         tabIndex={0}
-        initial={{ opacity: 0, x: 100 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1, type: "tween" }}
-        viewport={{ once: false, amount: 0.1 }}
+        // initial={{ opacity: 0, x: 100 }}
+        // whileInView={{ opacity: 1, x: 0 }}
+        // transition={{ duration: 1, type: "tween" }}
+        // viewport={{ once: false, amount: 0.1 }}
         className="font-main text-5xl text-stone-200 font-bold inline-flex justify-center md:text-6xl "
       >
         About{" "}
@@ -34,10 +38,10 @@ export default function About({ about }) {
       />
       <motion.article
         tabIndex={0}
-        initial={{ opacity: 0, x: -100 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1, type: "tween" }}
-        viewport={{ once: false, amount: 0.1 }}
+        // initial={{ opacity: 0, x: -100 }}
+        // whileInView={{ opacity: 1, x: 0 }}
+        // transition={{ duration: 1, type: "tween" }}
+        // viewport={{ once: false, amount: 0.1 }}
         className="font-main h-[calc(40vh)] overflow-y-auto md:h-fit md:overflow-auto text-md md:text-lg text-stone-100 border-5 rounded-lg  text-center border border-stone-700  bg-stone-800 bg-opacity-50 mx-4 my-0 p-1"
       >
         <PortableText
@@ -47,6 +51,6 @@ export default function About({ about }) {
           }}
         />
       </motion.article>
-    </section>
+    </motion.section>
   );
 }

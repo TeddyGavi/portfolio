@@ -2,6 +2,7 @@ import Layout from "@/components/Layout";
 import "@/styles/globals.css";
 import Head from "next/head";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
+import { ThemeProvider } from "next-themes";
 
 export default function App({ Component, pageProps }) {
   return (
@@ -38,9 +39,11 @@ export default function App({ Component, pageProps }) {
           appendTo: "head",
         }}
       >
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <ThemeProvider attribute="class">
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ThemeProvider>
       </GoogleReCaptchaProvider>
     </>
   );
