@@ -18,7 +18,7 @@ export default function NavLinks() {
           tabIndex={0}
           aria-label={name}
           href={isHome ? to : to.replace("#", "/#")}
-          className="px-2 font-source font-semibold  transition-all duration-200  text-stone-100 hover:text-stone-300 hover:opacity-100 opacity-40"
+          className="px-2 font-source font-semibold  transition-all duration-200 text-black  dark:text-stone-100 dark:hover:text-stone-300 hover:opacity-40 opacity-100 md:dark:opacity-90 dark:opacity-40 hover:dark:opacity-100 md:dark:text-lightbg md:dark:hover:text-white"
         >
           [{name}]
         </a>

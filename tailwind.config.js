@@ -1,6 +1,10 @@
 const { fontFamily } = require("tailwindcss/defaultTheme");
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  future: {
+    removeDeprecatedGapUtilities: true,
+    purgeLayersByDefault: true,
+  },
   mode: "jit",
   darkMode: "class",
   // purge: {
@@ -25,6 +29,10 @@ module.exports = {
         main: ["var(--font-main)", ...fontFamily.sans],
         title: ["var(--font-title)", ...fontFamily.serif],
         source: ["var(--font-source)", ...fontFamily.sans],
+      },
+      colors: {
+        darkbg: "#333333",
+        lightbg: "#C6C6C6",
       },
     },
   },

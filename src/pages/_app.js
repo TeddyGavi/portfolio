@@ -39,7 +39,12 @@ export default function App({ Component, pageProps }) {
           appendTo: "head",
         }}
       >
-        <ThemeProvider attribute="class">
+        <ThemeProvider
+          attribute="class"
+          enableSystem={false}
+          disableTransitionOnChange
+          forcedTheme={Component.theme || undefined}
+        >
           <Layout>
             <Component {...pageProps} />
           </Layout>
