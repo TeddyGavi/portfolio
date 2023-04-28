@@ -45,7 +45,7 @@ export default function Nav() {
     >
       <Link
         href="/"
-        className="items-center transition-all duration-300  text-stone-100  hover:text-stone-400 hover:opacity-100 opacity-80 "
+        className="items-center transition-all duration-300  text-stone-100  hover:text-stone-400 hover:opacity-100 opacity-40 "
       >
         <Image
           src={`/favicon.ico`}

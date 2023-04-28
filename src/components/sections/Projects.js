@@ -48,7 +48,6 @@ export default function Projects({ projects }) {
                   tabIndex={0}
                   priority
                   className="rounded-lg justify-self-center pointer-events-none"
-                  // className="rounded-full object-contain"
                   src={urlFor(imageList.images[0])
                     .fit("crop")
                     .auto("format")
