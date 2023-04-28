@@ -82,14 +82,14 @@ export default function Contact() {
       <article className="flex flex-col w-full py-8 lg:py-16 px-4 ">
         <h3
           tabIndex={0}
-          className=" inline-flex justify-center text-5xl font-main font-extrabold text-center text-stone-200 md:text-6xl"
+          className=" inline-flex justify-center text-5xl font-main font-extrabold text-center dark:text-stone-200 md:text-6xl text-stone-900"
         >
           Hello!
-          <SpeakerWaveIcon className="h-6 w-6 ml-2 blink" />
+          <SpeakerWaveIcon className="h-6 w-6 ml-2 animate-bounce" />
         </h3>
         <p
           tabIndex={0}
-          className="m-2 lg:mt-16 font-light text-center  text-stone-400 sm:text-xl"
+          className="m-2 lg:mt-16 font-light text-center  dark:text-stone-400 text-stone-900 sm:text-xl"
         >
           Whats on your mind?
         </p>
@@ -103,7 +103,7 @@ export default function Contact() {
           <section>
             <label
               name="email"
-              className="block mb-2 text-sm font-medium text-stone-200"
+              className="block mb-2 text-sm font-medium dark:text-stone-200 text-stone-900"
             >
               Your email
             </label>
@@ -113,7 +113,7 @@ export default function Contact() {
               aria-label="email section of contact form"
               type="email"
               id="email"
-              className="shadow-sm border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-stone-100 focus:border-stone-50 block w-full p-2.5 bg-stone-800 bg-opacity-50"
+              className="shadow-sm border block w-full p-2.5 text-sm rounded-lg dark:border-gray-300 dark:text-gray-100  dark:focus:ring-stone-100 dark:focus:border-stone-50 dark:bg-stone-800  border-gray-800 text-stone-900 focus:ring-stone-900 focus:border-stone-800 bg-stone-200 dark:bg-opacity-50"
               placeholder="name@gmail.com"
               required
             />
@@ -121,7 +121,7 @@ export default function Contact() {
           <section>
             <label
               name="subject"
-              className="block mb-2 text-sm font-medium text-stone-200"
+              className="block mb-2 text-sm font-medium dark:text-stone-200 test-stone-900"
             >
               Subject
             </label>
@@ -131,7 +131,7 @@ export default function Contact() {
               type="text"
               id="subject"
               aria-label="Subject of email"
-              className="block p-3 w-full text-sm shadow-sm border border-gray-300 text-gray-100 rounded-lg focus:ring-stone-100 focus:border-stone-50 bg-stone-800 bg-opacity-50"
+              className="block p-3 w-full text-sm shadow-sm border rounded-lg dark:border-gray-300 dark:text-gray-100  dark:focus:ring-stone-100 dark:focus:border-stone-50 dark:bg-stone-800  border-gray-800 text-stone-900 focus:ring-stone-900 focus:border-stone-800 bg-stone-200 dark:bg-opacity-50"
               placeholder="how can I help?"
               required
             />
@@ -139,7 +139,7 @@ export default function Contact() {
           <section className="sm:col-span-2">
             <label
               name="message"
-              className="block mb-2 text-sm font-medium text-stone-200"
+              className="block mb-2 text-sm font-medium dark:text-stone-200 text-stone-900"
             >
               Your message
             </label>
@@ -149,13 +149,13 @@ export default function Contact() {
               aria-label="message"
               id="message"
               rows="6"
-              className="block p-2.5 w-full text-sm text-gray-100 shadow-sm border border-gray-300 rounded-lg focus:ring-stone-100 focus:border-stone-50  bg-stone-800 bg-opacity-50"
+              className="block p-2.5 w-full text-sm  shadow-sm border rounded-lg dark:bg-opacity-50  dark:border-gray-300 dark:text-gray-100  dark:focus:ring-stone-100 dark:focus:border-stone-50 dark:bg-stone-800  border-gray-800 text-stone-900 focus:ring-stone-900 focus:border-stone-800 bg-stone-200"
               placeholder="Say Hello..."
             ></textarea>
           </section>
           <button
             type="submit"
-            className="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 w-full md:w-fit hover:bg-stone-400 focus:ring-4 focus:outline-none focus:ring-stone-100 bg-stone-800 bg-opacity-50"
+            className="py-3 px-5 text-sm font-medium text-center rounded-lg w-full md:w-fit dark:text-white dark:hover:bg-stone-400 focus:ring-4 focus:outline-none dark:focus:ring-stone-100 dark:bg-stone-800 dark:bg-opacity-50 text-stone-900 bg-stone-200 focus:ring-stone-900 hover:bg-stone-800 hover:text-white transition-all duration-200"
           >
             Send message
           </button>
@@ -178,7 +178,7 @@ export default function Contact() {
         </form>
       </article>
       <aside>
-        <p className="font-light text-stone-400 text-sm md:text-md text-center">
+        <p className="font-light dark:text-stone-400 text-stone-900 text-sm md:text-md text-center">
           This site is protected by reCAPTCHA and the Google&nbsp;
           <a
             className=" decoration-stone-400 underline"

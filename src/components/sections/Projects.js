@@ -45,7 +45,7 @@ export default function Projects({ projects }) {
                 </h3>
                 <Link
                   href={`/${slug.current}`}
-                  className="font-source font-bold text-md md:text-lg inline-flex items-center  dark:text-stone-100 dark:hover:text-stone-300 dark:hover:opacity-100 dark:opacity-40 text-stone-900 hover:text-stone-100 hover:border-b-stone-900 hover:border border border-b-transparent transition-all duration-200"
+                  className="font-source font-bold text-md md:text-lg inline-flex items-center  dark:text-stone-100 dark:hover:text-stone-300 dark:hover:opacity-100 dark:opacity-40 dark:hover:border-b-stone-300 text-stone-900 hover:text-stone-100 hover:border-b-stone-900 hover:border dark:border-transparent border border-b-transparent transition-all duration-200"
                 >
                   View Project
                   <ArrowRightCircleIcon className="h-6 w-6 md:h-8 md:w-8 ml-1" />
