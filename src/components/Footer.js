@@ -10,7 +10,10 @@ export default function Footer() {
     mastodon: "https://mastodon.social/@teddygavi",
   };
   return (
-    <footer className=" flex  pb-6 w-full  text-stone-400">
+    <footer
+      aria-label="Social Links"
+      className="flex pb-6 w-full text-stone-400"
+    >
       <div className="mx-auto flex space-x-6 ">
         <Link href={socialLinks.gitHub}>
           <svg

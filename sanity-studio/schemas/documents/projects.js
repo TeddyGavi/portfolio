@@ -16,12 +16,9 @@ export default {
       validation: (Rule) => Rule.required().max(500),
     },
     {
-      name: 'image',
-      title: 'Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
+      name: 'imageList',
+      title: 'Images',
+      type: 'gallery',
     },
     {
       name: 'gitHub',
@@ -49,6 +46,7 @@ export default {
         source: 'title',
         maxLength: 96,
       },
+      validation: (rule) => rule.required(),
     },
   ],
 }

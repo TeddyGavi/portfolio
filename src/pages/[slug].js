@@ -3,6 +3,8 @@ import Image from "next/image";
 import { urlFor } from "../../sanity";
 import { PortableText } from "@portabletext/react";
 import { getImageDimensions } from "@sanity/asset-utils";
+import { ArrowLeftCircleIcon } from "@heroicons/react/24/outline";
+import { useRouter } from "next/router";
 import Link from "next/link";
 
 export const getStaticPaths = async () => {
@@ -97,7 +99,7 @@ export default function Project({ project }) {
     <section className="my-16 flex flex-col justify-center items-center">
       <header className="font-source text-stone-100 text-4xl md:text-5xl flex my-4 border-b-2 pb-4">
         {project.title}
-        <Link href={gitHub} className="ml-4">
+        <Link href={gitHub || "/"} className="ml-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className=" h-8 w-8 hover:opacity-100 opacity-40 hover:text-stone-100 transition-all"
@@ -108,14 +110,19 @@ export default function Project({ project }) {
           </svg>
         </Link>
       </header>
-      {/* <p>{project.about}</p> */}
 
       <PortableText
         className="max-h-full min-h-fit flex flex-col"
         value={body}
         components={component}
       />
-      {/* <pre className="max-w-2xl">{JSON.stringify(body, null, 6)}</pre> */}
+      <Link
+        href={"/#projects"}
+        className="px-2 underline-offset-8 underline text-lg md:text-xl flex justify-center items-center font-source font-semibold text-stone-100 hover:text-stone-300 hover:opacity-100 opacity-40 transition-all duration-200"
+      >
+        <ArrowLeftCircleIcon className="h-8 w-8" />
+        &nbsp;Back Home
+      </Link>
     </section>
   );
 }
