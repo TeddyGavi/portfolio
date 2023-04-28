@@ -16,7 +16,7 @@ export default function Projects({ projects }) {
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: false, amount: 0.5 }}
-      className=" text-stone-200 flex flex-col justify-center items-center gap-5 overflow-auto "
+      className=" dark:text-stone-200 text-stone-900 flex flex-col justify-center items-center gap-5 overflow-auto "
     >
       <h3
         tabIndex={0}
@@ -34,7 +34,7 @@ export default function Projects({ projects }) {
           return (
             <div
               key={_id}
-              className="p-2 mx-4 rounded-xl border border-stone-700 bg-stone-800 bg-opacity-50"
+              className="p-2 mx-4 rounded-xl dark:border-5 dark:border-stone-700 dark:bg-stone-800 dark:bg-opacity-50 border-2 border-stone-300 border-opacity-75 text-stone-900 bg-stone-200"
             >
               <header className="flex flex-col gap-2 items-center w-full justify-evenly md:justify-center my-4">
                 <h3
@@ -45,10 +45,10 @@ export default function Projects({ projects }) {
                 </h3>
                 <Link
                   href={`/${slug.current}`}
-                  className="font-source font-bold text-md md:text-lg inline-flex items-center  text-stone-100 hover:text-stone-300 hover:opacity-100 opacity-40 transition-all duration-200"
+                  className="font-source font-bold text-md md:text-lg inline-flex items-center  dark:text-stone-100 dark:hover:text-stone-300 dark:hover:opacity-100 dark:opacity-40 text-stone-900 hover:text-stone-100 hover:border-b-stone-900 hover:border border border-b-transparent transition-all duration-200"
                 >
                   View Project
-                  <ArrowRightCircleIcon className="h-6 w-6 md:h-8 md:w-8 ml-2" />
+                  <ArrowRightCircleIcon className="h-6 w-6 md:h-8 md:w-8 ml-1" />
                 </Link>
               </header>
               <div className="flex flex-col justify-center items-center">
@@ -66,7 +66,7 @@ export default function Projects({ projects }) {
                 />
                 <div
                   tabIndex={0}
-                  className="text-center p-6 font-main font-normal text-md md:text-xl text-stone-100 "
+                  className="text-center p-6 font-main font-normal text-md md:text-xl dark:text-stone-100 text-stone-900"
                 >
                   <p>{about}</p>
                 </div>

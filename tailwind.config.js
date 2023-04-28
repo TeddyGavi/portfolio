@@ -32,7 +32,7 @@ module.exports = {
       },
       colors: {
         darkbg: "#333333",
-        lightbg: "#C6C6C6",
+        lightbg: "#F5F5F4",
       },
     },
   },

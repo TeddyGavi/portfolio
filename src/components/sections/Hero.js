@@ -54,11 +54,11 @@ export default function Hero({ about }) {
     >
       <h1
         tabIndex={0}
-        className="font-main text-stone-50 text-7xl font-bold md:mt-48 mt-20"
+        className="font-main dark:text-stone-50 text-stone-900 text-7xl font-bold md:mt-48 mt-20"
       >
         <div
           tabIndex={0}
-          className="md:hidden inline-block items-center text-2xl text-stone-400"
+          className="md:hidden inline-block items-center text-2xl dark:text-stone-400 text-stone-800"
         >
           You have now met
         </div>
@@ -100,20 +100,23 @@ export default function Hero({ about }) {
 
       <article className="grid grid-rows-2 md:gap-32 md:my-24 ">
         <h2 className="hidden md:inline-block">
-          <span tabIndex={0} className="text-2xl md:text-4xl  text-stone-400">
+          <span
+            tabIndex={0}
+            className="text-2xl md:text-4xl  dark:text-stone-400 text-stone-800"
+          >
             You have now met{" "}
           </span>
         </h2>
         <h2
           tabIndex={0}
-          className="font-main font-medium text-stone-400 text-2xl"
+          className="font-main font-medium text-stone-500 dark:text-stone-400 text-2xl"
         >
           {`${about.short} `}
           <div>
             <TypeWriter
               toType={[...about.pun]}
               textSize={"2xl"}
-              color={"stone-50"}
+              color={"dark:text-stone-50 text-black"}
             />
           </div>
           {about.second}

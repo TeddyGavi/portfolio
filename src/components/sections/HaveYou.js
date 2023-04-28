@@ -34,7 +34,7 @@ export default function HaveYou() {
       <h3
         tabIndex={0}
         aria-label="have you?"
-        className="font-source text-stone-100 font-extrabold drop-shadow-xl shadow-stone-300 text-5xl md:text-7xl "
+        className="font-source dark:text-stone-100 text-stone-900 font-extrabold drop-shadow-xl dark:shadow-stone-300 shadow-stone-800 text-5xl md:text-7xl "
       >
         {text.split("").map((word, i) => {
           return (

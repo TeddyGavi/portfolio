@@ -5,7 +5,7 @@ export default function TypeWriter({ toType, textSize, color }) {
 
   return (
     <span
-      className={`text-${color} text-${textSize} ${
+      className={`${color} text-${textSize} ${
         phase === "Typing" || phase === "Deleting" ? "cursor-typing" : "cursor"
       }`}
       aria-label={`${ariaText}`}
