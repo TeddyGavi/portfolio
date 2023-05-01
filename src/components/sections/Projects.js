@@ -34,7 +34,7 @@ export default function Projects({ projects }) {
           return (
             <div
               key={_id}
-              className="p-2 mx-4 rounded-xl dark:border-5 dark:border-stone-700 dark:bg-stone-800 dark:bg-opacity-50 border-2 border-stone-300 border-opacity-75 text-stone-900 bg-stone-200"
+              className="p-2 mx-4 rounded-xl dark:border-5 dark:border-stone-700 dark:bg-stone-800 dark:bg-opacity-50 border-2 border-stone-300 border-opacity-75 text-stone-900 dark:text-stone-200 bg-stone-200"
             >
               <header className="flex flex-col gap-2 items-center w-full justify-evenly md:justify-center my-4">
                 <h3
