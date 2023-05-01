@@ -25,7 +25,7 @@ export default function Contact() {
       const token = await executeRecaptcha("submitFormWithToken");
       // Do whatever you want with the token
       submitFormWithToken(token, formData);
-      console.log(token, formData);
+      // console.log(token, formData);
     },
     [executeRecaptcha]
   );
@@ -49,14 +49,27 @@ export default function Contact() {
       const parsedRes = await res.json();
       if (parsedRes?.status === "success") {
         try {
-          await emailjs.send(
-            process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID,
-            process.env.NEXT_PUBLIC_EMAIL_TEMPLATE,
-            formData,
-            process.env.NEXT_PUBLIC_EMAIL_PUBLIC_KEY
-          );
-          console.log(parsedRes.message);
-          setSubmit(parsedRes.message);
+          // await emailjs.send(
+          //   process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID,
+          //   process.env.NEXT_PUBLIC_EMAIL_TEMPLATE,
+          //   formData,
+          //   process.env.NEXT_PUBLIC_EMAIL_PUBLIC_KEY
+          // );
+          const emailSendRes = await fetch("/api/emailSend", {
+            method: "POST",
+            headers: {
+              Accept: "application/json, text/plain, */*",
+              "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify({ formData }),
+          });
+          const emailRes = emailSendRes.json();
+          if (emailRes.status === "success") {
+            setSubmit(parsedRes.message);
+          } else if (emailRes.status === "failure") {
+            setSubmit("Error Sending Email");
+          }
         } catch (error) {
           setSubmit("Error sending email");
         }
