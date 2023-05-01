@@ -6,6 +6,14 @@ import { ChatBubbleBottomCenterTextIcon } from "@heroicons/react/24/solid";
 
 export default function About({ about }) {
   const { body } = about.body;
+  console.log(
+    urlFor(about.image)
+      // .crop("focalpoint")
+      // .width(250)
+      // .height(250)
+      .quality(100)
+      .url()
+  );
   return (
     <motion.section
       initial={{ opacity: 0 }}

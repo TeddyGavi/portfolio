@@ -30,6 +30,42 @@ export default function App({ Component, pageProps }) {
           href="/favicon-16x16.png"
         />
         <link rel="manifest" href="/site.webmanifest" />
+        {/* OG tags general */}
+        <meta
+          property="og:title"
+          content="Matt Davis Front-End Web Developer"
+        />
+        <meta
+          property="og:description"
+          content="Welcome to the portfolio website of Matt Davis, who was always a skilled web developer with a passion for crafting beautiful and functional websites. In a past life Matt was a juggler, Biologist, and Red Seal Electrician."
+        />
+        <meta
+          property="og:image"
+          content="https://cdn.sanity.io/images/m9iwl7mr/production/2522fd2643d0eb781183d06366dec7cb8f5670b5-480x720.jpg?q=100"
+        />
+        <meta property="og:image:alt" content="Image of Author" />
+        <meta property="og:url" content="https://yourpage.com/" />
+        <meta property="og:type" content="profile"></meta>
+
+        {/* OG twitter */}
+        <meta
+          name="twitter:card"
+          content="https://cdn.sanity.io/images/m9iwl7mr/production/2522fd2643d0eb781183d06366dec7cb8f5670b5-480x720.jpg?q=100"
+        />
+        <meta name="twitter:site" content="@MatcDavis" />
+        <meta name="twitter:creator" content="@MatcDavis" />
+        <meta
+          name="twitter:title"
+          content="Matt Davis Front-End Web Developer"
+        />
+        <meta
+          name="twitter:description"
+          content="Welcome to the portfolio website of Matt Davis, who was always a skilled web developer with a passion for crafting beautiful and functional websites. In a past life Matt was a juggler, Biologist, and Red Seal Electrician."
+        />
+        <meta
+          name="twitter:image"
+          content="https://cdn.sanity.io/images/m9iwl7mr/production/2522fd2643d0eb781183d06366dec7cb8f5670b5-480x720.jpg?q=100"
+        />
       </Head>
       <GoogleReCaptchaProvider
         reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTHCA_SITE}
@@ -42,7 +78,7 @@ export default function App({ Component, pageProps }) {
         <ThemeProvider
           attribute="class"
           enableSystem={false}
-          disableTransitionOnChange
+          // disableTransitionOnChange
           forcedTheme={Component.theme || undefined}
         >
           <Layout>

@@ -13,15 +13,15 @@ export const getProjectPaths = async () => {
   return res.map((x) => {
     return {
       params: {
-        slug: x.slug.current,
+        project: x.slug.current,
       },
     };
   });
 };
 
-export const getProjectData = async (slug) => {
-  const query = /* groq */ `*[_type == "projects" && slug.current == $slug][0]`;
+export const getProjectData = async (project) => {
+  const query = /* groq */ `*[_type == "projects" && slug.current == $project][0]`;
 
-  const res = await sanityClient.fetch(query, { slug });
+  const res = await sanityClient.fetch(query, { project });
   return res;
 };
