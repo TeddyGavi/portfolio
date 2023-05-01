@@ -30,11 +30,13 @@ export default function Projects({ projects }) {
         className="grid grid-cols-1 md:grid-cols-2 gap-4"
       >
         {" "}
-        {projects.map(({ _id, about, imageList, title, slug }) => {
+        {projects.map(({ _id, about, imageList, title, slug }, i) => {
           return (
             <div
               key={_id}
-              className="p-2 mx-4 rounded-xl dark:border-5 dark:border-stone-700 dark:bg-stone-800 dark:bg-opacity-50 border-2 border-stone-300 border-opacity-75 text-stone-900 dark:text-stone-200 bg-stone-200"
+              className={`${
+                i === 0 && `md:col-span-2 row-span-2`
+              } p-2 mx-4 rounded-xl dark:border-5 dark:border-stone-700 dark:bg-stone-800 dark:bg-opacity-50 border-2 border-stone-300 border-opacity-75 text-stone-900 dark:text-stone-200 bg-stone-200`}
             >
               <header className="flex flex-col gap-2 items-center w-full justify-evenly md:justify-center my-4">
                 <h3
@@ -47,7 +49,7 @@ export default function Projects({ projects }) {
                   href={`/${slug.current}`}
                   className="font-source font-bold text-md md:text-lg inline-flex items-center  dark:text-stone-100 dark:hover:text-stone-300 dark:hover:opacity-100 dark:opacity-40 dark:hover:border-b-stone-300 text-stone-900 hover:text-stone-100 hover:border-b-stone-900 hover:border dark:border-transparent border border-b-transparent transition-all duration-200"
                 >
-                  View Project
+                  View Details
                   <ArrowRightCircleIcon className="h-6 w-6 md:h-8 md:w-8 ml-1" />
                 </Link>
               </header>
