@@ -23,8 +23,9 @@ export default function Footer() {
   return (
     <footer
       aria-label="Social Links"
-      className="flex flex-col pb-6 w-full dark:text-stone-400 text-stone-900"
+      className="flex flex-col p-6 w-full dark:text-stone-400 text-stone-900"
     >
+      {/* testing out back to top button, if nav is fixed and blurred background this is not really needed except mobile? */}
       <Link
         href={"/"}
         className="sm:hidden md:visible flex justify-center items-center"
@@ -52,7 +53,6 @@ export default function Footer() {
           <PaperClipIcon className={tailwindStyle} />
         </Link>
       </div>
-      {/* testing out back to top button, if nav is fixed and blurred background this is not really needed except mobile? */}
     </footer>
   );
 }

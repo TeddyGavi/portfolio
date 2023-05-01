@@ -1,5 +1,11 @@
-import { motion, useMotionValue } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useMotionValueEvent,
+  useScroll,
+} from "framer-motion";
 import TypeWriter from "../TypeWriter";
+import { useEffect, useState } from "react";
 
 const words = {
   hidden: {},
@@ -38,15 +44,6 @@ const letter = {
 };
 
 export default function Hero({ about }) {
-  const opacity = useMotionValue(1);
-
-  const handleHover = () => {
-    opacity.set(0.2);
-  };
-  const hoverLeave = () => {
-    opacity.set(1);
-  };
-
   return (
     <section
       id="home"
