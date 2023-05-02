@@ -55,7 +55,7 @@ export default function Hero({ about }) {
       >
         <div
           tabIndex={0}
-          className="md:hidden mx-2 items-center text-2xl dark:text-stone-400 text-stone-800"
+          className="md:hidden items-center text-2xl dark:text-stone-400 text-stone-800"
         >
           Hello, I am
         </div>

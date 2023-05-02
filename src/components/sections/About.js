@@ -24,7 +24,7 @@ export default function About({ about }) {
         // whileInView={{ opacity: 1, x: 0 }}
         // transition={{ duration: 1, type: "tween" }}
         // viewport={{ once: false, amount: 0.1 }}
-        className="font-main text-5xl dark:text-stone-200 text-stone-900 font-bold inline-flex justify-center md:text-6xl "
+        className="font-main text-3xl dark:text-stone-200 text-stone-900 font-bold inline-flex justify-center md:text-6xl "
       >
         About{" "}
         <ChatBubbleBottomCenterTextIcon className="w-6 h-6 ml-2 animate-bounce" />
