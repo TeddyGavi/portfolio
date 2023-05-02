@@ -34,3 +34,8 @@ export default async function Email(req, res) {
     res.end();
   }
 }
+export const config = {
+  api: {
+    externalResolver: true,
+  },
+};
