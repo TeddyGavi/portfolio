@@ -10,7 +10,12 @@ export default async function EmailSend(req, res) {
       from: "matc.davis@gmail.com", // Change to your verified sender
       subject: `Message from Portfolio site`,
       text: `Message from => ${formData.email}`,
-      html: `<strong>Subject => ${formData.subject} Message => ${formData.message} </strong>`,
+      html: `
+      <div>
+        <p><strong>Subject => ${formData.subject}</strong></p> 
+        <p>Message => ${formData.message}</p>
+      </div>
+      `,
     };
     sgMail
       .send(msg)

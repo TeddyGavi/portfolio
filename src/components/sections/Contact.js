@@ -3,11 +3,13 @@ import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { useCallback, useEffect, useState } from "react";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import Loading from "../Loading";
 
 export default function Contact() {
   const { executeRecaptcha } = useGoogleReCaptcha();
   const [submit, setSubmit] = useState("");
-  console.log(submit);
+  const [loading, setLoading] = useState(false);
+  const [validate, setValidate] = useState(false);
 
   const {
     register,
@@ -15,7 +17,16 @@ export default function Contact() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = useCallback(
+  const resetSubmit = (timeOut = 1000) => {
+    setTimeout(() => {
+      setSubmit("");
+      setLoading(false);
+      setValidate(false);
+    }, timeOut);
+  };
+
+  const onSubmit =
+    // (
     async (formData) => {
       if (!executeRecaptcha) {
         console.log("Execute recaptcha not yet available");
@@ -26,9 +37,9 @@ export default function Contact() {
       // Do whatever you want with the token
       submitFormWithToken(token, formData);
       // console.log(token, formData);
-    },
-    [executeRecaptcha]
-  );
+    };
+  // [executeRecaptcha]
+  // );
 
   // You can use useEffect to trigger the verification as soon as the component being loaded
   // useEffect(() => {
@@ -37,6 +48,7 @@ export default function Contact() {
 
   const submitFormWithToken = async (token, formData) => {
     // serverless api call, sends the token from recaptcha hook to google recaptcha api
+    setLoading(true);
     try {
       const res = await fetch("/api/email", {
         method: "POST",
@@ -60,20 +72,32 @@ export default function Contact() {
           });
           const emailRes = await emailSendRes.json();
           if (emailRes.status === "success") {
+            setLoading(false);
             setSubmit(emailRes.message);
+            setValidate(true);
+            resetSubmit();
+            // setLoading(false);
             return;
           } else if (emailRes.status === "error") {
             setSubmit("Error Sending Email");
+            resetSubmit();
+            // setLoading(false);
             return;
           }
         } catch (error) {
           setSubmit("Error sending email");
+          resetSubmit();
+          // setLoading(false);
         }
       } else {
         setSubmit(parsedRes.message);
+        resetSubmit();
+        // setLoading(false);
       }
     } catch (error) {
       setSubmit("Error with captcha");
+      resetSubmit();
+      // setLoading(false);
     }
   };
 
@@ -162,30 +186,42 @@ export default function Contact() {
               placeholder="Say Hello..."
             ></textarea>
           </section>
-          <button
-            type="submit"
-            className="py-3 px-5 text-sm font-medium text-center rounded-lg w-full md:w-fit dark:text-white dark:hover:bg-stone-400 focus:ring-4 focus:outline-none dark:focus:ring-stone-100 dark:bg-stone-800 dark:bg-opacity-50 text-stone-900 bg-stone-200 focus:ring-stone-900 hover:bg-stone-800 hover:text-white transition-all duration-200"
+
+          <div
+            role="status"
+            aria-label="form button and status response"
+            className=" h-4/5"
           >
-            Send message
-          </button>
-          <section className="flex flex-col gap-2 mt-0">
-            {errors.email && (
-              <span className="text-red-500">Your Email is required</span>
-            )}
-            {errors.subject && (
-              <span className=" text-red-500">A Subject is required</span>
-            )}
-            {errors.message && (
-              <span className="text-red-500">A Message is required</span>
-            )}{" "}
-            {submit && (
-              <span className=" text-white md:text-xl text-md text-center">
+            {loading ? (
+              <div className="flex justify-center pt-3">
+                <Loading />
+              </div>
+            ) : validate ? (
+              <p className=" dark:text-white text-stone-900 md:text-md font-main font-bold underline underline-offset-4 text-sm text-center h-fit py-3 w-fit">
                 {submit}
-              </span>
+              </p>
+            ) : (
+              <button
+                type="submit"
+                className="py-3 px-5 text-sm md:text-md font-medium text-center rounded-lg w-full md:w-fit dark:text-white dark:hover:bg-stone-400 focus:ring-4 focus:outline-none dark:focus:ring-stone-100 dark:bg-stone-800 dark:bg-opacity-50 text-stone-900 bg-stone-200 focus:ring-stone-900 hover:bg-stone-800 hover:text-white transition-all duration-200"
+              >
+                Send message
+              </button>
             )}
-          </section>
+          </div>
         </form>
       </article>
+      <section className="flex flex-col gap-2 mt-0">
+        {errors.email && (
+          <span className="text-red-500">Your Email is required</span>
+        )}
+        {errors.subject && (
+          <span className=" text-red-500">A Subject is required</span>
+        )}
+        {errors.message && (
+          <span className="text-red-500">A Message is required</span>
+        )}{" "}
+      </section>
       <aside>
         <p className="font-light dark:text-stone-400 text-stone-900 text-sm md:text-md text-center">
           This site is protected by reCAPTCHA and the Google&nbsp;
