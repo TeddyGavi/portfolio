@@ -11,14 +11,10 @@ export default async function Email(req, res) {
       })
         .then((reCaptchaRes) => reCaptchaRes.json())
         .then((reCaptchaRes) => {
-          console.log(
-            reCaptchaRes,
-            "Response from Google reCaptcha verification API"
-          );
           if (reCaptchaRes?.score > 0.5) {
             res.status(200).json({
               status: "success",
-              message: "Message submitted successfully",
+              message: "Captcha submitted successfully",
             });
           } else {
             res.status(200).json({

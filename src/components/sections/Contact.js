@@ -2,18 +2,83 @@ import { SpeakerWaveIcon } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { useCallback, useEffect, useState } from "react";
-import emailjs from "@emailjs/browser";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import Loading from "../Loading";
 
 export default function Contact() {
   const { executeRecaptcha } = useGoogleReCaptcha();
   const [submit, setSubmit] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [validate, setValidate] = useState(false);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const resetSubmit = (timeOut = 1000) => {
+    setTimeout(() => {
+      setSubmit("");
+      setLoading(false);
+      setValidate(false);
+    }, timeOut);
+  };
+
+  // You can use useEffect to trigger the verification as soon as the component being loaded
+  // useEffect(() => {
+  //   onSubmit();
+  // }, [onSubmit]);
+
+  const submitFormWithToken = useCallback(async (token, formData) => {
+    // serverless api call, sends the token from recaptcha hook to google recaptcha api
+    setLoading(true);
+    try {
+      const res = await fetch("/api/email", {
+        method: "POST",
+        headers: {
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ token }),
+      });
+      const parsedRes = await res.json();
+      if (parsedRes.status === "success") {
+        try {
+          const emailSendRes = await fetch("/api/emailSend", {
+            method: "POST",
+            headers: {
+              Accept: "application/json, text/plain, */*",
+              "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify({ formData }),
+          });
+          const emailRes = await emailSendRes.json();
+          if (emailRes.status === "success") {
+            setLoading(false);
+            setSubmit(emailRes.message);
+            setValidate(true);
+            resetSubmit();
+            return;
+          } else if (emailRes.status === "error") {
+            setSubmit("Error Sending Email");
+            resetSubmit();
+            return;
+          }
+        } catch (error) {
+          setSubmit("Error sending email");
+          resetSubmit();
+        }
+      } else {
+        setSubmit(parsedRes.message);
+        resetSubmit();
+      }
+    } catch (error) {
+      setSubmit("Error with captcha Try again");
+      resetSubmit();
+    }
+  }, []);
 
   const onSubmit = useCallback(
     async (formData) => {
@@ -25,48 +90,10 @@ export default function Contact() {
       const token = await executeRecaptcha("submitFormWithToken");
       // Do whatever you want with the token
       submitFormWithToken(token, formData);
-      console.log(token, formData);
+      // console.log(token, formData);
     },
-    [executeRecaptcha]
+    [executeRecaptcha, submitFormWithToken]
   );
-
-  // You can use useEffect to trigger the verification as soon as the component being loaded
-  // useEffect(() => {
-  //   onSubmit();
-  // }, [onSubmit]);
-
-  const submitFormWithToken = async (token, formData) => {
-    // serverless api call, sends the token from recaptcha hook to google recaptcha api
-    try {
-      const res = await fetch("/api/email", {
-        method: "POST",
-        headers: {
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ token }),
-      });
-      const parsedRes = await res.json();
-      if (parsedRes?.status === "success") {
-        try {
-          await emailjs.send(
-            process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID,
-            process.env.NEXT_PUBLIC_EMAIL_TEMPLATE,
-            formData,
-            process.env.NEXT_PUBLIC_EMAIL_PUBLIC_KEY
-          );
-          console.log(parsedRes.message);
-          setSubmit(parsedRes.message);
-        } catch (error) {
-          setSubmit("Error sending email");
-        }
-      } else {
-        setSubmit(parsedRes.message);
-      }
-    } catch (error) {
-      setSubmit("Error with captcha");
-    }
-  };
 
   return (
     <motion.section
@@ -153,30 +180,40 @@ export default function Contact() {
               placeholder="Say Hello..."
             ></textarea>
           </section>
-          <button
-            type="submit"
-            className="py-3 px-5 text-sm font-medium text-center rounded-lg w-full md:w-fit dark:text-white dark:hover:bg-stone-400 focus:ring-4 focus:outline-none dark:focus:ring-stone-100 dark:bg-stone-800 dark:bg-opacity-50 text-stone-900 bg-stone-200 focus:ring-stone-900 hover:bg-stone-800 hover:text-white transition-all duration-200"
+
+          <div
+            role="status"
+            aria-label="form button and status response"
+            className=" h-4/5"
           >
-            Send message
-          </button>
-          <section className="flex flex-col gap-2 mt-0">
-            {errors.email && (
-              <span className="text-red-500">Your Email is required</span>
-            )}
-            {errors.subject && (
-              <span className=" text-red-500">A Subject is required</span>
-            )}
-            {errors.message && (
-              <span className="text-red-500">A Message is required</span>
-            )}{" "}
-            {submit && (
-              <span className=" text-white md:text-xl text-md text-center">
+            {loading ? (
+              <div className="flex justify-center pt-3">
+                <Loading />
+              </div>
+            ) : validate ? (
+              <p className=" dark:text-white text-stone-900 md:text-md font-main font-bold underline underline-offset-4 text-sm text-center h-fit py-3 w-fit">
                 {submit}
-              </span>
+              </p>
+            ) : (
+              <button
+                disabled={validate}
+                type="submit"
+                className="py-3 px-5 text-sm md:text-md font-medium text-center rounded-lg w-full md:w-fit dark:text-white dark:hover:bg-stone-400 focus:ring-4 focus:outline-none dark:focus:ring-stone-100 dark:bg-stone-800 dark:bg-opacity-50 text-stone-900 bg-stone-200 focus:ring-stone-900 hover:bg-stone-800 hover:text-white transition-all duration-200"
+              >
+                Send message
+              </button>
             )}
-          </section>
+          </div>
         </form>
       </article>
+      <section
+        className="flex flex-col gap-2 mt-0 mb-2 dark:text-red-500 text-red-700"
+        role="errors"
+      >
+        {errors.email && <span>Your Email is required</span>}
+        {errors.subject && <span>A Subject is required</span>}
+        {errors.message && <span>A Message is required</span>}{" "}
+      </section>
       <aside>
         <p className="font-light dark:text-stone-400 text-stone-900 text-sm md:text-md text-center">
           This site is protected by reCAPTCHA and the Google&nbsp;
