@@ -15,11 +15,13 @@ export default function Contact() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   const resetSubmit = (timeOut = 1000) => {
     setTimeout(() => {
       setSubmit("");
+      reset();
       setLoading(false);
       setValidate(false);
     }, timeOut);

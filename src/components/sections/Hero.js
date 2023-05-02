@@ -55,9 +55,9 @@ export default function Hero({ about }) {
       >
         <div
           tabIndex={0}
-          className="md:hidden inline-block items-center text-2xl dark:text-stone-400 text-stone-800"
+          className="md:hidden mx-2 items-center text-2xl dark:text-stone-400 text-stone-800"
         >
-          You have now met
+          Hello, I am
         </div>
         {about.name.split(" ").map((word, i) => {
           return (
@@ -101,7 +101,7 @@ export default function Hero({ about }) {
             tabIndex={0}
             className="text-2xl md:text-4xl  dark:text-stone-400 text-stone-800"
           >
-            You have now met{" "}
+            Hello, I am
           </span>
         </h2>
         <h2

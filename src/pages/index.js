@@ -28,7 +28,7 @@ export default function Home({ about, projects }) {
   return (
     <>
       <Hero about={about} />
-      <HaveYou />
+      {/* <HaveYou /> */}
       <About about={about} />
       <Projects projects={projects} />
       <Contact />
