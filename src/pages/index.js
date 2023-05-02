@@ -11,7 +11,7 @@ export async function getStaticProps() {
   const about = await getAbout();
   const projects = await getProjects();
 
-  return { props: { about, projects }, revalidate: 60 };
+  return { props: { about, projects }, revalidate: 10 };
 }
 
 export default function Home({ about, projects }) {

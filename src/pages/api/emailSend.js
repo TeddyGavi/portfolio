@@ -31,3 +31,9 @@ export default async function EmailSend(req, res) {
       });
   }
 }
+
+export const config = {
+  api: {
+    externalResolver: true,
+  },
+};

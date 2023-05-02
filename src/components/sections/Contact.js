@@ -18,69 +18,75 @@ export default function Contact() {
     reset,
   } = useForm();
 
-  const resetSubmit = (timeOut = 1000) => {
-    setTimeout(() => {
-      setSubmit("");
-      reset();
-      setLoading(false);
-      setValidate(false);
-    }, timeOut);
-  };
+  const resetSubmit = useCallback(
+    (timeOut = 1000) => {
+      setTimeout(() => {
+        setSubmit("");
+        reset();
+        setLoading(false);
+        setValidate(false);
+      }, timeOut);
+    },
+    [setSubmit, setValidate, reset, setLoading]
+  );
 
   // You can use useEffect to trigger the verification as soon as the component being loaded
   // useEffect(() => {
   //   onSubmit();
   // }, [onSubmit]);
 
-  const submitFormWithToken = useCallback(async (token, formData) => {
-    // serverless api call, sends the token from recaptcha hook to google recaptcha api
-    setLoading(true);
-    try {
-      const res = await fetch("/api/email", {
-        method: "POST",
-        headers: {
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ token }),
-      });
-      const parsedRes = await res.json();
-      if (parsedRes.status === "success") {
-        try {
-          const emailSendRes = await fetch("/api/emailSend", {
-            method: "POST",
-            headers: {
-              Accept: "application/json, text/plain, */*",
-              "Content-Type": "application/json",
-            },
+  const submitFormWithToken = useCallback(
+    async (token, formData) => {
+      // serverless api call, sends the token from recaptcha hook to google recaptcha api
+      setLoading(true);
+      try {
+        const res = await fetch("/api/email", {
+          method: "POST",
+          headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ token }),
+        });
+        const parsedRes = await res.json();
+        if (parsedRes.status === "success") {
+          try {
+            const emailSendRes = await fetch("/api/emailSend", {
+              method: "POST",
+              headers: {
+                Accept: "application/json, text/plain, */*",
+                "Content-Type": "application/json",
+              },
 
-            body: JSON.stringify({ formData }),
-          });
-          const emailRes = await emailSendRes.json();
-          if (emailRes.status === "success") {
-            setLoading(false);
-            setSubmit(emailRes.message);
-            setValidate(true);
+              body: JSON.stringify({ formData }),
+            });
+            const emailRes = await emailSendRes.json();
+            if (emailRes.status === "success") {
+              setLoading(false);
+              setSubmit(emailRes.message);
+              setValidate(true);
+              resetSubmit();
+              return;
+            } else if (emailRes.status === "error") {
+              setSubmit("Error Sending Email");
+              resetSubmit();
+              return;
+            }
+          } catch (error) {
+            setSubmit("Error sending email");
             resetSubmit();
-            return;
-          } else if (emailRes.status === "error") {
-            setSubmit("Error Sending Email");
-            resetSubmit();
-            return;
           }
-        } catch (error) {
-          setSubmit("Error sending email");
+        } else {
+          setSubmit(parsedRes.message);
           resetSubmit();
         }
-      } else {
-        setSubmit(parsedRes.message);
+      } catch (error) {
+        setSubmit("Error with captcha Try again");
         resetSubmit();
       }
-    } catch (error) {
-      setSubmit("Error with captcha Try again");
-      resetSubmit();
-    }
-  }, []);
+    },
+    [resetSubmit]
+  );
 
   const onSubmit = useCallback(
     async (formData) => {
