@@ -25,28 +25,12 @@ export default function Contact() {
     }, timeOut);
   };
 
-  const onSubmit =
-    // (
-    async (formData) => {
-      if (!executeRecaptcha) {
-        console.log("Execute recaptcha not yet available");
-        return;
-      }
-
-      const token = await executeRecaptcha("submitFormWithToken");
-      // Do whatever you want with the token
-      submitFormWithToken(token, formData);
-      // console.log(token, formData);
-    };
-  // [executeRecaptcha]
-  // );
-
   // You can use useEffect to trigger the verification as soon as the component being loaded
   // useEffect(() => {
   //   onSubmit();
   // }, [onSubmit]);
 
-  const submitFormWithToken = async (token, formData) => {
+  const submitFormWithToken = useCallback(async (token, formData) => {
     // serverless api call, sends the token from recaptcha hook to google recaptcha api
     setLoading(true);
     try {
@@ -76,30 +60,40 @@ export default function Contact() {
             setSubmit(emailRes.message);
             setValidate(true);
             resetSubmit();
-            // setLoading(false);
             return;
           } else if (emailRes.status === "error") {
             setSubmit("Error Sending Email");
             resetSubmit();
-            // setLoading(false);
             return;
           }
         } catch (error) {
           setSubmit("Error sending email");
           resetSubmit();
-          // setLoading(false);
         }
       } else {
         setSubmit(parsedRes.message);
         resetSubmit();
-        // setLoading(false);
       }
     } catch (error) {
-      setSubmit("Error with captcha");
+      setSubmit("Error with captcha Try again");
       resetSubmit();
-      // setLoading(false);
     }
-  };
+  }, []);
+
+  const onSubmit = useCallback(
+    async (formData) => {
+      if (!executeRecaptcha) {
+        console.log("Execute recaptcha not yet available");
+        return;
+      }
+
+      const token = await executeRecaptcha("submitFormWithToken");
+      // Do whatever you want with the token
+      submitFormWithToken(token, formData);
+      // console.log(token, formData);
+    },
+    [executeRecaptcha, submitFormWithToken]
+  );
 
   return (
     <motion.section
@@ -202,6 +196,7 @@ export default function Contact() {
               </p>
             ) : (
               <button
+                disabled={validate}
                 type="submit"
                 className="py-3 px-5 text-sm md:text-md font-medium text-center rounded-lg w-full md:w-fit dark:text-white dark:hover:bg-stone-400 focus:ring-4 focus:outline-none dark:focus:ring-stone-100 dark:bg-stone-800 dark:bg-opacity-50 text-stone-900 bg-stone-200 focus:ring-stone-900 hover:bg-stone-800 hover:text-white transition-all duration-200"
               >
@@ -211,16 +206,13 @@ export default function Contact() {
           </div>
         </form>
       </article>
-      <section className="flex flex-col gap-2 mt-0">
-        {errors.email && (
-          <span className="text-red-500">Your Email is required</span>
-        )}
-        {errors.subject && (
-          <span className=" text-red-500">A Subject is required</span>
-        )}
-        {errors.message && (
-          <span className="text-red-500">A Message is required</span>
-        )}{" "}
+      <section
+        className="flex flex-col gap-2 mt-0 mb-2 dark:text-red-500 text-red-700"
+        role="errors"
+      >
+        {errors.email && <span>Your Email is required</span>}
+        {errors.subject && <span>A Subject is required</span>}
+        {errors.message && <span>A Message is required</span>}{" "}
       </section>
       <aside>
         <p className="font-light dark:text-stone-400 text-stone-900 text-sm md:text-md text-center">
