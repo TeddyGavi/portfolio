@@ -74,9 +74,10 @@
   #about,
   #contact,
   #have-you {
-    min-height: calc(100vh - 4rem);
+    min-height: calc(100svh - 4rem);
     scroll-margin-top: 4rem;
     scroll-snap-align: center;
+    padding-top: 5%;
   }
 }
 .cursor-typing:after {

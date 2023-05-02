@@ -15,11 +15,13 @@ export default function Contact() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   const resetSubmit = (timeOut = 1000) => {
     setTimeout(() => {
       setSubmit("");
+      reset();
       setLoading(false);
       setValidate(false);
     }, timeOut);
@@ -109,7 +111,7 @@ export default function Contact() {
       <article className="flex flex-col w-full py-8 lg:py-16 px-4 ">
         <h3
           tabIndex={0}
-          className=" inline-flex justify-center text-5xl font-main font-extrabold text-center dark:text-stone-200 md:text-6xl text-stone-900"
+          className=" inline-flex justify-center text-3xl font-main font-extrabold text-center dark:text-stone-200 md:text-6xl text-stone-900"
         >
           Hello!
           <SpeakerWaveIcon className="h-6 w-6 ml-2 animate-bounce" />
