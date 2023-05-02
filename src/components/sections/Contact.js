@@ -2,12 +2,12 @@ import { SpeakerWaveIcon } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { useCallback, useEffect, useState } from "react";
-import emailjs from "@emailjs/browser";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 export default function Contact() {
   const { executeRecaptcha } = useGoogleReCaptcha();
   const [submit, setSubmit] = useState("");
+  console.log(submit);
 
   const {
     register,
@@ -47,14 +47,8 @@ export default function Contact() {
         body: JSON.stringify({ token }),
       });
       const parsedRes = await res.json();
-      if (parsedRes?.status === "success") {
+      if (parsedRes.status === "success") {
         try {
-          // await emailjs.send(
-          //   process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID,
-          //   process.env.NEXT_PUBLIC_EMAIL_TEMPLATE,
-          //   formData,
-          //   process.env.NEXT_PUBLIC_EMAIL_PUBLIC_KEY
-          // );
           const emailSendRes = await fetch("/api/emailSend", {
             method: "POST",
             headers: {
@@ -64,11 +58,13 @@ export default function Contact() {
 
             body: JSON.stringify({ formData }),
           });
-          const emailRes = emailSendRes.json();
+          const emailRes = await emailSendRes.json();
           if (emailRes.status === "success") {
-            setSubmit(parsedRes.message);
-          } else if (emailRes.status === "failure") {
+            setSubmit(emailRes.message);
+            return;
+          } else if (emailRes.status === "error") {
             setSubmit("Error Sending Email");
+            return;
           }
         } catch (error) {
           setSubmit("Error sending email");
