@@ -44,7 +44,7 @@ export default function App({ Component, pageProps }) {
           content="https://cdn.sanity.io/images/m9iwl7mr/production/2522fd2643d0eb781183d06366dec7cb8f5670b5-480x720.jpg?q=100"
         />
         <meta property="og:image:alt" content="Image of Author" />
-        <meta property="og:url" content="https://yourpage.com/" />
+        <meta property="og:url" content="https://matcdavis.dev" />
         <meta property="og:type" content="profile"></meta>
 
         {/* OG twitter */}
