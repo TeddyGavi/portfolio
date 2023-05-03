@@ -49,9 +49,9 @@ export default function Footer() {
         <Link href={social.mastodon}>
           <Mastodon tailwindStyle={tailwindStyle}></Mastodon>
         </Link>
-        <Link href={social.resume}>
+        {/* <Link href={social.resume}>
           <PaperClipIcon className={tailwindStyle} />
-        </Link>
+        </Link> */}
       </div>
     </footer>
   );
