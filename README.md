@@ -1,38 +1,60 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Personal Site of Matt Davis
+
+- This is a [Next.js](https://nextjs.org/) with [Sanity](https://www.sanity.io) Project.
 
 ## Getting Started
 
-First, run the development server:
+- git clone
+- `cd` into directory
+- to run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- this is a mono repo, so in order to access sanity you would need to set up your own account, however the CMS is verified and attached to my personal account
+- Best to simply run the Next dev server if you want to run locally
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+- or simply visit the [live site](https://matcdavis.dev)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Goals
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- A place where I can showcase my work, and others can learn more about who I am.
+- implement Sanity as a headless CMS via Next
+- learn more about Next specially:
+  1. `getStaticProps`
+  2. Dynamic routing
+  3. Folder Structure
+- Basic accessibility with tab navigation
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Future Goals
 
-## Learn More
+- Set up Blog via Sanity
+- Improve accessibility
+  - [ ] Alternative color schemes more than light/dark
+  - [ ] Hamburger menu on mobile improvements
+- Add `swr` for cleaner data fetching and validations
+- Refactor captcha and Email api routes and handlers
 
-To learn more about Next.js, take a look at the following resources:
+## Process
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- First step is set up and configure Next, with TailwindCSS and [Josh Comaeu Custom CSS reset](https://www.joshwcomeau.com/css/custom-css-reset/)
+- Next was to set Sanity configuration
+- Build a basic page to test
+- integrate framer motion
+- Go from there!
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Bugs and Known Issues
 
-## Deploy on Vercel
+- nothing currently...please report if found.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Dependencies
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Tailwind
+- Next
+- Portable Text
+- Sendgrid
+- next-sanity
+- Sanity
+- framer motion
+- react-hook-form
