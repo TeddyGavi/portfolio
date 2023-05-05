@@ -88,11 +88,11 @@ export default function Project({ project }) {
   const { body } = project.detailed;
   return (
     <section className="my-16 flex flex-col justify-center items-center">
-      <header className="font-source h-auto dark:text-stone-100 text-stone-900 text-3xl md:text-5xl flex my-4 border-b-2 pb-4">
+      <header className="flex justify-center items-center gap-4 font-source dark:text-stone-100 text-stone-900 text-3xl md:text-5xl my-4 border-b-2 pb-4">
         {project.title}
         <Link
           href={gitHub || "/"}
-          className="flex flex-col ml-4 hover:opacity-100 opacity-50  transition-all duration-300 dark:text-stone-400 text-stone-900"
+          className="inline-flex flex-col gap-1 hover:opacity-100 opacity-50  transition-all duration-300 dark:text-stone-200 text-stone-900"
         >
           <Github tailwindStyle="h-8 w-8" />
           <span className="text-xs">Code</span>
@@ -100,9 +100,9 @@ export default function Project({ project }) {
         {deployedUrl && (
           <Link
             href={deployedUrl}
-            className=" flex flex-col items-center hover:opacity-100 opacity-50  transition-all duration-300 dark:text-stone-300 text-stone-900"
+            className="inline-flex flex-col gap-1  hover:opacity-100 opacity-50  transition-all duration-300 dark:text-stone-200 text-stone-900"
           >
-            <LinkIcon className="h-8 w-8 ml-4"></LinkIcon>
+            <LinkIcon className="h-8 w-8 "></LinkIcon>
             <span className="text-xs ">Live</span>
           </Link>
         )}

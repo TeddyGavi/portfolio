@@ -51,18 +51,18 @@ export default function Projects({ projects }) {
                     <Link
                       href={gitHub}
                       aria-label="Click here to view the source code"
-                      className="hover:opacity-100 opacity-50  transition-all duration-300 dark:text-stone-200 text-stone-900"
+                      className="inline-flex-col hover:opacity-100 opacity-50  transition-all duration-300 dark:text-stone-200 text-stone-900"
                     >
-                      <Github tailwindStyle="h-6 w-6 md:h-8 md:w-8 "></Github>
+                      <Github tailwindStyle="h-4 w-4 md:h-8 md:w-8 mx-auto"></Github>
                       <span className="text-xs">Code</span>
                     </Link>
                     {deployedUrl && (
                       <Link
                         href={deployedUrl}
                         aria-label="click here to view the live website demo of the project"
-                        className=" items-center hover:opacity-100 transition-all duration-300 opacity-50 dark:text-stone-200 text-stone-900"
+                        className="inline-flex-col items-center hover:opacity-100 transition-all duration-300 opacity-50 dark:text-stone-200 text-stone-900"
                       >
-                        <LinkIcon className="h-6 w-6 md:h-8 md:w-8"></LinkIcon>
+                        <LinkIcon className="h-4 w-4 md:h-8 md:w-8 mx-auto"></LinkIcon>
                         <span className="text-xs">Live</span>
                       </Link>
                     )}
