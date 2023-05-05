@@ -3,8 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ClipboardDocumentListIcon } from "@heroicons/react/24/solid";
-import { ArrowRightCircleIcon } from "@heroicons/react/24/outline";
+import { ArrowRightCircleIcon, LinkIcon } from "@heroicons/react/24/outline";
 import { getImageDimensions } from "@sanity/asset-utils";
+import Github from "@/svgIcons/Github";
 
 export default function Projects({ projects }) {
   return (
@@ -30,52 +31,76 @@ export default function Projects({ projects }) {
         className="grid grid-cols-1 md:grid-cols-2 gap-4"
       >
         {" "}
-        {projects.map(({ _id, about, imageList, title, slug }, i) => {
-          return (
-            <div
-              key={_id}
-              className={`${
-                i === 0 && `md:col-span-2 row-span-2`
-              } p-2 mx-4 rounded-xl dark:border-5 dark:border-stone-700 dark:bg-stone-800 dark:bg-opacity-50 border-2 border-stone-300 border-opacity-75 text-stone-900 dark:text-stone-200 bg-stone-200`}
-            >
-              <header className="flex flex-col gap-2 items-center w-full justify-evenly md:justify-center my-4">
-                <h3
-                  tabIndex={0}
-                  className="flex font-main font-bold text-2xl md:text-4xl underline-offset-2 underline"
-                >
-                  {title}
-                </h3>
-                <Link
-                  href={`/${slug.current}`}
-                  className="font-source font-bold text-md md:text-lg inline-flex items-center  dark:text-stone-100 dark:hover:text-stone-300 dark:hover:opacity-100 dark:opacity-40 dark:hover:border-b-stone-300 text-stone-900 hover:text-stone-100 hover:border-b-stone-900 hover:border dark:border-transparent border border-b-transparent transition-all duration-200"
-                >
-                  View Details
-                  <ArrowRightCircleIcon className="h-6 w-6 md:h-8 md:w-8 ml-1" />
-                </Link>
-              </header>
-              <div className="flex flex-col justify-center items-center">
-                <Image
-                  tabIndex={0}
-                  priority
-                  className="rounded-lg  pointer-events-none"
-                  src={urlFor(imageList.images[0])
-                    .fit("crop")
-                    .auto("format")
-                    .url()}
-                  alt="project image"
-                  width={getImageDimensions(imageList.images[0]).width}
-                  height={getImageDimensions(imageList.images[0]).height}
-                />
-                <div
-                  tabIndex={0}
-                  className="text-center p-6 font-main font-normal text-md md:text-xl dark:text-stone-100 text-stone-900"
-                >
-                  <p>{about}</p>
+        {projects.map(
+          ({ _id, about, imageList, gitHub, deployedUrl, title, slug }, i) => {
+            return (
+              <div
+                key={_id}
+                className={`${
+                  i === 0 && `md:col-span-2 row-span-2`
+                } p-2 mx-4 rounded-xl dark:border-5 dark:border-stone-700 dark:bg-stone-800 dark:bg-opacity-50 border-2 border-stone-300 border-opacity-75 text-stone-900 dark:text-stone-200 bg-stone-200`}
+              >
+                <header className="flex flex-col gap-2 items-center w-full justify-evenly md:justify-center my-4">
+                  <div className="flex justify-evenly gap-2 md:gap-3 h-auto">
+                    <h3
+                      tabIndex={0}
+                      className="font-main font-bold text-2xl md:text-4xl underline-offset-2 underline"
+                    >
+                      {title}
+                    </h3>
+                    <Link
+                      href={gitHub}
+                      aria-label="Click here to view the source code"
+                      className="inline-flex-col hover:opacity-100 opacity-50  transition-all duration-300 dark:text-stone-200 text-stone-900"
+                    >
+                      <Github tailwindStyle="h-4 w-4 md:h-8 md:w-8 mx-auto"></Github>
+                      <span className="text-xs">Code</span>
+                    </Link>
+                    {deployedUrl && (
+                      <Link
+                        href={deployedUrl}
+                        aria-label="click here to view the live website demo of the project"
+                        className="inline-flex-col items-center hover:opacity-100 transition-all duration-300 opacity-50 dark:text-stone-200 text-stone-900"
+                      >
+                        <LinkIcon className="h-4 w-4 md:h-8 md:w-8 mx-auto"></LinkIcon>
+                        <span className="text-xs">Live</span>
+                      </Link>
+                    )}
+                  </div>
+                  <Link
+                    href={`/${slug.current}`}
+                    className="font-source font-bold text-md md:text-lg inline-flex items-center  dark:text-stone-100 dark:hover:text-stone-300 dark:hover:opacity-100 dark:opacity-40 dark:hover:border-b-stone-300 text-stone-900 hover:text-stone-100 hover:border-b-stone-900 hover:border dark:border-transparent border border-b-transparent transition-all duration-200"
+                  >
+                    View Details
+                    <ArrowRightCircleIcon className="h-6 w-6 md:h-8 md:w-8 ml-1" />
+                  </Link>
+                </header>
+                <div className="flex flex-col justify-center items-center">
+                  <Image
+                    tabIndex={0}
+                    className="rounded-lg  pointer-events-none"
+                    src={urlFor(imageList.images[0])
+                      .fit("crop")
+                      .auto("format")
+                      .url()}
+                    alt="project image"
+                    width={getImageDimensions(imageList.images[0]).width}
+                    height={getImageDimensions(imageList.images[0]).height}
+                    sizes="(max-width: 768px) 100vw,
+                    (max-width: 1200px) 50vw,
+                    33vw"
+                  />
+                  <div
+                    tabIndex={0}
+                    className="text-center p-6 font-main font-normal text-md md:text-xl dark:text-stone-100 text-stone-900"
+                  >
+                    <p>{about}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          }
+        )}
       </article>
     </motion.section>
   );

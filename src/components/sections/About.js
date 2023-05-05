@@ -31,7 +31,6 @@ export default function About({ about }) {
       </motion.h3>
       <Image
         tabIndex={0}
-        priority
         className="flex rounded-full h-36 w-36 md:h-72 md:w-72 object-cover dark:border-stone-500 border-2 p-1 md:p-4 dark:bg-stone-800 bg-opacity-50 "
         src={urlFor(about.image)
           .width(width)
@@ -42,6 +41,9 @@ export default function About({ about }) {
         alt="profile picture of Matt Davis"
         width={width}
         height={height}
+        sizes="(max-width: 768px) 50vw,
+              (max-width: 1200px) 50vw,
+              33vw"
       />
       <motion.article
         tabIndex={0}
@@ -54,7 +56,7 @@ export default function About({ about }) {
         <PortableText
           value={body}
           components={{
-            listItem: ({ children }) => <p className="py-2">{children}</p>,
+            listItem: ({ children }) => <li className="py-2">{children}</li>,
           }}
         />
       </motion.article>

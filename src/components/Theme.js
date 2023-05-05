@@ -17,6 +17,7 @@ const Theme = () => {
   if (theme === "light") {
     return (
       <button
+        aria-label="Toggle dark and light theme button"
         onClick={() => setTheme("dark")}
         className="rounded-full p-0.5 border border-spacing-2 border-darkbg"
       >
@@ -26,6 +27,7 @@ const Theme = () => {
   } else if (theme === "dark") {
     return (
       <button
+        aria-label="Toggle dark and light theme button"
         onClick={() => setTheme("light")}
         className="rounded-full p-0.5 border border-spacing-2 border-white"
       >
