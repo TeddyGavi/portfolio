@@ -56,7 +56,7 @@ export default function About({ about }) {
         <PortableText
           value={body}
           components={{
-            listItem: ({ children }) => <p className="py-2">{children}</p>,
+            listItem: ({ children }) => <li className="py-2">{children}</li>,
           }}
         />
       </motion.article>

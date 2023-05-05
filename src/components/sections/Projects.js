@@ -41,25 +41,26 @@ export default function Projects({ projects }) {
                 } p-2 mx-4 rounded-xl dark:border-5 dark:border-stone-700 dark:bg-stone-800 dark:bg-opacity-50 border-2 border-stone-300 border-opacity-75 text-stone-900 dark:text-stone-200 bg-stone-200`}
               >
                 <header className="flex flex-col gap-2 items-center w-full justify-evenly md:justify-center my-4">
-                  <h3
-                    tabIndex={0}
-                    className="flex font-main font-bold text-2xl md:text-4xl underline-offset-2 underline"
-                  >
-                    {title}
-                  </h3>
-                  <div className="flex justify-evenly gap-2 h-auto">
+                  <div className="flex justify-evenly gap-2 md:gap-3 h-auto">
+                    <h3
+                      tabIndex={0}
+                      className="font-main font-bold text-2xl md:text-4xl underline-offset-2 underline"
+                    >
+                      {title}
+                    </h3>
                     <Link
                       href={gitHub}
                       aria-label="Click here to view the source code"
+                      className="hover:opacity-100 opacity-50  transition-all duration-300 dark:text-stone-200 text-stone-900"
                     >
-                      <Github tailwindStyle="h-6 w-6 md:h-8 md:w-8 hover:opacity-100 opacity-40 transition-all duration-200 dark:text-stone-300 text-stone-900"></Github>
-                      <span className="text-xs ">Code</span>
+                      <Github tailwindStyle="h-6 w-6 md:h-8 md:w-8 "></Github>
+                      <span className="text-xs">Code</span>
                     </Link>
                     {deployedUrl && (
                       <Link
                         href={deployedUrl}
                         aria-label="click here to view the live website demo of the project"
-                        className=" items-center hover:opacity-100 opacity-40  transition-all duration-300 dark:text-stone-200 text-stone-900"
+                        className=" items-center hover:opacity-100 transition-all duration-300 opacity-50 dark:text-stone-200 text-stone-900"
                       >
                         <LinkIcon className="h-6 w-6 md:h-8 md:w-8"></LinkIcon>
                         <span className="text-xs">Live</span>
