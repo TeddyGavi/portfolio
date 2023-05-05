@@ -53,7 +53,7 @@ export default function Projects({ projects }) {
                       aria-label="Click here to view the source code"
                       className="inline-flex-col hover:opacity-100 opacity-50  transition-all duration-300 dark:text-stone-200 text-stone-900"
                     >
-                      <Github tailwindStyle="h-4 w-4 md:h-8 md:w-8 mx-auto"></Github>
+                      <Github tailwindStyle="h-6 w-6 md:h-8 md:w-8 mx-auto"></Github>
                       <span className="text-xs">Code</span>
                     </Link>
                     {deployedUrl && (
@@ -62,7 +62,7 @@ export default function Projects({ projects }) {
                         aria-label="click here to view the live website demo of the project"
                         className="inline-flex-col items-center hover:opacity-100 transition-all duration-300 opacity-50 dark:text-stone-200 text-stone-900"
                       >
-                        <LinkIcon className="h-4 w-4 md:h-8 md:w-8 mx-auto"></LinkIcon>
+                        <LinkIcon className="h-6 w-6 md:h-8 md:w-8 mx-auto"></LinkIcon>
                         <span className="text-xs">Live</span>
                       </Link>
                     )}

@@ -94,7 +94,7 @@ export default function Project({ project }) {
           href={gitHub || "/"}
           className="inline-flex flex-col gap-1 hover:opacity-100 opacity-50  transition-all duration-300 dark:text-stone-200 text-stone-900"
         >
-          <Github tailwindStyle="h-8 w-8" />
+          <Github tailwindStyle="h-6 w-6 md:h-8 md:w-8 mx-auto" />
           <span className="text-xs">Code</span>
         </Link>
         {deployedUrl && (
@@ -102,7 +102,7 @@ export default function Project({ project }) {
             href={deployedUrl}
             className="inline-flex flex-col gap-1  hover:opacity-100 opacity-50  transition-all duration-300 dark:text-stone-200 text-stone-900"
           >
-            <LinkIcon className="h-8 w-8 "></LinkIcon>
+            <LinkIcon className="h-6 w-6 md:h-8 md:w-8 mx-auto "></LinkIcon>
             <span className="text-xs ">Live</span>
           </Link>
         )}
