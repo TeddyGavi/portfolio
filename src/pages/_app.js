@@ -37,7 +37,7 @@ export default function App({ Component, pageProps }) {
         />
         <meta
           property="og:description"
-          content="Welcome to the portfolio website of Matt Davis, who was always a skilled web developer with a passion for crafting beautiful and functional websites. In a past life Matt was a juggler, Biologist, and Red Seal Electrician."
+          content="Welcome to the personal site of Matt Davis. A skilled web developer with a passion for crafting beautiful and functional websites. In a past life Matt was a juggler, Biologist, and Red Seal Electrician."
         />
         <meta
           property="og:image"

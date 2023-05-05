@@ -216,11 +216,17 @@ export default function Contact() {
       </article>
       <section
         className="flex flex-col gap-2 mt-0 mb-2 dark:text-red-500 text-red-700"
-        role="errors"
+        aria-label="error section"
       >
-        {errors.email && <span>Your Email is required</span>}
-        {errors.subject && <span>A Subject is required</span>}
-        {errors.message && <span>A Message is required</span>}{" "}
+        {errors.email && (
+          <span aria-expanded="true">Your Email is required</span>
+        )}
+        {errors.subject && (
+          <span aria-expanded="true">A Subject is required</span>
+        )}
+        {errors.message && (
+          <span aria-expanded="true">A Message is required</span>
+        )}{" "}
       </section>
       <aside>
         <p className="font-light dark:text-stone-400 text-stone-900 text-sm md:text-md text-center">

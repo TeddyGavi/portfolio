@@ -96,7 +96,7 @@ export default function Project({ project }) {
         {deployedUrl && (
           <Link
             href={deployedUrl}
-            className=" flex flex-col items-center hover:opacity-100 opacity-40  transition-all duration-300 dark:text-stone-400 text-stone-900"
+            className=" flex flex-col items-center hover:opacity-100 opacity-40  transition-all duration-300 dark:text-stone-300 text-stone-900"
           >
             <LinkIcon className="h-8 w-8 ml-4"></LinkIcon>
             <span className="text-xs ">&nbsp; Live</span>
