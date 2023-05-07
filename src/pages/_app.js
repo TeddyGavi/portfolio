@@ -48,10 +48,7 @@ export default function App({ Component, pageProps }) {
         <meta property="og:type" content="profile"></meta>
 
         {/* OG twitter */}
-        <meta
-          name="twitter:card"
-          content="https://cdn.sanity.io/images/m9iwl7mr/production/2522fd2643d0eb781183d06366dec7cb8f5670b5-480x720.jpg?q=100"
-        />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@MatcDavis" />
         <meta name="twitter:creator" content="@MatcDavis" />
         <meta
