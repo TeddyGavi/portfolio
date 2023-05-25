@@ -12,7 +12,7 @@ export const getStaticPaths = async () => {
   const paths = await getProjectPaths();
   return {
     paths,
-    fallback: false,
+    fallback: 'blocking',
   };
 };
 
@@ -36,7 +36,7 @@ const ImageParser = ({ value }) => {
 
   return (
     <Image
-      className="rounded-md h-10/12 w-10/12 my-4"
+      className="w-10/12 my-4 rounded-md h-10/12"
       src={urlFor(value).width(width).fit("min").auto("format").url()}
       alt={value.alt}
       width={width}
@@ -53,12 +53,12 @@ const component = {
   },
   block: {
     h3: ({ children }) => (
-      <h3 className="text-2xl md:text-4xl self-start m-2 p-1 dark:text-stone-100 text-stone-800 font-source border-b-2">
+      <h3 className="self-start p-1 m-2 text-2xl border-b-2 md:text-4xl dark:text-stone-100 text-stone-800 font-source">
         {children}
       </h3>
     ),
     normal: ({ children }) => (
-      <p className="text-md md:text-xl py-3 font-light w-11/12 dark:text-white text-stone-900 font main">
+      <p className="w-11/12 py-3 font-light text-md md:text-xl dark:text-white text-stone-900 font main">
         {children}
       </p>
     ),
@@ -87,12 +87,12 @@ export default function Project({ project }) {
   const { deployedUrl } = project;
   const { body } = project.detailed;
   return (
-    <section className="my-16 flex flex-col justify-center items-center">
-      <header className="flex justify-center items-center gap-4 font-source dark:text-stone-100 text-stone-900 text-3xl md:text-5xl my-4 border-b-2 pb-4">
+    <section className="flex flex-col items-center justify-center my-16">
+      <header className="flex items-center justify-center gap-4 pb-4 my-4 text-3xl border-b-2 font-source dark:text-stone-100 text-stone-900 md:text-5xl">
         {project.title}
         <Link
           href={gitHub || "/"}
-          className="inline-flex flex-col gap-1 hover:opacity-100 opacity-50  transition-all duration-300 dark:text-stone-200 text-stone-900"
+          className="inline-flex flex-col gap-1 transition-all duration-300 opacity-50 hover:opacity-100 dark:text-stone-200 text-stone-900"
         >
           <Github tailwindStyle="h-8 w-8" />
           <span className="text-xs">Code</span>
@@ -100,24 +100,24 @@ export default function Project({ project }) {
         {deployedUrl && (
           <Link
             href={deployedUrl}
-            className="inline-flex flex-col gap-1  hover:opacity-100 opacity-50  transition-all duration-300 dark:text-stone-200 text-stone-900"
+            className="inline-flex flex-col gap-1 transition-all duration-300 opacity-50 hover:opacity-100 dark:text-stone-200 text-stone-900"
           >
-            <LinkIcon className="h-8 w-8 "></LinkIcon>
+            <LinkIcon className="w-8 h-8 "></LinkIcon>
             <span className="text-xs ">Live</span>
           </Link>
         )}
       </header>
 
       <PortableText
-        className="max-h-full min-h-fit flex flex-col"
+        className="flex flex-col max-h-full min-h-fit"
         value={body}
         components={component}
       />
       <Link
         href={"/#projects"}
-        className="pt-2 underline-offset-8 underline text-lg md:text-xl flex justify-center items-center font-source font-semibold dark:text-stone-100 text-stone-900 dark:hover:text-stone-200 hover:text-stone-900 hover:opacity-100 opacity-40 transition-all duration-300"
+        className="flex items-center justify-center pt-2 text-lg font-semibold underline transition-all duration-300 underline-offset-8 md:text-xl font-source dark:text-stone-100 text-stone-900 dark:hover:text-stone-200 hover:text-stone-900 hover:opacity-100 opacity-40"
       >
-        <ArrowLeftCircleIcon className="h-8 w-8" />
+        <ArrowLeftCircleIcon className="w-8 h-8" />
         &nbsp;Back
       </Link>
     </section>
