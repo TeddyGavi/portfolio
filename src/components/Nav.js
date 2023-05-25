@@ -37,12 +37,12 @@ export default function Nav() {
       id="nav-header"
       className={`fixed z-50 h-16 top-0 ${
         hidden ? "backdrop-blur-md  bg-opacity-10" : ""
-      } flex max-w-4xl w-screen mx-auto justify-between md:justify-evenly items-center p-3 border-b dark:border-stone-500 border-darkbg transition-all`}
+      } flex max-w-4xl w-full mx-auto justify-between md:justify-evenly items-center p-3 border-b dark:border-stone-500 border-darkbg transition-all`}
     >
       <Theme />
       {/* <Link
         href="/"
-        className=" transition-all duration-300  text-stone-100  hover:text-stone-400 hover:opacity-100 opacity-40 "
+        className="transition-all duration-300 text-stone-100 hover:text-stone-400 hover:opacity-100 opacity-40"
       >
         <Image
           src={`/favicon.ico`}
@@ -53,7 +53,7 @@ export default function Nav() {
           priority
         /> 
     </Link> */}
-      <div className="hidden md:inline-flex text-2xl">{<NavLinks />}</div>
+      <div className="hidden text-2xl md:inline-flex">{<NavLinks />}</div>
       <HamButton handleSlide={handleMenuClick} navSlide={navSlide} />
       <AnimatePresence>
         {navSlide && <NavSlide handleSlide={handleMenuClick} />}
