@@ -16,4 +16,5 @@ export const getBlogPostPaths = async () => {
 export const getOneBlogPostData = async (post) => {
   const query = /* groq */ `*[_type == "post" && slug.current == $post][0]`;
   const postData = await sanityClient.fetch(query, { post });
+  return postData;
 };
