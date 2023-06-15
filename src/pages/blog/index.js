@@ -6,8 +6,7 @@ import Link from "next/link";
 
 export async function getStaticProps() {
   const blog = await getBlogPosts();
-  //revalidate might not be needed?
-  return { props: { blog } };
+  return { props: { blog }, revalidate: 60 };
 }
 
 export default function Blog({ blog }) {
@@ -24,9 +23,11 @@ export default function Blog({ blog }) {
       <div className="grid gid-cols-3 md:grid-cols-1 gap-3">
         {blog.map(({ _id, slug }) => {
           return (
-            <div key={_id}>
+            <div key={_id} className="p-4">
               <p>this is a post</p>{" "}
-              <Link href={`/${slug.current}`}>click me test</Link>
+              <Link href={`/${slug.current}`} className="bg-red">
+                click me test
+              </Link>
             </div>
           );
         })}
