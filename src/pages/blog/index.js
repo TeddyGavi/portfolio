@@ -19,16 +19,18 @@ export default function Blog({ blog }) {
   return (
     <section
       id="blog"
-      className="grid grid-cols-3 grid-rows-2 gap-4 md:grid-cols-1"
+      className="flex flex-col items-center justify-center my-16"
     >
-      {blog.map(({ _id, slug }) => {
-        return (
-          <div key={_id}>
-            <p>this is a post</p>{" "}
-            <Link href={`/${slug.current}`}>click me test</Link>
-          </div>
-        );
-      })}
+      <div className="grid gid-cols-3 md:grid-cols-1 gap-3">
+        {blog.map(({ _id, slug }) => {
+          return (
+            <div key={_id}>
+              <p>this is a post</p>{" "}
+              <Link href={`/${slug.current}`}>click me test</Link>
+            </div>
+          );
+        })}
+      </div>
     </section>
   );
 }
