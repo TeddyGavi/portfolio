@@ -3,10 +3,10 @@
 import { getBlogPostPaths, getOneBlogPostData } from "@/lib/getBlogPostPaths";
 
 export const getStaticPaths = async () => {
-  const postPaths = await getBlogPostPaths();
+  const paths = await getBlogPostPaths();
 
   return {
-    postPaths,
+    paths,
     fallback: "blocking",
   };
 };
@@ -28,6 +28,6 @@ export const getStaticProps = async ({ params }) => {
   };
 };
 
-export default function BlogPost() {
+export default function BlogPost({ postData }) {
   return <div>hi</div>;
 }
