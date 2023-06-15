@@ -27,3 +27,7 @@ export const getStaticProps = async ({ params }) => {
     revalidate: 10,
   };
 };
+
+export default function BlogPost() {
+  return <div>hi</div>;
+}
