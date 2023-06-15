@@ -25,7 +25,7 @@ export default function Blog({ blog }) {
         return (
           <div key={_id}>
             <p>this is a post</p>{" "}
-            <Link href={`/${blog[0].slug.current}`}>click me test</Link>
+            <Link href={`/${slug.current}`}>click me test</Link>
           </div>
         );
       })}
