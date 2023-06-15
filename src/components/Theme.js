@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import { useTheme } from "next-themes";
 import { MoonIcon, SunIcon } from "@heroicons/react/24/solid";
 const Theme = () => {
@@ -6,7 +6,10 @@ const Theme = () => {
   const { theme, setTheme } = useTheme();
 
   // useEffect only runs on the client, so now we can safely show the UI
-  useEffect(() => {
+  // useEffect(() => {
+  //   setMounted(true);
+  // }, []);
+  useLayoutEffect(() => {
     setMounted(true);
   }, []);
 

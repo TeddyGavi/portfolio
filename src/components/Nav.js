@@ -39,6 +39,7 @@ export default function Nav() {
         hidden ? "backdrop-blur-md  bg-opacity-10" : ""
       } flex max-w-4xl w-full mx-auto justify-between md:justify-evenly items-center p-3 border-b dark:border-stone-500 border-darkbg transition-all`}
     >
+      {/* TRY MOVING THIS INTO LAYOUT or use layout effect?*/}
       <Theme />
       {/* <Link
         href="/"
