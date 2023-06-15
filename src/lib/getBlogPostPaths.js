@@ -1,7 +1,7 @@
 import { sanityClient } from "../../sanity";
 
 export const getBlogPostPaths = async () => {
-  const query = /* groq */ `*[_type == "posts"]{_id, slug {current}}`;
+  const query = /* groq */ `*[_type == "post"]{_id, slug {current}}`;
   const postPaths = await sanityClient.fetch(query);
 
   return postPaths.map((post) => {
@@ -13,8 +13,8 @@ export const getBlogPostPaths = async () => {
   });
 };
 
-export const getOneBlogPostData = async (post) => {
-  const query = /* groq */ `*[_type == "post" && slug.current == $post][0]`;
-  const postData = await sanityClient.fetch(query, { post });
+export const getOneBlogPostData = async (blogPost) => {
+  const query = /* groq */ `*[_type == "post" && slug.current == $blogPost][0]`;
+  const postData = await sanityClient.fetch(query, { blogPost });
   return postData;
 };
