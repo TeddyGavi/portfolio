@@ -24,7 +24,8 @@ export default function Blog({ blog }) {
       {blog.map(({ _id, slug }) => {
         return (
           <div key={_id}>
-            <p>this is a post</p> <Link href={`$/{slug.current}`} />
+            <p>this is a post</p>{" "}
+            <Link href={`$/{slug.current}`}>click me test</Link>
           </div>
         );
       })}
