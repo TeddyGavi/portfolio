@@ -2,6 +2,8 @@
 
 import Loading from "@/components/Loading";
 import { getBlogPosts } from "@/lib/getBlogPosts";
+import { getImageDimensions } from "@sanity/asset-utils";
+import Image from "next/image";
 import Link from "next/link";
 
 export async function getStaticProps() {
@@ -10,7 +12,7 @@ export async function getStaticProps() {
 }
 
 export default function Blog({ blog }) {
-  // create a 3 column layout that is limited to 2 rows, fades in from below when more posts are availabe
+  // create a 3 column layout that is limited to 2 rows, fades in from below when more posts are available
 
   if (!blog) {
     return <Loading />;
@@ -21,12 +23,28 @@ export default function Blog({ blog }) {
       className="flex flex-col items-center justify-center my-16"
     >
       <div className="grid gid-cols-3 md:grid-cols-1 gap-3">
-        {blog.map(({ _id, slug }) => {
+        {blog.map(({ _id, slug, title, mainImage }) => {
+          const { width, height } = getImageDimensions(mainImage);
           return (
             <div key={_id} className="p-4">
-              <p>this is a post</p>{" "}
               <Link href={`/${slug.current}`} className="bg-red">
-                click me test
+                <header className=" font-source dark:text-stone-100 text-stone-900 md:text-5xl">
+                  {title}
+                </header>
+                <Image
+                  className="w-10/12 my-4 rounded-md h-10/12"
+                  src={urlFor(mainImage)
+                    .width(width)
+                    .fit("min")
+                    .auto("format")
+                    .url()}
+                  alt={mainImage.alt}
+                  width={width}
+                  height={height}
+                  loading="eager"
+                  priority
+                />
+                <p>this is the post preview</p>
               </Link>
             </div>
           );
