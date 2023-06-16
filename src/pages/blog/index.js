@@ -4,12 +4,15 @@ import Loading from "@/components/Loading";
 import { getBlogPosts } from "@/lib/getBlogPosts";
 import { getImageDimensions } from "@sanity/asset-utils";
 import Image from "next/image";
+import { PortableText } from "@portabletext/react";
 import Link from "next/link";
 
 export async function getStaticProps() {
   const blog = await getBlogPosts();
   return { props: { blog }, revalidate: 60 };
 }
+
+const blogParse = () => {};
 
 export default function Blog({ blog }) {
   // create a 3 column layout that is limited to 2 rows, fades in from below when more posts are available
@@ -45,6 +48,7 @@ export default function Blog({ blog }) {
                   priority
                 />
                 <p>this is the post preview</p>
+                <PortableText value={body} components={blogParse} />
                 <footer className="bg-pink">{categories}</footer>
               </Link>
             </div>
