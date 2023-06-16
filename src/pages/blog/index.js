@@ -23,11 +23,11 @@ export default function Blog({ blog }) {
       className="flex flex-col items-center justify-center my-16"
     >
       <div className="grid gid-cols-3 md:grid-cols-1 gap-3">
-        {blog.map(({ _id, slug, title, mainImage }) => {
+        {blog.map(({ _id, slug, title, mainImage, categories, body }) => {
           const { width, height } = getImageDimensions(mainImage);
           return (
             <div key={_id} className="p-4">
-              <Link href={`/${slug.current}`} className="bg-red">
+              <Link href={`/${slug.current}`} className="bg-red hover:scale-1">
                 <header className=" font-source dark:text-stone-100 text-stone-900 md:text-5xl">
                   {title}
                 </header>
@@ -45,6 +45,7 @@ export default function Blog({ blog }) {
                   priority
                 />
                 <p>this is the post preview</p>
+                <footer className="bg-pink">{categories}</footer>
               </Link>
             </div>
           );
