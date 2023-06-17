@@ -48,7 +48,7 @@ export default function Blog({ blog }) {
                   priority
                 />
                 <p>this is the post preview</p>
-                <PortableText value={body} components={blogParse} />
+                {/* <PortableText value={body} components={blogParse} /> */}
                 <footer className="bg-pink">{categories}</footer>
               </Link>
             </div>
