@@ -1,6 +1,6 @@
 /**BLOG PAGE root*/
 
-import Loading from "@/components/Loading";
+// import Loading from "@/components/Loading";
 import { getBlogPosts } from "@/lib/getBlogPosts";
 import { getImageDimensions } from "@sanity/asset-utils";
 import Image from "next/image";
@@ -17,9 +17,9 @@ const blogParse = () => {};
 export default function Blog({ blog }) {
   // create a 3 column layout that is limited to 2 rows, fades in from below when more posts are available
 
-  if (!blog) {
-    return <Loading />;
-  }
+  // if (!blog) {
+  //   return <Loading />;
+  // }
   return (
     <section
       id="blog"
