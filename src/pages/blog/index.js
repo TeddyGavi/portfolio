@@ -27,14 +27,14 @@ export default function Blog({ blog }) {
     >
       <div className="grid gid-cols-3 md:grid-cols-1 gap-3">
         {blog.map(({ _id, slug, title, mainImage, categories, body }) => {
-          const { width, height } = getImageDimensions(mainImage);
+          // const { width, height } = getImageDimensions(mainImage);
           return (
             <div key={_id} className="p-4">
               <Link href={`/${slug.current}`} className="bg-red hover:scale-1">
                 <header className=" font-source dark:text-stone-100 text-stone-900 md:text-5xl">
                   {title}
                 </header>
-                <Image
+                {/* <Image
                   className="w-10/12 my-4 rounded-md h-10/12"
                   src={urlFor(mainImage)
                     .width(width)
@@ -46,7 +46,7 @@ export default function Blog({ blog }) {
                   height={height}
                   loading="eager"
                   priority
-                />
+                /> */}
                 <p>this is the post preview</p>
                 {/* <PortableText value={body} components={blogParse} /> */}
                 <footer className="bg-pink">{categories}</footer>
