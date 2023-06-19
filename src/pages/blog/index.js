@@ -2,6 +2,9 @@
 
 // import Loading from "@/components/Loading";
 import { getBlogPosts } from "@/lib/getBlogPosts";
+import { motion } from "framer-motion";
+import { urlFor } from "../../../sanity";
+
 import { getImageDimensions } from "@sanity/asset-utils";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
@@ -15,20 +18,40 @@ export async function getStaticProps() {
 const blogParse = () => {};
 
 export default function Blog({ blog }) {
-  // console.log(blog);
+  console.log(blog);
   // create a 3 column layout that is limited to 2 rows, fades in from below when more posts are available
 
   // if (!blog) {
   //   return <Loading />;
   // }
   return (
-    <section id="blog" className="flex items-center justify-center my-16">
+    <motion.section
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+      id="blog"
+      className="flex items-center justify-center my-16"
+    >
       <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
-        {blog.map(({ _id, title, slug, body }) => {
+        {blog.map(({ _id, title, slug, body, mainImage }) => {
+          const { width, height } = getImageDimensions(mainImage);
           return (
             <div key={_id}>
               <Link href={`blog/${slug.current}`}>{title}</Link>
               <p>this is the post preview</p>
+              <Image
+                className="w-10/12 my-4 rounded-md h-10/12"
+                src={urlFor(mainImage)
+                  .width(width)
+                  .fit("min")
+                  .auto("format")
+                  .url()}
+                alt={mainImage.alt}
+                width={width}
+                height={height}
+                loading="eager"
+                priority
+              />
               <PortableText value={body} components={blogParse} />
             </div>
           );
@@ -64,6 +87,6 @@ export default function Blog({ blog }) {
           );
         })}
       </div> */}
-    </section>
+    </motion.section>
   );
 }

@@ -61,7 +61,7 @@ export default function Nav() {
     <motion.nav
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      // duration={{ duration: 0.8 }}
+      duration={{ duration: 0.8 }}
       tabIndex={0}
       id="nav-header"
       className={`fixed z-50 h-16 top-0 ${
