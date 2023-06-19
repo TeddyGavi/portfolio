@@ -29,5 +29,6 @@ export const getStaticProps = async ({ params }) => {
 };
 
 export default function BlogPost({ postData }) {
+  // console.log(postData);
   return <div>hi</div>;
 }

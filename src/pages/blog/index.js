@@ -15,26 +15,35 @@ export async function getStaticProps() {
 const blogParse = () => {};
 
 export default function Blog({ blog }) {
+  // console.log(blog);
   // create a 3 column layout that is limited to 2 rows, fades in from below when more posts are available
 
   // if (!blog) {
   //   return <Loading />;
   // }
   return (
-    <section
-      id="blog"
-      className="flex flex-col items-center justify-center my-16"
-    >
-      <div className="grid gid-cols-3 md:grid-cols-1 gap-3">
+    <section id="blog" className="flex items-center justify-center my-16">
+      <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+        {blog.map(({ _id, title, slug, body }) => {
+          return (
+            <div key={_id}>
+              <Link href={`blog/${slug.current}`}>{title}</Link>
+              <p>this is the post preview</p>
+              <PortableText value={body} components={blogParse} />
+            </div>
+          );
+        })}
+      </div>
+      {/* <div className="grid gap-3 gid-cols-3 md:grid-cols-1">
         {blog.map(({ _id, slug, title, mainImage, categories, body }) => {
           // const { width, height } = getImageDimensions(mainImage);
           return (
             <div key={_id} className="p-4">
               <Link href={`/${slug.current}`} className="bg-red hover:scale-1">
-                <header className=" font-source dark:text-stone-100 text-stone-900 md:text-5xl">
+                <div className=" font-source dark:text-stone-100 text-stone-900 md:text-5xl">
                   {title}
-                </header>
-                {/* <Image
+                </div>
+                <Image
                   className="w-10/12 my-4 rounded-md h-10/12"
                   src={urlFor(mainImage)
                     .width(width)
@@ -46,15 +55,15 @@ export default function Blog({ blog }) {
                   height={height}
                   loading="eager"
                   priority
-                /> */}
+                />
                 <p>this is the post preview</p>
-                {/* <PortableText value={body} components={blogParse} /> */}
+                <PortableText value={body} components={blogParse} />
                 <footer className="bg-pink">{categories}</footer>
               </Link>
             </div>
           );
         })}
-      </div>
+      </div> */}
     </section>
   );
 }

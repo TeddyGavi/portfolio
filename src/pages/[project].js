@@ -12,7 +12,7 @@ export const getStaticPaths = async () => {
   const paths = await getProjectPaths();
   return {
     paths,
-    fallback: 'blocking',
+    fallback: "blocking",
   };
 };
 
