@@ -15,10 +15,10 @@ export async function getStaticProps() {
   return { props: { blog }, revalidate: 60 };
 }
 
-const blogParse = () => {};
+const blogPreview = () => {};
 
 export default function Blog({ blog }) {
-  console.log(blog);
+  // console.log(blog);
   // create a 3 column layout that is limited to 2 rows, fades in from below when more posts are available
 
   // if (!blog) {
@@ -30,29 +30,30 @@ export default function Blog({ blog }) {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
       id="blog"
-      className="flex items-center justify-center my-16"
+      className="flex flex-col items-center justify-center my-16"
     >
-      <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+      <div className="grid items-center grid-cols-1 gap-3 md:grid-cols-3">
         {blog.map(({ _id, title, slug, body, mainImage }) => {
           const { width, height } = getImageDimensions(mainImage);
           return (
             <div key={_id}>
-              <Link href={`blog/${slug.current}`}>{title}</Link>
-              <p>this is the post preview</p>
-              <Image
-                className="w-10/12 my-4 rounded-md h-10/12"
-                src={urlFor(mainImage)
-                  .width(width)
-                  .fit("min")
-                  .auto("format")
-                  .url()}
-                alt={mainImage.alt}
-                width={width}
-                height={height}
-                loading="eager"
-                priority
-              />
-              <PortableText value={body} components={blogParse} />
+              <Link href={`blog/${slug.current}`}>
+                {title}
+                <Image
+                  className="w-10/12 my-4 rounded-md h-10/12"
+                  src={urlFor(mainImage)
+                    .width(width)
+                    .fit("min")
+                    .auto("format")
+                    .url()}
+                  alt={mainImage.alt}
+                  width={width}
+                  height={height}
+                  loading="eager"
+                  priority
+                />
+                <PortableText value={body} components={blogPreview} />
+              </Link>
             </div>
           );
         })}
