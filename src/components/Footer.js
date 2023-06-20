@@ -3,7 +3,6 @@ import Github from "@/svgIcons/Github";
 import LinkedIn from "@/svgIcons/LinkedIn";
 import Mastodon from "@/svgIcons/Mastodon";
 import Twitter from "@/svgIcons/Twitter";
-import { PaperClipIcon } from "@heroicons/react/24/solid";
 import { ArrowUpCircleIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import React from "react";
