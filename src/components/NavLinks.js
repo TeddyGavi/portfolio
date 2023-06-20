@@ -5,7 +5,7 @@ const navItems = [
   { name: "Projects", to: "#projects", id: 1 },
   { name: "About", to: "#about", id: 2 },
   { name: "Contact", to: "#contact", id: 3 },
-  { name: "Blog", to: "/blog", id: 3 },
+  { name: "Blog", to: "/blog", id: 4 },
 ];
 
 export default function NavLinks() {
