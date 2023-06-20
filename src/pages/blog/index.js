@@ -1,10 +1,7 @@
-/**BLOG PAGE root*/
-
-// import Loading from "@/components/Loading";
 import { getBlogPosts } from "@/lib/getBlogPosts";
 import { motion } from "framer-motion";
 import { urlFor } from "../../../sanity";
-
+import { blogPreview } from "@/utils/portableText";
 import { getImageDimensions } from "@sanity/asset-utils";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
@@ -15,19 +12,6 @@ export async function getStaticProps() {
   const blog = await getBlogPosts();
   return { props: { blog }, revalidate: 60 };
 }
-
-const blogPreview = {
-  block: {
-    normal: ({ children, value }) => {
-      const preview = children.toString().slice(0, 50);
-      return (
-        <p className="py-3 font-light text-center md:font-medium text-md font-main md:text-lg">
-          {preview}...
-        </p>
-      );
-    },
-  },
-};
 
 export default function Blog({ blog }) {
   // console.log(blog);
