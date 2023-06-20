@@ -21,7 +21,7 @@ const blogPreview = {
     normal: ({ children, value }) => {
       const preview = children.toString().slice(0, 50);
       return (
-        <p className="py-3 font-light text-center md:font-medium text-md font-main md:text-lg dark:text-white text-stone-900">
+        <p className="py-3 font-light text-center md:font-medium text-md font-main md:text-lg">
           {preview}...
         </p>
       );
@@ -44,24 +44,24 @@ export default function Blog({ blog }) {
       id="blog"
       className="my-16"
     >
-      <div className="grid grid-cols-1 gap-3 ">
-        {blog.map(({ _id, title, slug, body, mainImage }) => {
-          const { width, height } = getImageDimensions(mainImage);
-          console.log(width, height);
-          return (
-            <div
-              key={_id}
-              className="flex flex-col items-center justify-center py-2 font-bold dark:text-white text-stone-900"
-            >
-              <Link
-                href={`blog/${slug.current}`}
-                className="flex justify-between gap-2 text-xl underline transition-opacity duration-300 md:text-2xl underline-offset-4 font-title opacity-40 hover:opacity-100 shadow-stone-600"
-              >
-                {title.toUpperCase()}
-                <ArrowRightCircleIcon className="w-6 h-6 ml-1 md:h-8 md:w-8" />
-              </Link>
-              <div className="relative max-w-fit h-full flex justify-center items-center hover:scale-[103%] hover:opacity-70 transition-all duration-300 ease-in-out ">
-                <div className="absolute z-10 items-center justify-center hidden w-full h-full transition-opacity duration-300 opacity-0 dark:bg-darkbg bg-lightbg md:flex md:flex-col hover:opacity-50">
+      {/* <div className="grid grid-cols-1 gap-3 "> */}
+      {blog.map(({ _id, title, slug, body, mainImage }) => {
+        const { width, height } = getImageDimensions(mainImage);
+        return (
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: false, amount: 0.1 }}
+            key={_id}
+            className="flex flex-col items-center justify-center py-2 font-bold dark:text-white text-stone-900"
+          >
+            <div className="underline md:text-2xl underline-offset-4 font-title ">
+              {title.toUpperCase()}
+            </div>
+            <Link href={`blog/${slug.current}`}>
+              <div className="p-4 md:relative flex justify-center items-center hover:scale-[103%] hover:opacity-70 transition-all duration-300 ease-in-out ">
+                <div className="z-10 items-center justify-center hidden w-full h-full p-4 text-white transition-opacity duration-300 opacity-0 md:absolute md:flex hover:opacity-100">
                   <PortableText value={body} components={blogPreview} />
                 </div>
                 <Image
@@ -82,10 +82,11 @@ export default function Blog({ blog }) {
                 {" "}
                 <PortableText value={body} components={blogPreview} />
               </div>
-            </div>
-          );
-        })}
-      </div>
+            </Link>
+          </motion.div>
+        );
+      })}
+      {/* </div> */}
     </motion.section>
   );
 }
