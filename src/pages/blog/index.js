@@ -14,12 +14,6 @@ export async function getStaticProps() {
 }
 
 export default function Blog({ blog }) {
-  // console.log(blog);
-  // create a 3 column layout that is limited to 2 rows, fades in from below when more posts are available
-
-  // if (!blog) {
-  //   return <Loading />;
-  // }
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -40,7 +34,7 @@ export default function Blog({ blog }) {
             key={_id}
             className="flex flex-col items-center justify-center py-2 font-bold dark:text-white text-stone-900"
           >
-            <div className="inline-flex items-center gap-2 underline md:text-2xl underline-offset-4 font-title ">
+            <div className="inline-flex items-center gap-2 underline md:text-4xl underline-offset-4 font-title ">
               {title.toUpperCase()}
               <ArrowDownCircleIcon className="w-6 h-6 mx-auto md:h-8 md:w-8" />
             </div>
