@@ -14,7 +14,6 @@ export async function getStaticProps() {
 }
 
 export default function Blog({ blog }) {
-  console.log(blog);
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -36,6 +35,9 @@ export default function Blog({ blog }) {
           _updatedAt,
         }) => {
           const { width, height } = getImageDimensions(mainImage);
+          const created = new Date(new Date(_createdAt)).toLocaleDateString();
+          const updated = new Date(new Date(_updatedAt)).toLocaleDateString();
+
           return (
             <motion.div
               initial={{ opacity: 0 }}
@@ -45,9 +47,14 @@ export default function Blog({ blog }) {
               key={_id}
               className="flex flex-col items-center justify-center py-2 font-bold dark:text-white text-stone-900"
             >
-              <div className="inline-flex items-center gap-2 underline md:text-4xl underline-offset-4 font-title ">
+              <header className="inline-flex items-center gap-2 underline md:text-4xl underline-offset-4 font-title ">
                 {title.toUpperCase()}
                 <ArrowDownCircleIcon className="w-6 h-6 mx-auto md:h-8 md:w-8" />
+              </header>
+
+              <div className="flex w-full gap-4 font-normal">
+                Created: {created}
+                <div>Updated: {updated}</div>
               </div>
               <Link href={`blog/${slug.current}`}>
                 <div className="p-4 md:relative flex justify-center items-center hover:scale-[103%] hover:opacity-70 transition-all duration-300 ease-in-out ">
