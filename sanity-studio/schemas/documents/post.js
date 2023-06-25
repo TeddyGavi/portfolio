@@ -33,6 +33,7 @@ export default {
           validation: (rule) => rule.required(),
         },
       ],
+      validation: (rule) => rule.required(),
     },
     {
       name: 'categories',
