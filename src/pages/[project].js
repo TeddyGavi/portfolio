@@ -5,7 +5,7 @@ import { ArrowLeftCircleIcon } from "@heroicons/react/24/outline";
 import { LinkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import Github from "@/svgIcons/Github";
-import { ProjectComponent } from "@/utils/portableText";
+import { ProjectComponent } from "@/utils/projectPortableText";
 
 export const getStaticPaths = async () => {
   const paths = await getProjectPaths();
