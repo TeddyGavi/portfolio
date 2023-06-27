@@ -9,6 +9,12 @@ export default {
       type: 'string',
     },
     {
+      name: 'author',
+      title: 'Author',
+      type: 'reference',
+      to: [{type: 'author'}],
+    },
+    {
       name: 'slug',
       title: 'Slug',
       type: 'slug',
@@ -17,7 +23,6 @@ export default {
         maxLength: 96,
       },
     },
-
     {
       name: 'mainImage',
       title: 'Main image',
@@ -50,6 +55,14 @@ export default {
       name: 'body',
       title: 'Body',
       type: 'postContent',
+    },
+    {
+      name: 'excerpt',
+      title: 'Excerpt',
+      type: 'text',
+      validation: (rule) => rule.required(),
+      validation: (rule) => rule.max(300),
+      validation: (rule) => rule.min(1),
     },
   ],
 

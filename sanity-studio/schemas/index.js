@@ -5,5 +5,6 @@ import richText from './objects/richText'
 import category from './documents/category'
 import postContent from './objects/postContent'
 import gallery from './objects/imageGallery'
+import author from './objects/author'
 
-export const schemaTypes = [about, projects, post, category, richText, postContent, gallery]
+export const schemaTypes = [about, projects, post, category, richText, postContent, gallery, author]
