@@ -1,12 +1,9 @@
 import { getBlogPosts } from "@/lib/getBlogPosts";
 import { motion } from "framer-motion";
 import { urlFor } from "../../../sanity";
-import { blogPreview } from "@/utils/portableText";
 import { getImageDimensions } from "@sanity/asset-utils";
 import Image from "next/image";
-import { PortableText } from "@portabletext/react";
 import Link from "next/link";
-import { ArrowDownCircleIcon } from "@heroicons/react/24/outline";
 
 export async function getStaticProps() {
   const blog = await getBlogPosts();
@@ -55,7 +52,6 @@ export default function Blog({ blog }) {
             >
               <header className=" self-start gap-2 text-lg md:text-4xl hover:underline hover:scale-[103%] transition-transform duration-300 underline-offset-4 font-title ">
                 <Link href={`blog/${slug.current}`}>{title}</Link>
-                {/* <ArrowDownCircleIcon className="w-6 h-6 mx-auto md:h-8 md:w-8" /> */}
               </header>
 
               <div className="flex items-center justify-start w-full gap-4 py-4 text-sm font-thin md:text-lg md:font-normal">
@@ -65,7 +61,7 @@ export default function Blog({ blog }) {
                 <div className="px-4 md:relative flex justify-center items-center hover:scale-[103%] hover:opacity-70 transition-all duration-300 ease-in-out ">
                   <div className="z-10 items-center justify-center hidden w-full h-full p-4 transition-opacity duration-300 opacity-0 md:absolute md:flex hover:opacity-100 hover:blur-sm"></div>
                   <Image
-                    className="w-auto h-auto m-4 rounded-md shadow-xl max-h-min drop-shadow-lg shadow-stone-600 "
+                    className="w-auto m-4 rounded-md shadow-xl max-h-min drop-shadow-lg shadow-stone-600 "
                     src={urlFor(mainImage)
                       .width(width)
                       .height(height)
@@ -83,10 +79,9 @@ export default function Blog({ blog }) {
               </Link>
               <div className="w-11/12 mx-auto my-6 text-sm font-light md:font-normal md:text-lg">
                 {" "}
-                {/* <PortableText value={body} components={blogPreview} /> */}
                 {excerpt}
               </div>
-              <div className="flex items-center w-full gap-4">
+              <div className="flex items-center w-auto gap-4">
                 <Image
                   src={
                     urlFor(author?.picture)

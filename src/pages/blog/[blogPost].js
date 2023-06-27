@@ -7,6 +7,7 @@ import { darcula } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowLeftCircleIcon } from "@heroicons/react/24/outline";
 
 export const getStaticPaths = async () => {
   const paths = await getBlogPostPaths();
@@ -75,7 +76,7 @@ const blogPostComponent = {
   },
   block: {
     h2: ({ children }) => (
-      <h2 className="text-2xl underline md:text-4xl underline-offset-2">
+      <h2 className="text-xl underline md:text-4xl underline-offset-2">
         {children}
       </h2>
     ),
@@ -133,7 +134,7 @@ export default function BlogPost({ postData }) {
   return (
     <section className="flex flex-col items-center w-full mx-auto mt-16">
       <article className="w-11/12">
-        <header className="text-lg underline md:text-5xl underline-offset-4 font-title">
+        <header className="text-xl underline md:text-5xl underline-offset-4 font-title">
           <h1>{title}</h1>
         </header>
         <div className="flex items-center w-full gap-4 my-4 ">
@@ -175,6 +176,13 @@ export default function BlogPost({ postData }) {
         </div>
         <PortableText value={body} components={blogPostComponent} />
       </article>
+      <Link
+        href={"/blog"}
+        className="flex items-center justify-center pt-2 text-lg font-semibold underline transition-all duration-300 underline-offset-8 md:text-xl font-source dark:text-stone-100 text-stone-900 dark:hover:text-stone-200 hover:text-stone-900 hover:opacity-100 opacity-40"
+      >
+        <ArrowLeftCircleIcon className="w-8 h-8" />
+        &nbsp;Back
+      </Link>
     </section>
   );
 }

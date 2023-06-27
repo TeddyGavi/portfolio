@@ -27,11 +27,13 @@ export default function Footer() {
     >
       {/* testing out back to top button, if nav is fixed and blurred background this is not really needed except mobile? */}
       <Link
-        href={"/"}
-        className="flex items-center justify-center sm:hidden md:visible"
+        href={"#"}
+        className="items-center justify-center hidden transition-opacity duration-200 md:flex hover:opacity-100 opacity-40"
       >
-        <span className="my-4 text-xs font-thin font-source">Back to Top</span>
-        <ArrowUpCircleIcon className={`${tailwindStyle} pl-2`} />
+        <span className="my-4 text-xs font-thin md:text-sm font-source">
+          Back to Top
+        </span>
+        <ArrowUpCircleIcon className={`h-8 w-8 pl-2`} />
       </Link>
       <div className="flex mx-auto space-x-6 ">
         <Link href={social.discord}>
