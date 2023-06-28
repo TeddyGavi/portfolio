@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import { useTheme } from "next-themes";
 import { MoonIcon, SunIcon } from "@heroicons/react/24/solid";
+import Loading from "./Loading";
 const Theme = () => {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
@@ -11,7 +12,7 @@ const Theme = () => {
   }, []);
 
   if (!mounted) {
-    return null;
+    return <div className="w-6 h-6"></div>;
   }
 
   if (theme === "light") {
@@ -21,17 +22,17 @@ const Theme = () => {
         onClick={() => setTheme("dark")}
         className="rounded-full p-0.5 border border-spacing-2 border-darkbg"
       >
-        <MoonIcon className="h-6 w-6 text-darkbg" />
+        <MoonIcon className="w-6 h-6 text-darkbg" />
       </button>
     );
-  } else if (theme === "dark") {
+  } else {
     return (
       <button
         aria-label="Toggle dark and light theme button"
         onClick={() => setTheme("light")}
         className="rounded-full p-0.5 border border-spacing-2 border-white"
       >
-        <SunIcon className="h-6 w-6 dark:text-slate-100" />
+        <SunIcon className="w-6 h-6 dark:text-slate-100" />
       </button>
     );
   }

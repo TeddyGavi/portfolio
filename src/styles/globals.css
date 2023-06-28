@@ -26,7 +26,6 @@
     scroll-behavior: smooth;
   }
   body {
-    /* background-color: rgb(57, 57, 57); */
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     margin-left: auto;
@@ -76,7 +75,6 @@
   #have-you {
     min-height: calc(100svh - 4rem);
     scroll-margin-top: 4rem;
-    scroll-snap-align: center;
     padding-top: 5%;
   }
 }
