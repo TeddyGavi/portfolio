@@ -23,11 +23,7 @@ export default function Layout({ children }) {
   return (
     <>
       <Nav />
-      <main
-        className={`${main.variable} ${source.variable} snap-y snap-mandatory`}
-      >
-        {children}
-      </main>
+      <main className={`${main.variable} ${source.variable}`}>{children}</main>
       <Footer />
     </>
   );

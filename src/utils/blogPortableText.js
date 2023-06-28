@@ -22,21 +22,23 @@ const blogPostImageParser = ({ value }) => {
 
 const blogCodeParser = ({ value }) => {
   return (
-    <SyntaxHighlighter
-      language={value.language}
-      style={darcula}
-      wrapLines={true}
-      wrapLongLines={true}
-      showLineNumbers
-      lineNumberStyle={{
-        padding: "0 5px 0 0",
-        fontSize: 14,
-        borderRight: "1.5px solid darkgray",
-        marginRight: "10px",
-      }}
-    >
-      {value.code}
-    </SyntaxHighlighter>
+    <div className="w-full px-2">
+      <SyntaxHighlighter
+        language={value.language}
+        style={darcula}
+        wrapLines={true}
+        wrapLongLines={true}
+        showLineNumbers
+        lineNumberStyle={{
+          padding: "0 5px 0 0",
+          fontSize: 14,
+          borderRight: "1.5px solid darkgray",
+          marginRight: "10px",
+        }}
+      >
+        {value.code}
+      </SyntaxHighlighter>
+    </div>
   );
 };
 export const blogPostComponent = {
@@ -86,7 +88,7 @@ export const blogPostComponent = {
         : undefined;
       return (
         <a
-          className="font-bold hover:underline"
+          className="font-bold break-words hover:underline"
           href={value?.href}
           target={target}
           rel={target === "_blank" && "noindex nofollow"}

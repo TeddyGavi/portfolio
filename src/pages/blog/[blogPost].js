@@ -40,12 +40,12 @@ export default function BlogPost({ postData }) {
   const { author, body, categories, mainImage, title, _createdAt, _id } =
     postData;
   return (
-    <section className="flex flex-col items-center w-full mx-auto mt-16">
-      <article className="w-11/12">
-        <header className="text-xl underline md:text-5xl underline-offset-4 font-title">
+    <section className="mt-16 ">
+      <article className="flex flex-col items-center mx-auto">
+        <header className="px-1 text-xl underline md:text-5xl underline-offset-4 font-title">
           <h1>{title}</h1>
         </header>
-        <div className="flex items-center w-full gap-4 my-4 ">
+        <div className="flex items-center w-full gap-4 px-2 my-4 ">
           <Image
             src={
               urlFor(author?.picture)
@@ -64,23 +64,23 @@ export default function BlogPost({ postData }) {
           <div className="text-sm font-thin md:text-lg md:font-normal ">
             {author.name}
           </div>
-          <div className="flex items-center gap-2 font-thin md:font-normal">
-            Posted in:
-            {categories ? (
-              categories.map((cat, i) => {
-                return (
-                  <div
-                    key={i}
-                    className="flex px-1 border rounded-full md:border-2 "
-                  >
-                    {cat}
-                  </div>
-                );
-              })
-            ) : (
-              <div className="flex px-1 border-2 rounded-full">{""}</div>
-            )}
-          </div>
+        </div>
+        <div className="flex flex-wrap items-center w-full gap-2 px-2 text-sm font-thin md:font-normal">
+          Posted in:
+          {categories ? (
+            categories.map((cat, i) => {
+              return (
+                <div
+                  key={i}
+                  className="flex px-2 border rounded-full md:border-2 "
+                >
+                  {cat}
+                </div>
+              );
+            })
+          ) : (
+            <div className="flex px-2 border-2 rounded-full">{""}</div>
+          )}
         </div>
         <PortableText value={body} components={blogPostComponent} />
       </article>
