@@ -9,6 +9,10 @@ export default function App({ Component, pageProps }) {
     <>
       <Head>
         <title>M/D</title>
+        <meta
+          name="google-site-verification"
+          content="cZ7DFOFZ-kj4NgDwQFWMQxgs8m51QFBO2vS-UIaDhZc"
+        />
 
         <meta name="description" content="web developer Matt Davis portfolio" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
