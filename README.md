@@ -46,7 +46,7 @@ npm run dev
 
 ## Bugs and Known Issues
 
-- nothing currently...please report if found.
+- [ ] layout shift issue caused by theme loading in useEffect, fix coming in shortly
 
 ## Dependencies
 
