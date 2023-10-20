@@ -1,6 +1,6 @@
 import Footer from "./Footer";
 import Nav from "./Nav";
-import { Montserrat, Source_Code_Pro } from "@next/font/google";
+import { Montserrat, Source_Code_Pro } from "next/font/google";
 
 const main = Montserrat({
   subsets: ["latin", "latin-ext"],
