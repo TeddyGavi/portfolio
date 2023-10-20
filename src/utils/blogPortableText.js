@@ -26,8 +26,6 @@ const blogCodeParser = ({ value }) => {
       <SyntaxHighlighter
         language={value.language}
         style={darcula}
-        wrapLines={true}
-        wrapLongLines={true}
         showLineNumbers
         lineNumberStyle={{
           padding: "0 5px 0 0",
