@@ -1,6 +1,7 @@
 import Layout from "@/components/Layout";
 import "@/styles/globals.css";
 import Head from "next/head";
+import Script from "next/script";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 import { ThemeProvider } from "next-themes";
 
@@ -14,7 +15,7 @@ export default function App({ Component, pageProps }) {
           content="cZ7DFOFZ-kj4NgDwQFWMQxgs8m51QFBO2vS-UIaDhZc"
         />
 
-        <meta name="description" content="web developer Matt Davis portfolio" />
+        <meta name="description" content="Web Developer Matt Davis portfolio" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link
           rel="apple-touch-icon"
@@ -33,8 +34,9 @@ export default function App({ Component, pageProps }) {
           sizes="16x16"
           href="/favicon-16x16.png"
         />
-        <link rel="manifest" href="/site.webmanifest" />
+        {/* <link rel="manifest" href="/site.webmanifest" /> */}
         {/* OG tags general */}
+        <link rel="canonical" href="https://matcdavis.dev"></link>
         <meta
           property="og:title"
           content="Matt Davis Front-End Web Developer"
@@ -68,6 +70,23 @@ export default function App({ Component, pageProps }) {
           content="https://cdn.sanity.io/images/m9iwl7mr/production/2522fd2643d0eb781183d06366dec7cb8f5670b5-480x720.jpg?q=100"
         />
       </Head>
+      {/* <!-- Google tag (gtag.js) --> */}
+      <Script
+        id="googleTag"
+        strategy="lazyOnLoad"
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_TAG_MEASUREMENT_ID}`}
+      ></Script>
+      <Script id="googleTagCode" strategy="lazyOnload">
+        {`
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_TAG_MEASUREMENT_ID}'),  {
+    page_path: window.location.pathname,
+    };
+  `}
+      </Script>
       <GoogleReCaptchaProvider
         reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTHCA_SITE}
         scriptProps={{
