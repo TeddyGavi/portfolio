@@ -5,13 +5,12 @@ import Script from "next/script";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 import { ThemeProvider } from "next-themes";
 import { DefaultSeo } from "next-seo";
+import SEO from "../../next-seo.config";
 
 export default function App({ Component, pageProps }) {
   return (
     <>
-    <DefaultSeo>
-      
-    </DefaultSeo>
+      <DefaultSeo {...SEO}></DefaultSeo>
       <Head>
         <title>M/D</title>
         <meta
