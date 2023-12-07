@@ -28,14 +28,10 @@ export default async function nmTransportor(options) {
         `,
   };
 
-  const emailResolver = await new Promise((resolve, reject) => {
-    transportor.sendMail(emailOptions, (err, data) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(data);
-      }
-    });
-  });
-  return emailResolver;
+  try {
+    await transportor.sendMail(emailOptions);
+    return true;
+  } catch (error) {
+    throw error;
+  }
 }
