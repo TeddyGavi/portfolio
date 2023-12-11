@@ -28,11 +28,10 @@ export default async function nmTransportor(options) {
         `,
   };
 
-  transportor.sendMail(emailOptions, (error) => {
-    if (error) {
-      throw new Error(error);
-    } else {
-      return true;
-    }
-  });
+  try {
+    await transportor.sendMail(emailOptions);
+    return true;
+  } catch (error) {
+    throw error;
+  }
 }

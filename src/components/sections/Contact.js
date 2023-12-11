@@ -27,13 +27,8 @@ export default function Contact() {
         setValidate(false);
       }, timeOut);
     },
-    [setSubmit, setValidate, reset, setLoading]
+    [setSubmit, setValidate, reset, setLoading],
   );
-
-  // You can use useEffect to trigger the verification as soon as the component being loaded
-  // useEffect(() => {
-  //   onSubmit();
-  // }, [onSubmit]);
 
   const submitFormWithToken = useCallback(
     async (token, formData) => {
@@ -85,7 +80,7 @@ export default function Contact() {
         resetSubmit();
       }
     },
-    [resetSubmit]
+    [resetSubmit],
   );
 
   const onSubmit = useCallback(
@@ -100,7 +95,7 @@ export default function Contact() {
       submitFormWithToken(token, formData);
       // console.log(token, formData);
     },
-    [executeRecaptcha, submitFormWithToken]
+    [executeRecaptcha, submitFormWithToken],
   );
 
   return (
